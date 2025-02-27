@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="text-8xl font-bold">Test</h1>
+    <h1 class="text-2xl font-bold">Test</h1>
   </main>
 </template>
 
