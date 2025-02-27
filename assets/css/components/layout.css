@@ -1,0 +1,7 @@
+.responsive-layout {
+    @apply mx-auto w-full
+}
+
+.responsive-padding-x {
+    @apply px-6
+}

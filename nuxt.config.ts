@@ -49,7 +49,7 @@ export default defineNuxtConfig({
 
     googleFonts: {
         families: {
-            Montserrat: true,
+            Montserrat: [400, 500],
             PlayfairDisplay: true,
         },
     },
