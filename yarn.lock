@@ -274,6 +274,11 @@
   dependencies:
     mime "^3.0.0"
 
+"@directus/sdk@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@directus/sdk/-/sdk-19.0.1.tgz#06d154a41499b79b068f18992a7e5f310f0b242c"
+  integrity sha512-6KwWedA/vxrMN2aRm5L52TEgB+42vkz0Ae8kwOitHuBPT4VWtUNOXenzaHnZyXyNrEgh/VBLJ36f3UEe3b/Wfw==
+
 "@esbuild/aix-ppc64@0.24.2":
   version "0.24.2"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.24.2.tgz#38848d3e25afe842a7943643cbcd387cc6e13461"

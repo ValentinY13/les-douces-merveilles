@@ -26,14 +26,21 @@ export default defineNuxtConfig({
     //     {path: '~components/navigation', prefix: 'Navigation'},
     // ],
 
-    runtimeConfig: {
-        public: {
-            verifyEmailUrl: process.env.VERIFICATION_EMAIL_URL,
-            resetUrl: process.env.PASSWORD_RESET_URL,
-            directus: {
-                url: process.env.DIRECTUS_URL
+    // runtimeConfig: {
+    //     public: {
+    //         verifyEmailUrl: process.env.VERIFICATION_EMAIL_URL,
+    //         resetUrl: process.env.PASSWORD_RESET_URL,
+    //         directus: {
+    //             url: process.env.DIRECTUS_URL
+    //         }
+    //     },
+    // },
+
+    routeRules: {
+        "/directus/**":
+            {
+                proxy: process.env.NUXT_PUBLIC_DIRECTUS_URL
             }
-        },
     },
 
     piniaPluginPersistedstate: {
