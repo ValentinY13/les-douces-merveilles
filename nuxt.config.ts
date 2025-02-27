@@ -1,17 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+import tailwindcss from "@tailwindcss/vite";
 
-  modules: [
-      '@nuxtjs/tailwindcss',
-      '@nuxt/image',
-      '@nuxtjs/google-fonts',
-      '@pinia/nuxt',
-      'pinia-plugin-persistedstate/nuxt',
-      '@vee-validate/nuxt',
-      'shadcn-nuxt'
-  ],
+export default defineNuxtConfig({
+    compatibilityDate: '2024-11-01',
+    devtools: {enabled: true},
+
+    modules: [
+        '@nuxt/image',
+        '@nuxtjs/google-fonts',
+        '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
+        '@vee-validate/nuxt',
+    ],
+
+    vite: {
+        plugins: [
+            tailwindcss(),
+        ],
+    },
+
+    css: ['~/assets/css/tailwind.css'],
 
     // components: [
     //     '~/components',
@@ -37,18 +45,6 @@ export default defineNuxtConfig({
             Montserrat: true,
             PlayfairDisplay: true,
         },
-    },
-
-    shadcn: {
-        /**
-         * Prefix for all the imported component
-         */
-        prefix: '',
-        /**
-         * Directory that the component lives in.
-         * @default "./components/ui"
-         */
-        componentDir: './components/ui',
     },
 
     vue: {
