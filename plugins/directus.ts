@@ -2,55 +2,16 @@ import {
     createDirectus,
     rest,
     readItems,
-    registerUser,
-    authentication,
-    readMe,
-    refresh,
-    type AuthenticationStorage
 } from "@directus/sdk";
 
 export default defineNuxtPlugin(() => {
 
-    class NuxtCookieStorage {
-        cookie = useCookie("directus-data");
+    const config = useRuntimeConfig();
+    const url = config.public.directus.url;
 
-        get() {
-            return this.cookie.value;
-        }
-
-        set(data: any) {
-            this.cookie.value = data;
-        }
-    }
-
-    const storage = new NuxtCookieStorage() as AuthenticationStorage;
-
-    const directus = createDirectus("http://localhost:3000/directus")
-        .with(authentication("cookie", {credentials: "include", autoRefresh: true, storage}))
-        .with(rest({credentials: "include"}));
-
-    const isAuthenticated = async () => {
-        try {
-            const me = await directus.request(readMe());
-            return me;
-        } catch (error) {
-            console.error(error)
-            return 'false';
-        }
-    };
-
-    const refreshToken = async () => {
-        return directus.request(
-            refresh('cookie')
-        );
-    };
-
-    const logout = async () => {
-        await directus.logout()
-        navigateTo('/')
-    }
+    const directus = createDirectus(url).with(rest());
 
     return {
-        provide: {directus, readItems, registerUser, isAuthenticated, refreshToken, logout},
+        provide: {directus, readItems},
     };
 })

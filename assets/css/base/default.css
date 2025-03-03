@@ -1,3 +1,6 @@
 @layer base {
-    @apply font-montserrat font-normal;
+
+    body {
+        @apply font-montserrat font-normal bg-bg-primary text-grey-700;
+    }
 }
