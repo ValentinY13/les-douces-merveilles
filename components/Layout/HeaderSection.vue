@@ -2,10 +2,11 @@
   <div>
     <swiper-container ref="swiperElement" init="false">
       <swiper-slide v-for="item in items.slides" :key="item.id" class="relative h-dvh lg:h-[90dvh]">
-        <nuxt-picture data-swiper-parallax="-73%"
-                      provider="directus"
-                      :src="`${item.product.images[0].directus_files_id?.id}/${item.product.images[0].directus_files_id?.filename_download}`"
-                      :img-attrs="{ class: 'w-full h-full object-cover' }"
+        <nuxt-picture
+            preload
+            provider="directus"
+            :src="`${item.product.images[0].directus_files_id?.id}/${item.product.images[0].directus_files_id?.filename_download}`"
+            :img-attrs="{ class: 'w-full h-full object-cover' }"
         >
         </nuxt-picture>
         <div data-swiper-parallax="-200"
