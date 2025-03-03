@@ -1,0 +1,69 @@
+<template>
+  <section class="py-24" aria-labelledby="presentation">
+    <TitleSection :title="items.title" :subtitle="items.subtitle" class="px-6"/>
+    <div class="px-6 overflow-hidden">
+      <swiper-container ref="swiperElement" init="false">
+        <swiper-slide v-for="product in items.product" :key="product.id"
+                      class="max-w-[450px] w-full h-auto">
+          <CardCarousel :product="product.product_id" class="relative "/>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import type {BlockSlider} from "~/types"
+import type {SwiperOptions} from "swiper/types";
+
+const {swiperOverflowVisible} = useTwSwiper();
+
+defineProps<{
+  items: BlockSlider
+}>()
+
+const swiperElement = ref()
+
+const swiperOptions: SwiperOptions = {
+  spaceBetween: 24,
+  slidesPerView: 'auto',
+  grabCursor: true,
+  injectStyles: [swiperOverflowVisible(),
+    `
+    .swiper {
+      padding: 64px 0
+    }
+
+    .swiper-pagination-bullet {
+      --swiper-pagination-bullet-inactive-opacity: 0.4;
+      --swiper-pagination-bullet-inactive-color: lch(82.76% 0 139.09);
+    }
+
+    .swiper-pagination-bullet-active {
+      --swiper-pagination-color: lch(34.5% 24.09 53.33);
+    }
+      `
+  ],
+  pagination: {
+    clickable: true
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 'auto'
+    }
+  }
+}
+
+onMounted(() => {
+  Object.assign(swiperElement.value, swiperOptions);
+  swiperElement.value.initialize();
+})
+</script>
+
+<style scoped>
+
+
+</style>
