@@ -13,6 +13,8 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
         '@vee-validate/nuxt',
+        '@nuxtjs/robots',
+        '@nuxtjs/sitemap',
     ],
 
     vite: {
@@ -22,6 +24,13 @@ export default defineNuxtConfig({
     },
 
     css: ['~/assets/css/tailwind.css'],
+
+    site: {indexable: process.env.NUXT_PUBLIC_NOINDEX},
+
+    app: {
+        pageTransition: {name: 'page', mode: 'out-in'},
+        layoutTransition: {name: 'page', mode: 'out-in'},
+    },
 
     components: [
         '~/components',
