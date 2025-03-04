@@ -2,6 +2,10 @@
     @apply bg-current inline-block
 }
 
+.icon-link {
+    @apply bg-current block
+}
+
 .icon-chef-hat {
     mask: url("/svg/icons/ChefHat.svg");
     mask-position: center;
@@ -58,6 +62,24 @@
 
 .icon-instagram {
     mask: url("/svg/icons/InstagramLogo.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-shopping-bag {
+    mask: url("/svg/icons/ShoppingbagOpen.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-user {
+    mask: url("/svg/icons/User.svg");
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: contain;

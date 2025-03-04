@@ -8,13 +8,14 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
 
     modules: [
-        '@nuxt/image',
-        '@nuxtjs/google-fonts',
-        '@pinia/nuxt',
-        'pinia-plugin-persistedstate/nuxt',
-        '@vee-validate/nuxt',
-        '@nuxtjs/robots',
-        '@nuxtjs/sitemap',
+      '@nuxt/image',
+      '@nuxtjs/google-fonts',
+      '@pinia/nuxt',
+      'pinia-plugin-persistedstate/nuxt',
+      '@vee-validate/nuxt',
+      '@nuxtjs/robots',
+      '@nuxtjs/sitemap',
+      '@vueuse/nuxt'
     ],
 
     vite: {

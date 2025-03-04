@@ -35,12 +35,12 @@
         <nuxt-link
             to="https://www.facebook.com/namurcadets" title="Facebook"
             rel="noopener" exertnal aria-label="Visitez notre page Facebook">
-          <i class="icon icon-facebook text-2xl"></i>
+          <i class="icon-link icon-facebook text-2xl"></i>
         </nuxt-link>
         <nuxt-link
             to="https://www.instagram.com/namurcadets/" title="Instagram"
             rel="noopener" exertnal aria-label="Visitez notre page Instagram">
-          <i class="icon icon-instagram text-2xl"></i>
+          <i class="icon-link icon-instagram text-2xl"></i>
         </nuxt-link>
       </div>
     </div>
