@@ -13,7 +13,7 @@
              class="absolute bottom-0 left-0 w-full lg:w-fit lg:max-w-xl min-h-[40dvh] flex flex-col items-center lg:items-start  justify-center gap-6 px-6 lg:px-12 xl:px-16 py-4 lg:py-8 xl:py-12 pb-12 text-brown-700 text-center lg:text-left bg-bg-opacity">
           <h2 data-swiper-parallax="-100" class="text-h3 uppercase">{{ item.title }}</h2>
           <h1 data-swiper-parallax="-200" class="text-h1-play">{{ item.product.name }}</h1>
-          <nuxt-link data-swiper-parallax="-200" to="/" class="btn w-fit">COMMANDER</nuxt-link>
+          <nuxt-link data-swiper-parallax="-200" title="Commander" to="/" class="btn w-fit">COMMANDER</nuxt-link>
         </div>
       </swiper-slide>
     </swiper-container>

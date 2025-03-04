@@ -1,6 +1,6 @@
 <template>
-  <section class="py-24" aria-labelledby="presentation">
-    <TitleSection :title="items.title" :subtitle="items.subtitle" class="px-6"/>
+  <section class="py-24">
+    <slot name="header"></slot>
     <div class="px-6 overflow-hidden">
       <swiper-container ref="swiperElement" init="false">
         <swiper-slide v-for="product in items.product" :key="product.id"

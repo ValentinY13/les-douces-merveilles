@@ -1,7 +1,7 @@
 .btn {
     /*--_background-color: var(--color-white, theme('color.white'));*/
     --_color: var(--color-brown-700, theme('color.brown.700'));
-    /*--_border-color: var(--color-red-100, theme('color.red.100'));*/
+    /*--_border-color: var(--color-red-700, theme('color.red.700'));*/
 
     cursor: pointer;
 

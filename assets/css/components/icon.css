@@ -1,0 +1,66 @@
+.icon {
+    @apply bg-current inline-block
+}
+
+.icon-chef-hat {
+    mask: url("/svg/icons/ChefHat.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-credit-card {
+    mask: url("/svg/icons/CreditCard.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-flower-lotus {
+    mask: url("/svg/icons/FlowerLotus.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-grains {
+    mask: url("/svg/icons/Grains.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-package {
+    mask: url("/svg/icons/Package.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-facebook {
+    mask: url("/svg/icons/FacebookLogo.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-instagram {
+    mask: url("/svg/icons/InstagramLogo.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
