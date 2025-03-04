@@ -5,6 +5,8 @@
 @import "assets/css/components/layout.css";
 @import "assets/css/components/card.css";
 @import "assets/css/components/button.css";
+@import "assets/css/components/input.css";
+@import "assets/css/components/icon.css";
 
 @theme {
 
@@ -15,12 +17,13 @@
     --current: currentColor;
 
     --color-brown-700: lch(34.5% 24.09 53.33);
-    --color-brown-100: #BD8F68;
-    --color-bg-primary: lch(96.19% 0 139.09);
-    --color-bg-secondary: lch(93.63% 2.6 70.35);
+    --color-brown-100: lch(63.22% 31.33 62.75);
     --color-grey-100: lch(82.76% 0 139.09);
     --color-grey-700: lch(29.29% 0 139.09);
+    --color-red-700: lch(48.24% 92.1 36.6);
     --color-white: lch(100% 0 139.09);
+    --color-bg-primary: lch(96.19% 0 139.09);
+    --color-bg-secondary: lch(93.63% 2.6 70.35);
     --color-bg-opacity: lch(100% 0 139.09 / 0.9);
 
     --shadow-card: 0px 8px 24px 0px rgba(0, 0, 0, 0.20);

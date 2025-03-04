@@ -1,0 +1,104 @@
+.error-message {
+    @apply text-left text-red-700 text-sm block mt-2 border-transparent;
+}
+
+.default-input {
+    --_border-color: var(--border-color, theme('colors.brown.100'));
+    --_background-color: var(--color-bg-secondary, theme('colors.bg.secondary'));
+    --_color: var(--color-grey-100, theme('colors.grey.100'));
+    --_tw-ring-color: var(--ring-color, theme('colors.brown.700'));
+    --_tw-ring-color_hover: var(--color-brown-100, theme('colors.brown.100'));
+
+    @apply ring-0 border-0 outline-none py-3 px-2 border-b border-brown-100 disabled:bg-grey-100 disabled:border-grey-100;
+
+    background-color: var(--_background-color);
+    border-color: var(--_border-color);
+
+    &::placeholder {
+        color: var(--_color);
+        opacity: .5;
+    }
+
+    &:active {
+        --tw-ring-color: var(--_tw-ring-color);
+        border-color: var(--_tw-ring-color);
+        @apply ring-1;
+    }
+
+    &:hover {
+        --tw-ring-color: var(--_tw-ring-color_hover);
+        @apply ring-1;
+        border-color: transparent;
+    }
+
+    &:focus {
+        --tw-ring-color: var(--_tw-ring-color);
+        border-color: transparent;
+        @apply ring-1;
+    }
+
+
+    /*&.input--black {*/
+    /*    --border-color: theme('colors.black');*/
+    /*}*/
+
+    &.input--no-border {
+        @apply border-none;
+    }
+
+    &.input-error {
+        --border-color: theme('colors.red.700');
+        --ring-color: theme('color.red.700');
+    }
+
+    &.input-error:focus {
+        @apply border-b-transparent
+    }
+}
+
+/*input[type="checkbox"].default-checkbox {*/
+/*    --_background-color: var(--background-color, theme('colors.white'));*/
+/*    --_color: var(--color, theme('colors.grey.600'));*/
+
+/*    @apply relative appearance-none border-2 size-5 transition duration-300 ease-in-out outline-none cursor-pointer bg-transparent border-current;*/
+
+/*    color: var(--_color);*/
+
+/*    &:focus {*/
+/*        content: "";*/
+/*        box-shadow: none;*/
+/*    }*/
+
+/*    &:checked {*/
+/*        --background-color: theme('colors.red.700');*/
+/*        background-image: none;*/
+/*        background-color: var(--_background-color);*/
+/*        border-color: var(--_background-color);*/
+/*    }*/
+
+/*    &:checked:after {*/
+/*        content: '';*/
+/*        top: 50%;*/
+/*        left: 50%;*/
+/*        transform: translate(-50%, -40%);*/
+
+/*        position: absolute;*/
+/*        mask: url('/svg/icons/check.svg');*/
+/*        mask-position: center;*/
+/*        mask-size: contain;*/
+/*        mask-repeat: no-repeat;*/
+/*        width: 65%;*/
+/*        height: 65%;*/
+/*        background-color: white;*/
+/*    }*/
+/*}*/
+
+
+input.default-input {
+    @apply border-b;
+}
+
+textarea.default-input {
+    @apply h-32 border rounded-2xl;
+}
+

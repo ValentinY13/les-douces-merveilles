@@ -2,7 +2,13 @@
   <main>
     <LayoutHeaderSection :items="homeData.blocks.block_header"/>
 
-    <LayoutCarouselSection :items="homeData.blocks.block_slider[0]"/>
+    <!--    <pre>{{ homeData.blocks.block_slider[0] }}</pre>-->
+    <LayoutCarouselSection aria-labelledby="mise en avant" :items="homeData.blocks.block_slider[0]">
+      <template #header>
+        <TitleSection :title="homeData.blocks.block_slider[0].title"
+                      :subtitle="homeData.blocks.block_slider[0].subtitle" class="px-6" :id="'mise en avant'"/>
+      </template>
+    </LayoutCarouselSection>
 
     <section class="relative" aria-labelledby="citation">
       <nuxt-picture provider="directus"
@@ -18,7 +24,17 @@
       </blockquote>
     </section>
 
-    <LayoutCarouselSection :items="homeData.blocks.block_slider[1]"/>
+    <LayoutCarouselSection aria-labelledby="presentation produits" :items="homeData.blocks.block_slider[1]">
+      <template #header>
+        <TitleSection :title="homeData.blocks.block_slider[1].title"
+                      :subtitle="homeData.blocks.block_slider[1].subtitle" class="px-6" :id="'mise en avant'"/>
+      </template>
+    </LayoutCarouselSection>
+
+    <LayoutNewsletter/>
+
+    <LayoutQualities/>
+
   </main>
 </template>
 
