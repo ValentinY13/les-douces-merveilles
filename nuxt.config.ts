@@ -1,4 +1,5 @@
 const directus_url = process.env.DIRECTUS_URL || 'http://127.0.0.1:8055';
+const nuxt_url = process.env.NUXT_URL || 'http://localhost:3000';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
@@ -8,14 +9,14 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
 
     modules: [
-      '@nuxt/image',
-      '@nuxtjs/google-fonts',
-      '@pinia/nuxt',
-      'pinia-plugin-persistedstate/nuxt',
-      '@vee-validate/nuxt',
-      '@nuxtjs/robots',
-      '@nuxtjs/sitemap',
-      '@vueuse/nuxt'
+        '@nuxt/image',
+        '@nuxtjs/google-fonts',
+        '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
+        '@vee-validate/nuxt',
+        '@nuxtjs/robots',
+        '@nuxtjs/sitemap',
+        '@vueuse/nuxt'
     ],
 
     vite: {
@@ -41,7 +42,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            verifyEmailUrl: process.env.VERIFICATION_EMAIL_URL,
+            verifyEmailUrl: `${nuxt_url}/account/verify`,
             resetUrl: process.env.PASSWORD_RESET_URL,
             assetsUrl: process.env.ASSETS_URL,
             nuxtUrl: process.env.NUXT_URL,
@@ -64,7 +65,9 @@ export default defineNuxtConfig({
 
     googleFonts: {
         families: {
-            Montserrat: [400, 500],
+            Montserrat: {
+                wght: [400, 500]
+            },
             'Playfair Display': {
                 wght: [400, 500, 600, 700, 800, 900],
                 ital: [700],

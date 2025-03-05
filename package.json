@@ -31,6 +31,7 @@
     "tailwindcss": "^4.0.9",
     "vue": "latest",
     "vue-router": "latest",
+    "vue3-toastify": "^0.2.8",
     "yup": "^1.6.1"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
