@@ -2,7 +2,6 @@
   <main>
     <LayoutHeaderSection :items="homeData.blocks.block_header"/>
 
-    <!--    <pre>{{ homeData.blocks.block_slider[0] }}</pre>-->
     <LayoutCarouselSection aria-labelledby="mise en avant" :items="homeData.blocks.block_slider[0]">
       <template #header>
         <TitleSection :title="homeData.blocks.block_slider[0].title"
@@ -30,11 +29,6 @@
                       :subtitle="homeData.blocks.block_slider[1].subtitle" class="px-6" :id="'mise en avant'"/>
       </template>
     </LayoutCarouselSection>
-
-    <LayoutNewsletter/>
-
-    <LayoutQualities/>
-
   </main>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="py-24">
+  <section class="py-24 ">
     <slot name="header"></slot>
     <div class="px-6 overflow-hidden">
       <swiper-container ref="swiperElement" init="false">

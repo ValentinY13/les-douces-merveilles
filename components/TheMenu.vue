@@ -2,23 +2,23 @@
   <header aria-label="Menu"
           class="z-40 fixed top-0 left-0 w-full">
     <nav aria-label="Menu header"
-         class="bg-bg-primary flex justify-between items-center gap-x-5 absolute top-0 left-0 w-full py-2 md:py-4 px-6 transition-all duration-500 "
+         class="bg-bg-primary flex justify-between items-center gap-x-5 absolute top-0 left-0 w-full py-2 md:py-4 px-6 md:px-12 transition-all duration-500 "
          :class="{'-translate-y-full' : !showTopMenu || isActive, 'shadow' :  !(!showTopMenu || isActive)}">
 
       <!--   Desktop links   -->
       <ul class="hidden lg:flex items-center gap-6">
         <li class="hidden lg:block">
-          <nuxt-link to="/" title="Contact">Accueil
+          <nuxt-link to="/" title="Accueil">Accueil
           </nuxt-link>
         </li>
         <li class="hidden lg:block">
-          <nuxt-link to="/" title="Contact">Nos Collections
+          <nuxt-link to="/" title="Nos collections">Nos Collections
           </nuxt-link>
         </li>
       </ul>
       <ul class="hidden lg:flex items-center gap-6">
         <li class="hidden lg:block">
-          <nuxt-link to="/" title="Contact">A propos
+          <nuxt-link to="/" title="A propos">A propos
           </nuxt-link>
         </li>
 
@@ -29,7 +29,7 @@
         <nuxt-link to="/" title="Panier">
           <i class="icon-link icon-shopping-bag text-2xl"></i>
         </nuxt-link>
-        <nuxt-link to="/" title="Mon compte">
+        <nuxt-link to="/account/register" title="Mon compte">
           <i class="icon-link icon-user text-2xl"></i>
         </nuxt-link>
       </ul>
@@ -45,7 +45,7 @@
 
       <nuxt-link to="/" title="Les Douces Merveilles"
                  class="md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-        <nuxt-img src="svg/logo.svg"
+        <nuxt-img src="svg/logo.svg" preload
                   class="w-full max-w-[350px] h-10 lg:h-12"></nuxt-img>
       </nuxt-link>
 
@@ -87,7 +87,7 @@
             <nuxt-link @click="handleClick" to="/" title="A propos">à propos</nuxt-link>
           </li>
           <li>
-            <nuxt-link @click="handleClick" to="/" title="Mon compte">Mon compte</nuxt-link>
+            <nuxt-link @click="handleClick" to="/account/register" title="Mon compte">Mon compte</nuxt-link>
           </li>
           <li>
             <nuxt-link @click="handleClick" to="/" title="Contact" class="btn">Contact</nuxt-link>

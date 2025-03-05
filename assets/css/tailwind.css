@@ -8,6 +8,8 @@
 @import "assets/css/components/input.css";
 @import "assets/css/components/icon.css";
 
+@plugin '~/tailwind-utils/plugins/layout.ts';
+
 @theme {
 
     /* Colors */
@@ -30,5 +32,4 @@
 
     --font-montserrat: 'Montserrat', sans-serif;
     --font-play: 'Playfair Display', serif;
-
 }

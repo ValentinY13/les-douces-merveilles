@@ -4,14 +4,12 @@
 
 .default-input {
     --_border-color: var(--border-color, theme('colors.brown.100'));
-    --_background-color: var(--color-bg-secondary, theme('colors.bg.secondary'));
-    --_color: var(--color-grey-100, theme('colors.grey.100'));
+    --_color: var(--color-brown-100, theme('colors.brown.100'));
     --_tw-ring-color: var(--ring-color, theme('colors.brown.700'));
     --_tw-ring-color_hover: var(--color-brown-100, theme('colors.brown.100'));
 
-    @apply ring-0 border-0 outline-none py-3 px-2 border-b border-brown-100 disabled:bg-grey-100 disabled:border-grey-100;
+    @apply ring-0 border-0 outline-none py-3 px-2 border-b border-brown-100 bg-transparent disabled:bg-grey-100 disabled:border-grey-100;
 
-    background-color: var(--_background-color);
     border-color: var(--_border-color);
 
     &::placeholder {
@@ -37,11 +35,6 @@
         @apply ring-1;
     }
 
-
-    /*&.input--black {*/
-    /*    --border-color: theme('colors.black');*/
-    /*}*/
-
     &.input--no-border {
         @apply border-none;
     }
@@ -56,42 +49,42 @@
     }
 }
 
-/*input[type="checkbox"].default-checkbox {*/
-/*    --_background-color: var(--background-color, theme('colors.white'));*/
-/*    --_color: var(--color, theme('colors.grey.600'));*/
+input[type="checkbox"].default-checkbox {
+    --_background-color: var(--background-color, theme('colors.white'));
+    --_color: var(--color-grey-700, theme('colors.grey.700'));
 
-/*    @apply relative appearance-none border-2 size-5 transition duration-300 ease-in-out outline-none cursor-pointer bg-transparent border-current;*/
+    @apply relative appearance-none border-2 size-5 transition duration-300 ease-in-out outline-none cursor-pointer bg-transparent border-brown-700;
 
-/*    color: var(--_color);*/
+    color: var(--_color);
 
-/*    &:focus {*/
-/*        content: "";*/
-/*        box-shadow: none;*/
-/*    }*/
+    &:focus {
+        content: "";
+        box-shadow: none;
+    }
 
-/*    &:checked {*/
-/*        --background-color: theme('colors.red.700');*/
-/*        background-image: none;*/
-/*        background-color: var(--_background-color);*/
-/*        border-color: var(--_background-color);*/
-/*    }*/
+    &:checked {
+        --background-color: theme('colors.brown.700');
+        background-image: none;
+        background-color: var(--_background-color);
+        border-color: var(--_background-color);
+    }
 
-/*    &:checked:after {*/
-/*        content: '';*/
-/*        top: 50%;*/
-/*        left: 50%;*/
-/*        transform: translate(-50%, -40%);*/
+    &:checked:after {
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-/*        position: absolute;*/
-/*        mask: url('/svg/icons/check.svg');*/
-/*        mask-position: center;*/
-/*        mask-size: contain;*/
-/*        mask-repeat: no-repeat;*/
-/*        width: 65%;*/
-/*        height: 65%;*/
-/*        background-color: white;*/
-/*    }*/
-/*}*/
+        position: absolute;
+        mask: url('/svg/icons/Check.svg');
+        mask-position: center;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+}
 
 
 input.default-input {

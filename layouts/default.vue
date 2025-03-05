@@ -2,6 +2,8 @@
   <div>
     <TheMenu/>
     <slot/>
+    <LayoutNewsletter/>
+    <LayoutQualities/>
     <TheFooter/>
   </div>
 </template>
