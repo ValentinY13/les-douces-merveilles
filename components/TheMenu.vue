@@ -29,7 +29,7 @@
         <nuxt-link to="/" title="Panier">
           <i class="icon-link icon-shopping-bag text-2xl"></i>
         </nuxt-link>
-        <nuxt-link to="/account/register" title="Mon compte">
+        <nuxt-link to="/account/login" title="Mon compte">
           <i class="icon-link icon-user text-2xl"></i>
         </nuxt-link>
       </ul>
@@ -87,7 +87,7 @@
             <nuxt-link @click="handleClick" to="/" title="A propos">à propos</nuxt-link>
           </li>
           <li>
-            <nuxt-link @click="handleClick" to="/account/register" title="Mon compte">Mon compte</nuxt-link>
+            <nuxt-link @click="handleClick" to="/account/login" title="Mon compte">Mon compte</nuxt-link>
           </li>
           <li>
             <nuxt-link @click="handleClick" to="/" title="Contact" class="btn">Contact</nuxt-link>

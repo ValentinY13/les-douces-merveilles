@@ -86,3 +86,21 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-eye {
+    mask: url("/svg/icons/Eye.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-eye-slash {
+    mask: url("/svg/icons/EyeSlash.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
