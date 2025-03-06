@@ -4,6 +4,8 @@ import {
     readUsers,
     registerUser,
     registerUserVerify,
+    passwordRequest,
+    passwordReset,
     authentication,
 } from '@directus/sdk';
 
@@ -18,4 +20,6 @@ export {
     readUsers,
     registerUser,
     registerUserVerify,
+    passwordRequest,
+    passwordReset,
 };

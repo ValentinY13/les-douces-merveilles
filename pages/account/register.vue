@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section aria-labelledby="Inscription" class="py-24 px-6 max-layout-xl-c-12-g-13 mx-auto">
+    <section aria-labelledby="Inscription" class="py-24 px-6 max-layout-xl-c-7-g-14 mx-auto">
       <h1 id="Inscription" class="text-h2 text-brown-700 text-center my-8 uppercase">Création de compte</h1>
       <form @submit="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <InputText type="text" input-id="lastname" name="lastname" placeholder="Votre nom">
@@ -15,14 +15,22 @@
           <label for="email">Adresse e-mail*</label>
         </InputText>
 
-        <InputText type="password" input-id="password" name="password" placeholder="Votre mot de passe"
-                   class="lg:row-start-3">
+        <InputText :type="showInput ? 'text' : 'password'" input-id="password" name="password"
+                   placeholder="Votre mot de passe"
+                   class="lg:row-start-3 relative">
           <label for="password">Mot de passe*</label>
+          <span @click="showInput = !showInput"
+                class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+                :class="showInput ? 'icon-eye-slash' : 'icon-eye'"></span>
         </InputText>
 
-        <InputText type="password" input-id="confPassword" name="confPassword" placeholder="Votre mot de passe"
-                   class="lg:row-start-3">
+        <InputText :type="showInputConf ? 'text' : 'password'" input-id="confPassword" name="confPassword"
+                   placeholder="Votre mot de passe"
+                   class="lg:row-start-3 relative">
           <label for="confPassword">Confirmation mot de passe*</label>
+          <span @click="showInputConf = !showInputConf"
+                class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+                :class="showInputConf ? 'icon-eye-slash' : 'icon-eye'"></span>
         </InputText>
 
         <InputCheckbox class="md:col-span-2 w-fit" :checked-value="true" name="confidentiality">
@@ -52,6 +60,8 @@ import RegisterSchema from "~/utils/register.schema";
 
 const {$toast} = useNuxtApp()
 
+const showInput = ref(false)
+const showInputConf = ref(false)
 const validationSchema = toTypedSchema(RegisterSchema)
 
 const {values, handleSubmit} = useForm({
@@ -72,7 +82,7 @@ const submitForm = handleSubmit(async (values) => {
     }
 
   } catch (e) {
-    $toast.error(e.errorMessage)
+    $toast.error('Une erreur est survenue')
   }
 })
 </script>

@@ -37,10 +37,7 @@ export default defineEventHandler(async (event) => {
         await directusServer.request(registerUser(validatedData.email, validatedData.password, options))
     } catch (e) {
         if (e instanceof yup.ValidationError) {
-            sendError(event, createError({
-                statusMessage: 'Une erreur est survenue, informations incorrect',
-                statusCode: 400
-            }), false)
+            return {status: 'error', errorMessage: 'Validation des données échouées'}
         }
         sendError(event, createError({statusMessage: 'Une erreur est survenue', statusCode: 500}))
     }
