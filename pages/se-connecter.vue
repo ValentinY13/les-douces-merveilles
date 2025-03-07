@@ -45,7 +45,7 @@ const submitForm = handleSubmit(async (values) => {
   try {
     await $directusAuth.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
-    // navigateTo('/')
+    navigateTo('/')
   } catch (e) {
     if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
