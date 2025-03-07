@@ -62,7 +62,7 @@ const submitForm = handleSubmit(async (values) => {
     } else {
       $toast.success("Mot de passe réinitialisé avec succès, redirection en cours ...")
       setTimeout(() => {
-        navigateTo('/account/login');
+        navigateTo('/se-connecter');
       }, 3000);
     }
 
