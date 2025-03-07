@@ -1,4 +1,7 @@
 @layer base {
+    ::selection {
+        @apply bg-brown-100 text-white;
+    }
 
     body {
         @apply font-montserrat font-normal bg-bg-primary text-grey-700;

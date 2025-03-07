@@ -1,5 +1,5 @@
 .responsive-layout {
-    @apply mx-auto w-full
+    @apply py-24 px-6 max-layout-xxl-c-12-g-13 mx-auto
 }
 
 .responsive-padding-x {

@@ -4,7 +4,6 @@
       <nuxt-link to="/" title="Les Douces Merveilles" class="mb-4 md:col-span-3 lg:col-span-1 xl:pl-16">
         <nuxt-img src="svg/logo.svg" class="w-full max-w-[350px]"></nuxt-img>
       </nuxt-link>
-
       <div class="xl:pl-16">
         <address>
           Pl. de l'Ecole des Cadets, 6 <br>

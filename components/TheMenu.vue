@@ -12,7 +12,7 @@
           </nuxt-link>
         </li>
         <li class="hidden lg:block">
-          <nuxt-link to="/" title="Nos collections">Nos Collections
+          <nuxt-link :to="{ path: '/nos-collections', query: { page: 1 } }" title="Nos collections">Nos Collections
           </nuxt-link>
         </li>
       </ul>
@@ -81,7 +81,9 @@
             <nuxt-link @click="handleClick" to="/" title="Accueil">Accueil</nuxt-link>
           </li>
           <li>
-            <nuxt-link @click="handleClick" to="/" title="Nos collections">Nos collections</nuxt-link>
+            <nuxt-link @click="handleClick" :to="{ path: '/nos-collections', query: { page: 1 } }"
+                       title="Nos collections">Nos collections
+            </nuxt-link>
           </li>
           <li>
             <nuxt-link @click="handleClick" to="/" title="A propos">à propos</nuxt-link>
