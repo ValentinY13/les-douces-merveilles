@@ -16,11 +16,11 @@
         </InputText>
         <button type="submit" class="btn w-fit">Connexion</button>
         <p>Pas encore inscrit ?
-          <nuxt-link to="/account/register" title="Créer un compte" class="underline">
+          <nuxt-link to="/creation-de-compte" title="Créer un compte" class="underline">
             Créer un compte
           </nuxt-link>
         </p>
-        <nuxt-link to="/account/forgot-password" title="Mot de passe oublié" class="underline">Mot de passe oublié
+        <nuxt-link to="/mot-de-passe-oublie" title="Mot de passe oublié" class="underline">Mot de passe oublié
         </nuxt-link>
       </form>
     </section>
@@ -45,7 +45,7 @@ const submitForm = handleSubmit(async (values) => {
   try {
     await $directusAuth.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
-    navigateTo('/')
+    // navigateTo('/')
   } catch (e) {
     if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')

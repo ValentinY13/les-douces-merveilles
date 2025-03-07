@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            verifyEmailUrl: `${nuxt_url}/account/verify`,
+            verifyEmailUrl: `${nuxt_url}/verification-adresse-mail`,
             resetUrl: process.env.PASSWORD_RESET_URL,
             assetsUrl: process.env.ASSETS_URL,
             nuxtUrl: process.env.NUXT_URL,

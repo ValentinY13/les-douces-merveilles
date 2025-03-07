@@ -47,7 +47,7 @@ const verifyToken = async () => {
       showRedirectMessage.value = true;
 
       setTimeout(() => {
-        navigateTo('/account/login');
+        navigateTo('/se-connecter');
       }, 3000);
     }, 1000);
   } catch (e) {
