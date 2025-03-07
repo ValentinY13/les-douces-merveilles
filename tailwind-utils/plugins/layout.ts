@@ -1,39 +1,38 @@
 import plugin from 'tailwindcss/plugin';
 
 export default plugin(function ({addUtilities, theme, matchUtilities}) {
-
-
+    
         const SM_DEVICE_WIDTH = 640;
         const MD_DEVICE_WIDTH = 768;
         const LG_DEVICE_WIDTH = 1024;
         const XL_DEVICE_WIDTH = 1280;
-        // const XXL_DEVICE_WIDTH = 1536;
+        const XXL_DEVICE_WIDTH = 1536;
 
         // Device gutter width
         const SM_GUTTER_WIDTH = 24;
         const MD_GUTTER_WIDTH = 24;
         const LG_GUTTER_WIDTH = 24;
         const XL_GUTTER_WIDTH = 24;
-        // const XXL_GUTTER_WIDTH = 24;
+        const XXL_GUTTER_WIDTH = 24;
 
         // Device column width
         const SM_COLUMN_WIDTH = 161;
         const MD_COLUMN_WIDTH = 69;
         const LG_COLUMN_WIDTH = 101;
         const XL_COLUMN_WIDTH = 101;
-        // const XXL_COLUMN_WIDTH = 102;
+        const XXL_COLUMN_WIDTH = 102;
 
         const SM_CONTENT_MAX_WIDTH = 2 * SM_COLUMN_WIDTH + SM_GUTTER_WIDTH;
         const MD_CONTENT_MAX_WIDTH = MD_COLUMN_WIDTH * 8 + MD_GUTTER_WIDTH * 9;
         const LG_CONTENT_MAX_WIDTH = LG_COLUMN_WIDTH * 8 + LG_GUTTER_WIDTH * 9;
         const XL_CONTENT_MAX_WIDTH = XL_COLUMN_WIDTH * 10 + XL_GUTTER_WIDTH * 11;
-        // const XXL_CONTENT_MAX_WIDTH = XXL_COLUMN_WIDTH * 12 + XXL_GUTTER_WIDTH * 13;
+        const XXL_CONTENT_MAX_WIDTH = XXL_COLUMN_WIDTH * 12 + XXL_GUTTER_WIDTH * 13;
 
         const SM_PADDING = 30;
         const MD_PADDING = 15 + 29;
         const LG_PADDING = 30;
         const XL_PADDING = 90;
-        // const XXL_PADDING = 90;
+        const XXL_PADDING = 90;
 
 
         // Construct column and gutter layouts
@@ -57,10 +56,10 @@ export default plugin(function ({addUtilities, theme, matchUtilities}) {
                 c: XL_COLUMN_WIDTH,
                 g: XL_GUTTER_WIDTH,
             },
-            // xxl: {
-            //     c: XXL_COLUMN_WIDTH,
-            //     g: XXL_GUTTER_WIDTH,
-            // }
+            xxl: {
+                c: XXL_COLUMN_WIDTH,
+                g: XXL_GUTTER_WIDTH,
+            }
         };
 
         for (let i = 0; i < 15; i++) {
@@ -179,7 +178,7 @@ export default plugin(function ({addUtilities, theme, matchUtilities}) {
             '.layout-md': {width: MD_DEVICE_WIDTH + 'px'},
             '.layout-lg': {width: LG_DEVICE_WIDTH + 'px'},
             '.layout-xl': {width: XL_DEVICE_WIDTH + 'px'},
-            // '.layout-xxl': {width: XXL_DEVICE_WIDTH + 'px'},
+            '.layout-xxl': {width: XXL_DEVICE_WIDTH + 'px'},
 
             // Padding layout
             '.p-layout-sm': {padding: SM_PADDING + 'px'},
@@ -214,72 +213,72 @@ export default plugin(function ({addUtilities, theme, matchUtilities}) {
             '.px-layout-xl': {paddingLeft: XL_PADDING + 'px', paddingRight: XL_PADDING + 'px'},
             '.py-layout-xl': {paddingTop: XL_PADDING + 'px', paddingBottom: XL_PADDING + 'px'},
 
-            // '.p-layout-xxl': {padding: XXL_PADDING + 'px'},
-            // '.pl-layout-xxl': {paddingLeft: XXL_PADDING + 'px'},
-            // '.pr-layout-xxl': {paddingRight: XXL_PADDING + 'px'},
-            // '.pt-layout-xxl': {paddingTop: XXL_PADDING + 'px'},
-            // '.pb-layout-xxl': {paddingBottom: XXL_PADDING + 'px'},
-            // '.px-layout-xxl': {paddingLeft: XXL_PADDING + 'px', paddingRight: XXL_PADDING + 'px'},
-            // '.py-layout-xxl': {paddingTop: XXL_PADDING + 'px', paddingBottom: XXL_PADDING + 'px'},
+            '.p-layout-xxl': {padding: XXL_PADDING + 'px'},
+            '.pl-layout-xxl': {paddingLeft: XXL_PADDING + 'px'},
+            '.pr-layout-xxl': {paddingRight: XXL_PADDING + 'px'},
+            '.pt-layout-xxl': {paddingTop: XXL_PADDING + 'px'},
+            '.pb-layout-xxl': {paddingBottom: XXL_PADDING + 'px'},
+            '.px-layout-xxl': {paddingLeft: XXL_PADDING + 'px', paddingRight: XXL_PADDING + 'px'},
+            '.py-layout-xxl': {paddingTop: XXL_PADDING + 'px', paddingBottom: XXL_PADDING + 'px'},
 
             // Max width layout
             '.max-layout-sm': {maxWidth: SM_CONTENT_MAX_WIDTH + 'px'},
             '.max-layout-md': {maxWidth: MD_CONTENT_MAX_WIDTH + 'px'},
             '.max-layout-lg': {maxWidth: LG_CONTENT_MAX_WIDTH + 'px'},
             '.max-layout-xl': {maxWidth: XL_CONTENT_MAX_WIDTH + 'px'},
-            // '.max-layout-xxl': {maxWidth: XXL_CONTENT_MAX_WIDTH + 'px'},
+            '.max-layout-xxl': {maxWidth: XXL_CONTENT_MAX_WIDTH + 'px'},
 
             '.max-layout-calc-sm': {maxWidth: `calc((100vw + ${SM_CONTENT_MAX_WIDTH}px) / 2)`},
             '.max-layout-calc-md': {maxWidth: `calc((100vw + ${MD_CONTENT_MAX_WIDTH}px) / 2)`},
             '.max-layout-calc-lg': {maxWidth: `calc((100vw + ${LG_CONTENT_MAX_WIDTH}px) / 2)`},
             '.max-layout-calc-xl': {maxWidth: `calc((100vw + ${XL_CONTENT_MAX_WIDTH}px) / 2)`},
-            // '.max-layout-calc-xxl': {maxWidth: `calc((100vw + ${XXL_CONTENT_MAX_WIDTH}px) / 2)`},
+            '.max-layout-calc-xxl': {maxWidth: `calc((100vw + ${XXL_CONTENT_MAX_WIDTH}px) / 2)`},
 
             // Min width layout
             '.min-layout-sm': {minWidth: SM_CONTENT_MAX_WIDTH + 'px'},
             '.min-layout-md': {minWidth: MD_CONTENT_MAX_WIDTH + 'px'},
             '.min-layout-lg': {minWidth: LG_CONTENT_MAX_WIDTH + 'px'},
             '.min-layout-xl': {minWidth: XL_CONTENT_MAX_WIDTH + 'px'},
-            // '.min-layout-xxl': {minWidth: XXL_CONTENT_MAX_WIDTH + 'px'},
+            '.min-layout-xxl': {minWidth: XXL_CONTENT_MAX_WIDTH + 'px'},
 
             // Layout cols and gutters
             '.layout-sm-c': {width: SM_COLUMN_WIDTH + 'px'},
             '.layout-md-c': {width: MD_COLUMN_WIDTH + 'px'},
             '.layout-lg-c': {width: LG_COLUMN_WIDTH + 'px'},
             '.layout-xl-c': {width: XL_COLUMN_WIDTH + 'px'},
-            // '.layout-xxl-c': {width: XXL_COLUMN_WIDTH + 'px'},
+            '.layout-xxl-c': {width: XXL_COLUMN_WIDTH + 'px'},
 
             '.layout-sm-g': {width: SM_GUTTER_WIDTH + 'px'},
             '.layout-md-g': {width: MD_GUTTER_WIDTH + 'px'},
             '.layout-lg-g': {width: LG_GUTTER_WIDTH + 'px'},
             '.layout-xl-g': {width: XL_GUTTER_WIDTH + 'px'},
-            // '.layout-xxl-g': {width: XXL_GUTTER_WIDTH + 'px'},
+            '.layout-xxl-g': {width: XXL_GUTTER_WIDTH + 'px'},
 
             // max Layout cols and gutters
             '.max-layout-sm-c': {maxWidth: SM_COLUMN_WIDTH + 'px'},
             '.max-layout-md-c': {maxWidth: MD_COLUMN_WIDTH + 'px'},
             '.max-layout-lg-c': {maxWidth: LG_COLUMN_WIDTH + 'px'},
             '.max-layout-xl-c': {maxWidth: XL_COLUMN_WIDTH + 'px'},
-            // '.max-layout-xxl-c': {maxWidth: XXL_COLUMN_WIDTH + 'px'},
+            '.max-layout-xxl-c': {maxWidth: XXL_COLUMN_WIDTH + 'px'},
 
             '.max-layout-sm-g': {maxWidth: SM_GUTTER_WIDTH + 'px'},
             '.max-layout-md-g': {maxWidth: MD_GUTTER_WIDTH + 'px'},
             '.max-layout-lg-g': {maxWidth: LG_GUTTER_WIDTH + 'px'},
             '.max-layout-xl-g': {maxWidth: XL_GUTTER_WIDTH + 'px'},
-            // '.max-layout-xxl-g': {maxWidth: XXL_GUTTER_WIDTH + 'px'},
+            '.max-layout-xxl-g': {maxWidth: XXL_GUTTER_WIDTH + 'px'},
 
             // Layout cols and gutters
             '.gap-layout-sm-c': {gap: SM_COLUMN_WIDTH + 'px'},
             '.gap-layout-md-c': {gap: MD_COLUMN_WIDTH + 'px'},
             '.gap-layout-lg-c': {gap: LG_COLUMN_WIDTH + 'px'},
             '.gap-layout-xl-c': {gap: XL_COLUMN_WIDTH + 'px'},
-            // '.gap-layout-xxl-c': {gap: XXL_COLUMN_WIDTH + 'px'},
+            '.gap-layout-xxl-c': {gap: XXL_COLUMN_WIDTH + 'px'},
 
             '.gap-layout-sm-g': {gap: SM_GUTTER_WIDTH + 'px'},
             '.gap-layout-md-g': {gap: MD_GUTTER_WIDTH + 'px'},
             '.gap-layout-lg-g': {gap: LG_GUTTER_WIDTH + 'px'},
             '.gap-layout-xl-g': {gap: XL_GUTTER_WIDTH + 'px'},
-            // '.gap-layout-xxl-g': {gap: XXL_GUTTER_WIDTH + 'px'},
+            '.gap-layout-xxl-g': {gap: XXL_GUTTER_WIDTH + 'px'},
 
             // Grid content
 

@@ -493,7 +493,7 @@ export type Product = {
     images: ProductFiles[];
     is_available?: boolean | null;
     name?: string | null;
-    number_pieces?: string | null;
+    number_pieces?: string;
     number_stock?: number | null;
     preview_image?: string | DirectusFiles | null;
     price: number;

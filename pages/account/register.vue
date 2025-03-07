@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section aria-labelledby="Inscription" class="py-24 px-6 max-layout-xl-c-7-g-14 mx-auto">
+    <section aria-labelledby="Inscription" class="responsive-layout">
       <h1 id="Inscription" class="text-h2 text-brown-700 text-center my-8 uppercase">Création de compte</h1>
       <form @submit="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <InputText type="text" input-id="lastname" name="lastname" placeholder="Votre nom">

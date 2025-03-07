@@ -104,3 +104,21 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-double-chevron {
+    mask: url("/svg/icons/ChevronDouble.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-simple-chevron {
+    mask: url("/svg/icons/ChevronSimple.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
