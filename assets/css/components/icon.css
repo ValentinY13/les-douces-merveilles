@@ -122,3 +122,21 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-minus {
+    mask: url("/svg/icons/Minus.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-plus {
+    mask: url("/svg/icons/Plus.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}

@@ -58,7 +58,8 @@ const {data: products, execute: execute1} = useAsyncData('nos-collections', asyn
       'slug',
       {
         sub_category: [
-          'name'
+          'name',
+          'slug'
         ]
       },
       {

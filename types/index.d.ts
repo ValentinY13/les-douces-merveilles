@@ -492,7 +492,7 @@ export type Product = {
     id: number;
     images: ProductFiles[];
     is_available?: boolean | null;
-    name?: string | null;
+    name?: string;
     number_pieces?: string;
     number_stock?: number | null;
     preview_image?: string | DirectusFiles | null;
@@ -505,7 +505,7 @@ export type Product = {
 };
 
 export type ProductFiles = {
-    directus_files_id?: string | DirectusFiles | null;
+    directus_files_id?: string | DirectusFiles;
     id: number;
     product_id?: number | Product | null;
 };

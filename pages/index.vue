@@ -2,10 +2,16 @@
   <main>
     <LayoutHeaderSection :items="homeData.blocks.block_header"/>
 
-    <LayoutCarouselSection aria-labelledby="mise en avant" :items="homeData.blocks.block_slider[0]">
+    <LayoutCarouselSection aria-labelledby="mise en avant">
       <template #header>
         <TitleSection :title="homeData.blocks.block_slider[0].title"
                       :subtitle="homeData.blocks.block_slider[0].subtitle" class="px-6" :id="'mise en avant'"/>
+      </template>
+      <template #slides>
+        <swiper-slide v-for="product in homeData.blocks.block_slider[0].product" :key="product.id"
+                      class="max-w-[450px] w-full h-auto">
+          <CardCarousel :product="product.product_id" class="relative "/>
+        </swiper-slide>
       </template>
     </LayoutCarouselSection>
 
@@ -23,10 +29,16 @@
       </blockquote>
     </section>
 
-    <LayoutCarouselSection aria-labelledby="presentation produits" :items="homeData.blocks.block_slider[1]">
+    <LayoutCarouselSection aria-labelledby="presentation produits">
       <template #header>
         <TitleSection :title="homeData.blocks.block_slider[1].title"
                       :subtitle="homeData.blocks.block_slider[1].subtitle" class="px-6" :id="'mise en avant'"/>
+      </template>
+      <template #slides>
+        <swiper-slide v-for="product in homeData.blocks.block_slider[1].product" :key="product.id"
+                      class="max-w-[450px] w-full h-auto">
+          <CardCarousel :product="product.product_id" class="relative "/>
+        </swiper-slide>
       </template>
     </LayoutCarouselSection>
   </main>
@@ -58,15 +70,16 @@ const {data: home} = await useAsyncData('home', async () => {
                         'name',
                         'slug',
                         {
-                          images: [
-                            {
-                              directus_files_id: [
-                                'id',
-                                'filename_download',
-                              ]
-                            }
+                          sub_category: [
+                            'slug'
                           ]
-                        }
+                        },
+                        {
+                          preview_image: [
+                            'id',
+                            'filename_download'
+                          ]
+                        },
                       ]
                     }
                   ]
@@ -86,10 +99,14 @@ const {data: home} = await useAsyncData('home', async () => {
                         'number_pieces',
                         'price',
                         {
-                          images: [
-                            {
-                              directus_files_id: ['id', 'filename_download']
-                            }
+                          sub_category: [
+                            'slug'
+                          ]
+                        },
+                        {
+                          preview_image: [
+                            'id',
+                            'filename_download',
                           ]
                         }
                       ]
