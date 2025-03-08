@@ -26,7 +26,7 @@
           <nuxt-link to="/" title="Contact">Contact
           </nuxt-link>
         </li>
-        <nuxt-link to="/" title="Panier">
+        <nuxt-link to="/panier" title="Panier">
           <i class="icon-link icon-shopping-bag text-2xl"></i>
         </nuxt-link>
         <nuxt-link to="/se-connecter" title="Mon compte">
@@ -49,7 +49,7 @@
                   class="w-full max-w-[350px] h-10 lg:h-12"></nuxt-img>
       </nuxt-link>
 
-      <nuxt-link to="/" title="Panier" class="lg:hidden">
+      <nuxt-link to="/panier" title="Panier" class="lg:hidden">
         <i class="icon-link icon-shopping-bag text-2xl"></i>
       </nuxt-link>
     </nav>

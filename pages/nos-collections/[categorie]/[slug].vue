@@ -18,8 +18,8 @@
 
         <div class="space-y-6 py-12 lg:pt-0">
           <h1 id="Détail du produit" class="text-h2 text-brown-700 uppercase">{{ product.name }}</h1>
-          <p class="text-brown-100 tracking-wider">{{ product.number_pieces }} pièce<span
-              v-if="product.number_pieces > 1">s</span> - {{
+          <p class="text-brown-100 tracking-wider">{{ product.number_pieces }}
+            pièce{{ product.number_pieces > 1 ? 's' : '' }} - {{
               product.price
             }}€</p>
           <div class="flex flex-col md:flex-row lg:flex-col gap-6">

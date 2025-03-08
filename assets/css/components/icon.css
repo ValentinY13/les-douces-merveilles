@@ -123,6 +123,15 @@
     height: 1em;
 }
 
+.icon-simple-chevron-bold {
+    mask: url("/svg/icons/ChevronLeftBold.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
 .icon-minus {
     mask: url("/svg/icons/Minus.svg");
     mask-position: center;
@@ -134,6 +143,15 @@
 
 .icon-plus {
     mask: url("/svg/icons/Plus.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-delete {
+    mask: url("/svg/icons/XCircle.svg");
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: contain;
