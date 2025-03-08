@@ -23,7 +23,6 @@ import type {Product} from "~/types"
 const props = defineProps<{
   product: Product
 }>()
-// const image = props.product.images[0].directus_files_id
 
 </script>
 
