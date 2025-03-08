@@ -5,7 +5,6 @@ import * as yup from "yup";
 export default defineEventHandler(async (event) => {
     try {
         const body = await readBody(event);
-        console.log('BODY', body);
 
         const validatedData = await ForgotPassword.validate(body.email);
 
@@ -36,7 +35,6 @@ export default defineEventHandler(async (event) => {
 
         await directusServer.request(passwordRequest(validatedData.email, resetUrl));
     } catch (e: any) {
-        console.log(e);
 
         if (e instanceof yup.ValidationError) {
             sendError(event, createError({

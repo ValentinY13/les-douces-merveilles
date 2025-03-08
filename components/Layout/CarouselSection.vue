@@ -3,24 +3,16 @@
     <slot name="header"></slot>
     <div class="px-6 overflow-hidden">
       <swiper-container ref="swiperElement" init="false">
-        <swiper-slide v-for="product in items.product" :key="product.id"
-                      class="max-w-[450px] w-full h-auto">
-          <CardCarousel :product="product.product_id" class="relative "/>
-        </swiper-slide>
+        <slot name="slides"></slot>
       </swiper-container>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import type {BlockSlider} from "~/types"
 import type {SwiperOptions} from "swiper/types";
 
 const {swiperOverflowVisible} = useTwSwiper();
-
-defineProps<{
-  items: BlockSlider
-}>()
 
 const swiperElement = ref()
 
