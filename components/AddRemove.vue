@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-6 py-2 px-4 w-fit border border-brown-100 text-brown-700">
+  <div class="flex items-center justify-between gap-6 py-2 px-4 w-fit border border-brown-100 text-brown-700">
     <button @click="decrease" aria-label="Augmenter la quantité">
       <i class="icon-link icon-minus text-2xl cursor-pointer"></i>
     </button>

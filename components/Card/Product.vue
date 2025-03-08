@@ -15,10 +15,10 @@
     ></nuxt-picture>
     <div class="py-4">
       <h2 class="text-h3-play uppercase text-brown-700">{{ item.name }}</h2>
-      <p class="text-brown-100 tracking-wider">{{ item.number_pieces }} pièce<span
-          v-if="item.number_pieces > 1">s</span> - {{
+      <p class="text-brown-100 tracking-wider">{{ item.number_pieces }} pièce{{ item.number_pieces > 1 ? 's' : '' }} -
+        {{
           item.price
-        }}€</p>
+        }} €</p>
     </div>
   </nuxt-link>
 </template>

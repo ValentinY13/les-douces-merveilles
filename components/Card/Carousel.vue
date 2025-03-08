@@ -12,7 +12,7 @@
       <p class="text-sm xl:text-base font-play uppercase">{{ product.name }}</p>
       <p class="text-sm xl:text-base mt-2"><span v-if="product.number_pieces">{{
           product.number_pieces
-        }} pièces - </span>{{ product.price }} €</p>
+        }} pièce{{ product.number_pieces > 1 ? 's' : '' }} - </span>{{ product.price }} €</p>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import type {Product} from "~/types"
 
-const props = defineProps<{
+defineProps<{
   product: Product
 }>()
 
