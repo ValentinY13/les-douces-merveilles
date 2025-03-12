@@ -7,6 +7,17 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import {useCartStore} from "~/store/cart";
+
+const cartStore = useCartStore()
+
+// onMounted(() => {
+//   cartStore.loadCart()
+//   console.log(localStorage.getItem('cart'))
+// })
+</script>
+
 <style>
 .page-enter-active,
 .page-leave-active {
@@ -19,5 +30,3 @@
   filter: blur(.5rem);
 }
 </style>
-<script setup lang="ts">
-</script>

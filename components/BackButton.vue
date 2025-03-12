@@ -4,7 +4,7 @@
       <i class="icon icon-simple-chevron-bold text-2xl"></i>
       <span>Retour</span>
     </nuxt-link>
-    <h1 class="text-h1 text-brown-700">{{ title }}</h1>
+    <h1 class="text-h2 uppercase text-brown-700">{{ title }}</h1>
   </div>
 </template>
 

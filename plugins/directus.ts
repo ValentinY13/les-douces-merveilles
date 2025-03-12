@@ -2,6 +2,7 @@ import {
     createDirectus,
     rest,
     readItems,
+    createItem
 } from "@directus/sdk";
 
 export default defineNuxtPlugin(() => {
@@ -12,6 +13,6 @@ export default defineNuxtPlugin(() => {
     const directus = createDirectus(url).with(rest());
 
     return {
-        provide: {directus, readItems},
+        provide: {directus, readItems, createItem},
     };
 })
