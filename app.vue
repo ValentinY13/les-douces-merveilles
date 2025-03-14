@@ -11,11 +11,6 @@
 import {useCartStore} from "~/store/cart";
 
 const cartStore = useCartStore()
-
-// onMounted(() => {
-//   cartStore.loadCart()
-//   console.log(localStorage.getItem('cart'))
-// })
 </script>
 
 <style>
