@@ -27,7 +27,8 @@
       </div>
       <div class="flex justify-between">
         <p class="uppercase font-medium">Sous-total: {{ (product.price * product.quantity).toFixed(2) }}€</p>
-        <i class="icon icon-delete text-2xl "></i>
+        <i class="icon icon-delete text-2xl cursor-pointer hover:text-red-700"
+           @click="cartStore.removeFromCart(product.product_id)"></i>
       </div>
     </div>
   </article>

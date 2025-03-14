@@ -15,20 +15,6 @@ export const useCartStore = defineStore('cart', {
     },
 
     actions: {
-        // async fetchCart() {
-        //     const {$directus, $readItems} = useNuxtApp()
-        //
-        //     const data = await $directus.request($readItems('cart', {
-        //         fields: ['*']
-        //     }));
-        //     console.log(data);
-        //     if (data.length) {
-        //         this.cart = data[0];
-        //     }
-        //
-        //     return this.cart;
-        //     // else créer un cart via une fonction createCart()
-        // },
         addToCart(product: Product) {
             const existingItem = this.items.find((item) => item.product_id === product.id);
 
@@ -56,22 +42,14 @@ export const useCartStore = defineStore('cart', {
                 : this.items.splice(itemIndex, 1);
         },
 
-        removeFromCart(productId: string) {
-            this.items = this.items.filter((item) => item.id !== productId);
+        removeFromCart(productId: number) {
+            this.items = this.items.filter((item) => item.product_id !== productId);
         },
 
         clearCart() {
             this.items = []
-            // this.saveCart()
         },
 
-        // saveCart() {
-        //     localStorage.setItem('cart', JSON.stringify(this.items));
-        // },
-        //
-        // loadCart() {
-        //     this.items = JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[];
-        // }
     }
 })
 
