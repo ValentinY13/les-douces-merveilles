@@ -23,8 +23,10 @@
               product.price
             }}€</p>
           <div class="flex flex-col md:flex-row lg:flex-col gap-6">
-            <AddRemove :product-name="product.name"/>
-            <button class="btn w-full lg:w-fit">Ajouter au panier</button>
+            <AddRemove :product-name="product.name" v-model:quantity="quantity"/>
+            <button class="btn w-full lg:w-fit" @click="add(product, quantity)">
+              Ajouter au panier
+            </button>
           </div>
         </div>
 
@@ -57,9 +59,14 @@ import type {SwiperOptions} from "swiper/types";
 import type {Product} from "~/types";
 import AddRemove from "~/components/AddRemove.vue";
 import ProductWithThumbnail from "~/components/Card/ProductWithThumbnail.vue";
+import {useCartStore} from "~/store/cart";
+
+const cartStore = useCartStore()
 
 const {params} = useRoute();
-const {$directus, $readItems} = useNuxtApp()
+const {$directus, $readItems, $toast} = useNuxtApp()
+
+const quantity = ref(1)
 
 const swiperElement = ref();
 
@@ -180,6 +187,11 @@ onMounted(() => {
   Object.assign(swiperElement.value, swiperOptions);
   swiperElement.value.initialize();
 })
+
+const add = (product: Product, quantity: number) => {
+  cartStore.addToCart({...product, quantity: quantity})
+  $toast.success(`${quantity} produit(s) ajouté au panier`)
+}
 </script>
 
 <style scoped>

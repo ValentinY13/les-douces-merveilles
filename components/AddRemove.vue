@@ -14,24 +14,33 @@
 
 const props = withDefaults(defineProps<{
   productName: string
+  initialQuantity?: number
   max?: number;
+  canRemove?: boolean
 }>(), {
-  max: 5
+  max: 5,
+  initialQuantity: 1,
+  canRemove: false,
 })
+
+const emit = defineEmits(["update:quantity"]);
+
 const {$toast} = useNuxtApp()
-const quantity = ref(1)
+const quantity = ref(props.initialQuantity)
 
 function increase() {
   if (quantity.value < props.max) {
     quantity.value++
+    emit("update:quantity", quantity.value);
   } else {
     $toast.error(`La quantité maximum autorisée pour ${props.productName} est ${props.max}`)
   }
 }
 
 function decrease() {
-  if (quantity.value > 1) {
-    quantity.value--
+  if (quantity.value > (props.canRemove ? 0 : 1)) {
+    quantity.value--;
+    emit("update:quantity", quantity.value);
   }
 }
 
