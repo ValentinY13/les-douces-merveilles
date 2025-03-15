@@ -10,6 +10,7 @@
       >
         <nuxt-picture
             provider="directus"
+            :alt="image.directus_files_id.filename_download"
             :src="getImageSrc(image)"
             :img-attrs="{ class: 'w-full h-full object-cover' }"
         >
@@ -23,6 +24,7 @@
         <nuxt-picture
             :key="selectedImage.directus_files_id.id"
             preload
+            :alt="selectedImage.directus_files_id.filename"
             provider="directus"
             :src="getImageSrc(selectedImage)"
             :img-attrs="{ class: 'w-full h-full object-cover absolute top-0 left-0' }"

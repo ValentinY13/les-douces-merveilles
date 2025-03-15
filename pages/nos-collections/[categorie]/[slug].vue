@@ -6,6 +6,7 @@
           <nuxt-picture
               preload
               provider="directus"
+              :alt="product?.name"
               :src="`${image.directus_files_id.id}/${image.directus_files_id?.filename_download}`"
               :img-attrs="{ class: 'w-full h-full object-cover' }"
           >
