@@ -52,13 +52,6 @@ export default defineNuxtConfig({
         },
     },
 
-    routeRules: {
-        "/directus/**":
-            {
-                proxy: process.env.PROXY_DIRECTUS_URL
-            }
-    },
-
     piniaPluginPersistedstate: {
         storage: 'localStorage',
     },

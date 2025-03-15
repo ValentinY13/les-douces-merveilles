@@ -149,5 +149,4 @@ const {data: home} = await useAsyncData('home', async () => {
 });
 
 const homeData = computed(() => home.value as HomeData | null);
-
 </script>

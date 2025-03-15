@@ -31,7 +31,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
 
-const {$directusAuth} = useNuxtApp()
+const {$directus} = useNuxtApp()
 const {$toast} = useNuxtApp()
 
 const showInput = ref(false)
@@ -43,9 +43,9 @@ const {values, handleSubmit} = useForm({
 
 const submitForm = handleSubmit(async (values) => {
   try {
-    await $directusAuth.login(values.email, values.password)
+    await $directus.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
-    navigateTo('/')
+    navigateTo("/");
   } catch (e) {
     if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
