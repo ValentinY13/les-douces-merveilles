@@ -23,6 +23,7 @@
         <nuxt-link to="/mot-de-passe-oublie" title="Mot de passe oublié" class="underline">Mot de passe oublié
         </nuxt-link>
       </form>
+      <button @click="$logout()">deco</button>
     </section>
   </main>
 </template>
@@ -30,10 +31,11 @@
 <script setup lang="ts">
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
+import {useCartStore} from "~/store/cart";
 
-const {$directus} = useNuxtApp()
-const {$toast} = useNuxtApp()
+const {$directus, $logout, $isAuthenticated, $toast} = useNuxtApp()
 
+const cartStore = useCartStore()
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)
 
@@ -45,8 +47,15 @@ const submitForm = handleSubmit(async (values) => {
   try {
     await $directus.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
+    const user = await $isAuthenticated()
+    // const response = await $fetch('/api/cart', {
+    //   method: 'GET',
+    //   query: {user_id: user.id}
+    // })
+    await cartStore.initializeCart(user.id)
     navigateTo("/");
   } catch (e) {
+    console.log(e)
     if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
     } else if (e.errors[0].extensions.code === 'INVALID_PAYLOAD') {

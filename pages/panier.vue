@@ -15,7 +15,8 @@
         <p class="py-12 text-h3 text-right tracking-wide">Total TVAC: <span
             class="text-brown-700 font-medium">{{ totalPrice.toFixed(2) }}€</span></p>
         <div class="text-center">
-          <nuxt-link title="Valider le panier" to="/" class="btn">Valider le panier</nuxt-link>
+          <nuxt-link title="Valider le panier" class="btn" @click="cartStore.saveCart()">Valider le panier
+          </nuxt-link>
         </div>
       </div>
       <p v-else>Votre panier est vide</p>
@@ -31,6 +32,7 @@ const isLoaded = ref(false);
 
 onMounted(() => {
   isLoaded.value = true;
+  console.log(cartStore.items)
 });
 
 const totalPrice = computed(() => cartStore.total);
