@@ -190,8 +190,18 @@ onMounted(() => {
 })
 
 const add = (product: Product, quantity: number) => {
-  cartStore.addToCart({...product, quantity: quantity})
-  $toast.success(`${quantity} produit(s) ajouté au panier`)
+  cartStore.addToCart(product.id, quantity, 5);
+  console.log(cartStore.errors.type)
+  if (cartStore.errors.type === 'error') {
+    $toast.error(cartStore.errors.message);
+  } else {
+    $toast.success(cartStore.errors.message);
+  }
+  // if (response.error) {
+  //   $toast.error(response.message);
+  // } else {
+  //   $toast.success(`${quantity} produit(s) ajouté au panier`)
+  // }
 }
 </script>
 

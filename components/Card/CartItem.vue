@@ -3,7 +3,7 @@
     <div class="sm:flex sm:flex-row sm:items-center sm:gap-4">
       <nuxt-picture class="w-fit"
                     provider="directus"
-                    :src="`${product.image_id}/${product.filename_download}`"
+                    :src="`${product.preview_image.id}/${product.preview_image.filename_download}`"
                     :alt="product.name"
                     :img-attrs="{ class: 'w-52 h-52 object-cover' }"
       ></nuxt-picture>
@@ -22,13 +22,13 @@
             :initial-quantity="product.quantity"
             :product-name="product.name"
             :canRemove="true"
-            @update:quantity="updateQuantity(product.product_id, $event)"
+            @update:quantity="updateQuantity(product.id, $event)"
         />
       </div>
       <div class="flex justify-between">
         <p class="uppercase font-medium">Sous-total: {{ (product.price * product.quantity).toFixed(2) }}€</p>
         <i class="icon icon-delete text-2xl cursor-pointer hover:text-red-700"
-           @click="cartStore.removeFromCart(product.product_id)"></i>
+           @click="cartStore.removeFromCart(product.id)"></i>
       </div>
     </div>
   </article>

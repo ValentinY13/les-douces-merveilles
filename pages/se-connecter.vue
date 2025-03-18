@@ -52,7 +52,7 @@ const submitForm = handleSubmit(async (values) => {
     //   method: 'GET',
     //   query: {user_id: user.id}
     // })
-    await cartStore.initializeCart(user.id)
+    // await cartStore.initializeCart(user.id)
     navigateTo("/");
   } catch (e) {
     console.log(e)

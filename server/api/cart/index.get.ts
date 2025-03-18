@@ -2,10 +2,35 @@ import {createItem, directusServer, readItems, readUser} from '~/server/utils/di
 
 export default defineEventHandler(async (event) => {
     const {user_id} = getQuery(event)
+    const {productIds} = getQuery(event)
 
-    const user = await directusServer.request(readUser(user_id as string))
+    // const user = await directusServer.request(readUser(user_id as string))
 
-    if (!user) return {error: true, message: 'Aucun utilisateur trouvé'}
+    // si pas connecté
+    if (!user_id) {
+        const response = await directusServer.request(readItems('product', {
+            fields: [
+                'id',
+                'name',
+                'price',
+                'number_pieces',
+                {
+                    preview_image: [
+                        'id',
+                        'filename_download'
+                    ]
+                }
+            ],
+            filter: {
+                id: {
+                    _in: productIds
+                }
+            }
+        }))
+
+        console.log(response)
+        return response;
+    }
 
     const response = await directusServer.request(readItems('cart', {
         fields: [

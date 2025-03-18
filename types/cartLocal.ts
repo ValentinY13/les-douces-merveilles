@@ -1,9 +1,10 @@
+import type {DirectusFiles} from "~/types/index";
+
 export interface CartItemLocal {
-    product_id: number;
+    id: number;
     name: string;
     price: number;
     quantity: number;
     number_pieces: number;
-    image_id: string;
-    filename_download: string;
+    preview_image: DirectusFiles
 }

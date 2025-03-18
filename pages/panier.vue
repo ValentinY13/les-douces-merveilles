@@ -8,7 +8,7 @@
       <div v-if="isLoaded && cartStore.items.length">
         <CardCartItem
             v-for="(product, index) in cartStore.items"
-            :key="product.product_id"
+            :key="product.id"
             :product="product"
             :class="index === cartStore.items.length - 1 ? 'border-b border-grey-100' : ''"
         ></CardCartItem>
@@ -32,7 +32,6 @@ const isLoaded = ref(false);
 
 onMounted(() => {
   isLoaded.value = true;
-  console.log(cartStore.items)
 });
 
 const totalPrice = computed(() => cartStore.total);
