@@ -15,6 +15,8 @@
       </swiper-container>
 
       <div class="px-6 lg:pt-24 lg:max-layout-xxl-c-12-g-13 mx-auto lg:mt-8 lg:grid lg:grid-cols-2">
+        <BackButton class="hidden lg:block lg:col-span-2 mb-6"/>
+
         <ProductWithThumbnail class="hidden lg:row-span-2" :images="product.images"/>
 
         <div class="space-y-6 py-12 lg:pt-0">
@@ -31,7 +33,7 @@
           </div>
         </div>
 
-        <div class="pb-12 lg:col-start-2 lg:row-start-2">
+        <div class="pb-12 lg:col-start-2 lg:row-start-3">
           <AccordionItem title="Description" :content="product.description"/>
           <AccordionItem title="Allergènes et composition" :content="product?.composition"/>
           <p class="font-medium text-brown-700 mt-12" v-if="product?.number_stock == 0">Rupture de stock</p>

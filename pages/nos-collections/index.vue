@@ -9,16 +9,20 @@
       </ul>
 
       <div class="flex flex-col md:flex-row justify-end gap-2 w-fit md:w-full md:gap-4 mb-4">
-        <label>Tri par :</label>
-        <select v-model="sortBy" class="cursor-pointer">
-          <option value="name">Nom</option>
-          <option value="price">Prix</option>
-        </select>
-        <label>Ordre :</label>
-        <select v-model="sortOrder" class="cursor-pointer">
-          <option value="asc">Croissant</option>
-          <option value="desc">Décroissant</option>
-        </select>
+        <div>
+          <label>Tri par :</label>
+          <select v-model="sortBy" class="cursor-pointer">
+            <option value="name">Nom</option>
+            <option value="price">Prix</option>
+          </select>
+        </div>
+        <div>
+          <label>Ordre :</label>
+          <select v-model="sortOrder" class="cursor-pointer">
+            <option value="asc">Croissant</option>
+            <option value="desc">Décroissant</option>
+          </select>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-3 gap-12">
