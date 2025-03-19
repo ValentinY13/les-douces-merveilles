@@ -14,7 +14,7 @@
         </swiper-slide>
       </swiper-container>
 
-      <div class="px-6 lg:pt-24 lg:max-layout-xxl-c-12-g-13 mx-auto lg:mt-8 lg:grid lg:grid-cols-2">
+      <div class="px-6 lg:pt-24 lg:max-layout-xxl-c-12-g-13 mx-auto lg:mt-8 lg:grid lg:grid-cols-2 gap-x-16">
         <BackButton class="hidden lg:block lg:col-span-2 mb-6"/>
 
         <ProductWithThumbnail class="hidden lg:row-span-2" :images="product.images"/>

@@ -23,7 +23,8 @@
       </nuxt-picture>
       <blockquote class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6">
         <p id="citation"
-           class="font-play text-2xl tracking-widest md:text-3xl font-bold italic uppercase text-center text-white">‘’{{
+           class="font-play text-2xl tracking-widest md:text-3xl font-bold italic uppercase text-center text-white max-layout-xxl-c-12-g-13 mx-auto">
+          ‘’{{
             homeData.blocks.block_citation.text
           }}‘’</p>
       </blockquote>

@@ -5,7 +5,7 @@
       <div
           v-for="(image, index) in images"
           :key="index"
-          class="w-16 h-16 border border-brown-700 p-0.5 cursor-pointer"
+          class="w-16 xl:w-24 h-16 xl:h-24 border border-brown-700 p-0.5 cursor-pointer"
           @click="selectedImage = image"
       >
         <nuxt-picture
@@ -18,8 +18,9 @@
       </div>
     </div>
 
+    <!--    w-96 h-96 xl:w-full xl:h-full-->
     <!-- Grande image avec transition -->
-    <div class="w-96 h-96 relative">
+    <div class="w-96 h-96 xl:size-full max-w-[500px] max-h-[500px] xl:aspect-square relative">
       <transition name="fade" mode="out-in">
         <nuxt-picture
             :key="selectedImage.directus_files_id.id"
@@ -27,7 +28,7 @@
             :alt="selectedImage.directus_files_id.filename"
             provider="directus"
             :src="getImageSrc(selectedImage)"
-            :img-attrs="{ class: 'w-full h-full object-cover absolute top-0 left-0' }"
+            :img-attrs="{ class: 'w-full h-full object-cover' }"
         >
         </nuxt-picture>
       </transition>
