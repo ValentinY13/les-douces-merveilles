@@ -1,10 +1,13 @@
 <template>
-  <section class="py-24 ">
+  <section class="py-24">
     <slot name="header"></slot>
+
     <div class="px-6 overflow-hidden">
-      <swiper-container ref="swiperElement" init="false">
-        <slot name="slides"></slot>
-      </swiper-container>
+      <div class="max-layout-xxl-c-12-g-13 mx-auto">
+        <swiper-container ref="swiperElement" init="false">
+          <slot name="slides"></slot>
+        </swiper-container>
+      </div>
     </div>
   </section>
 </template>
@@ -20,6 +23,7 @@ const swiperOptions: SwiperOptions = {
   spaceBetween: 24,
   slidesPerView: 'auto',
   grabCursor: true,
+  autoHeight: true,
   injectStyles: [swiperOverflowVisible(),
     `
     .swiper {
