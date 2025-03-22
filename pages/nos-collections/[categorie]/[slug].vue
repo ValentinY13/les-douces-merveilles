@@ -197,11 +197,6 @@ const add = (product: Product, quantity: number) => {
   } else {
     $toast.success(cartStore.errors.message);
   }
-  // if (response.error) {
-  //   $toast.error(response.message);
-  // } else {
-  //   $toast.success(`${quantity} produit(s) ajouté au panier`)
-  // }
 }
 </script>
 
