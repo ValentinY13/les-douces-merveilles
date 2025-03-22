@@ -5,7 +5,12 @@
         <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
         <BackButton class="py-12 md:pt-8" title="Panier"/>
       </div>
-      <div v-if="isLoaded && cartStore.items.length">
+
+      <div v-if="!isLoaded" class="flex justify-center py-12">
+        <Spinner class="size-6"/>
+      </div>
+
+      <div v-else-if="isLoaded && cartStore.items.length">
         <CardCartItem
             v-for="(product, index) in cartStore.items"
             :key="product.id"

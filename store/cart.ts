@@ -49,7 +49,7 @@ export const useCartStore = defineStore('cart', {
             const item = this.cartStorage.find(el => el.product_id === productId);
 
             if (item && (item.quantity + quantity) > max) {
-                this.errors = {type: 'error', message: 'Quantité maximum autorisée'};
+                this.errors = {type: 'error', message: `La quantité maximum autorisée pour ce produit est de ${max}`};
                 return;
             }
 

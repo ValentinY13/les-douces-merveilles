@@ -24,7 +24,7 @@
               product.price
             }}€</p>
           <div class="flex flex-col md:flex-row lg:flex-col gap-6">
-            <AddRemove :product-name="product.name" v-model:quantity="quantity"/>
+            <AddRemove :product-name="product.name" :max="product.max" v-model:quantity="quantity"/>
             <button class="btn w-full lg:w-fit" @click="add(product, quantity)">
               Ajouter au panier
             </button>
@@ -83,6 +83,7 @@ const {data: product, error} = await useAsyncData('product-details', async () =>
           'composition',
           'description',
           'is_available',
+          'max',
           {
             sub_category: [
               'name'
@@ -190,7 +191,7 @@ onMounted(() => {
 })
 
 const add = (product: Product, quantity: number) => {
-  cartStore.addToCart(product.id, quantity, 5);
+  cartStore.addToCart(product.id, quantity, product.max);
   console.log(cartStore.errors.type)
   if (cartStore.errors.type === 'error') {
     $toast.error(cartStore.errors.message);

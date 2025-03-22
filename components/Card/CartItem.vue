@@ -1,12 +1,14 @@
 <template>
   <article class="border-t border-grey-100 py-8 lg:grid lg:grid-cols-2">
     <div class="sm:flex sm:flex-row sm:items-center sm:gap-4">
-      <nuxt-picture class="w-fit"
-                    provider="directus"
-                    :src="`${product.preview_image.id}/${product.preview_image.filename_download}`"
-                    :alt="product.name"
-                    :img-attrs="{ class: 'w-52 h-52 object-cover' }"
-      ></nuxt-picture>
+      <nuxt-link :title="product.name" :to="`/nos-collections/${product.sub_category.slug}/${product.slug}`">
+        <nuxt-picture class="w-fit"
+                      provider="directus"
+                      :src="`${product.preview_image.id}/${product.preview_image.filename_download}`"
+                      :alt="product.name"
+                      :img-attrs="{ class: 'w-52 h-52 object-cover' }"
+        ></nuxt-picture>
+      </nuxt-link>
       <div class="py-4">
         <h2 class="text-h3-play uppercase text-brown-700">{{ product.name }}</h2>
         <p class="text-brown-100 w- tracking-wider">{{ product.number_pieces }}
@@ -21,6 +23,7 @@
             class="w-full my-4 lg:w-fit"
             :initial-quantity="product.quantity"
             :product-name="product.name"
+            :max="product.max"
             :canRemove="true"
             @update:quantity="updateQuantity(product.id, $event)"
         />
