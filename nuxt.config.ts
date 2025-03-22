@@ -6,6 +6,14 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
+
+    experimental: {
+        defaults: {
+            useAsyncData: {
+                deep: false
+            }
+        }
+    },
     devtools: {enabled: true},
 
     modules: [
@@ -38,6 +46,7 @@ export default defineNuxtConfig({
         '~/components',
         {path: '~/components/Layout', prefix: 'Layout'},
         {path: '~/components/Card', prefix: 'Card'},
+        {path: '~/components/Input', prefix: 'Input'},
     ],
 
     runtimeConfig: {
