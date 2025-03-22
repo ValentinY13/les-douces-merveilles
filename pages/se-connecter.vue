@@ -46,7 +46,6 @@ const submitForm = handleSubmit(async (values) => {
     $toast.success('Vous êtes connecté')
     navigateTo("/");
   } catch (e) {
-    console.log(e)
     if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
     } else if (e.errors[0].extensions.code === 'INVALID_PAYLOAD') {
