@@ -15,10 +15,9 @@
 const props = withDefaults(defineProps<{
   productName: string
   initialQuantity?: number
-  max?: number;
+  max: number;
   canRemove?: boolean
 }>(), {
-  max: 5,
   initialQuantity: 1,
   canRemove: false,
 })

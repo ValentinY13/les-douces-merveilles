@@ -11,6 +11,10 @@
 import {useCartStore} from "~/store/cart";
 
 const cartStore = useCartStore()
+
+onMounted(() => {
+  cartStore.fetchCart();
+});
 </script>
 
 <style>

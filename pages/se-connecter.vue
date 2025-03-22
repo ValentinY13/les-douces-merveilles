@@ -31,8 +31,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
 
-const {$directus} = useNuxtApp()
-const {$toast} = useNuxtApp()
+const {$directus, $toast} = useNuxtApp()
 
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)

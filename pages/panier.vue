@@ -5,17 +5,23 @@
         <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
         <BackButton class="py-12 md:pt-8" title="Panier"/>
       </div>
-      <div v-if="isLoaded && cartStore.items.length">
+
+      <div v-if="!isLoaded" class="flex justify-center py-12">
+        <Spinner class="size-6"/>
+      </div>
+
+      <div v-else-if="isLoaded && cartStore.items.length">
         <CardCartItem
             v-for="(product, index) in cartStore.items"
-            :key="product.product_id"
+            :key="product.id"
             :product="product"
             :class="index === cartStore.items.length - 1 ? 'border-b border-grey-100' : ''"
         ></CardCartItem>
         <p class="py-12 text-h3 text-right tracking-wide">Total TVAC: <span
             class="text-brown-700 font-medium">{{ totalPrice.toFixed(2) }}€</span></p>
         <div class="text-center">
-          <nuxt-link title="Valider le panier" to="/" class="btn">Valider le panier</nuxt-link>
+          <nuxt-link title="Valider le panier" class="btn" @click="cartStore.saveCart()">Valider le panier
+          </nuxt-link>
         </div>
       </div>
       <p v-else>Votre panier est vide</p>
