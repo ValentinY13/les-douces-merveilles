@@ -18,7 +18,7 @@
       </ul>
       <ul class="hidden lg:flex items-center gap-6">
         <li class="hidden lg:block">
-          <nuxt-link to="/" title="A propos">A propos
+          <nuxt-link to="/date-click-and-collect" title="A propos">A propos
           </nuxt-link>
         </li>
 
