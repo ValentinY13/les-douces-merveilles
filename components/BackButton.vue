@@ -4,16 +4,13 @@
       <i class="icon icon-simple-chevron-bold text-2xl"></i>
       <span>Retour</span>
     </button>
-    <h1 class="text-h2 uppercase text-brown-700">{{ title }}</h1>
+    <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  title?: string
-}>()
-
 const router = useRouter()
+
 </script>
 
 <style scoped>

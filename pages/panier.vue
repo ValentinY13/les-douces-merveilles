@@ -2,8 +2,10 @@
   <main>
     <section class="responsive-layout">
       <div class="md:grid md:grid-cols-3">
-        <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
-        <BackButton class="py-12 md:pt-8" title="Panier"/>
+        <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="-1"/>
+        <BackButton class="py-12 md:pt-8">
+          <h1 class="text-h2 uppercase text-brown-700">Panier</h1>
+        </BackButton>
       </div>
 
       <div v-if="!isLoaded" class="flex justify-center py-12">
@@ -20,7 +22,7 @@
         <p class="py-12 text-h3 text-right tracking-wide">Total TVAC: <span
             class="text-brown-700 font-medium">{{ totalPrice.toFixed(2) }}€</span></p>
         <div class="text-center">
-          <nuxt-link title="Valider le panier" class="btn" @click="cartStore.saveCart()">Valider le panier
+          <nuxt-link title="Valider le panier" to="/date-click-and-collect" class="btn">Valider le panier
           </nuxt-link>
         </div>
       </div>
