@@ -1,168 +1,139 @@
+<script setup lang="ts">
+const isActive = ref(false)
+
+function handleClick(): void {
+  isActive.value = !isActive.value
+}
+
+function closeMenu(): void {
+  isActive.value = false
+}
+
+const {y} = useWindowScroll()
+
+const showTopMenu = ref(true)
+const scrolled = ref(false)
+
+// watch for scroll direction and hide menu if scrolling down; show if scrolling up or at top
+watch(y, (value, oldValue) => {
+  showTopMenu.value = !(value > 100 && value > oldValue);
+  scrolled.value = y.value > 100;
+});
+</script>
+
 <template>
-  <header aria-label="Menu"
-          class="z-40 fixed top-0 left-0 w-full">
-    <nav aria-label="Menu header"
-         class="bg-bg-primary flex justify-between items-center gap-x-5 absolute top-0 left-0 w-full py-2 md:py-4 px-6 md:px-12 transition-all duration-500 "
-         :class="{'-translate-y-full' : !showTopMenu || isActive, 'shadow' :  !(!showTopMenu || isActive)}">
+  <header class="sticky z-50 top-0 left-0 w-full" :class="{'pointer-events-none':!showTopMenu && !isActive}">
+    <div class="transition-transform duration-500" :class="{'-translate-y-full' : !showTopMenu}">
 
-      <!--   Desktop links   -->
-      <ul class="hidden lg:flex items-center gap-6">
-        <li class="hidden lg:block">
-          <nuxt-link to="/" title="Accueil">Accueil
-          </nuxt-link>
-        </li>
-        <li class="hidden lg:block">
-          <nuxt-link :to="{ path: '/nos-collections', query: { page: 1 } }" title="Nos collections">Nos Collections
-          </nuxt-link>
-        </li>
-      </ul>
-      <ul class="hidden lg:flex items-center gap-6">
-        <li class="hidden lg:block">
-          <nuxt-link to="/date-click-and-collect" title="A propos">A propos
-          </nuxt-link>
-        </li>
+      <div class="bg-bg-primary flex justify-between p-6 shadow">
+        <nav class="hidden lg:block">
+          <ul class="flex items-center gap-6">
+            <li>
+              <nuxt-link to="/" title="Accueil">Accueil</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{ path: '/nos-collections', query: { page: 1 } }" title="Nos collections">Nos
+                Collections
+              </nuxt-link>
+            </li>
+          </ul>
+        </nav>
 
-        <li class="hidden lg:block">
-          <nuxt-link to="/" title="Contact">Contact
-          </nuxt-link>
-        </li>
-        <nuxt-link to="/panier" title="Panier">
+        <nuxt-link to="/" title="Les Douces Merveilles"
+                   class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <nuxt-img src="svg/logo.svg" preload
+                    class="w-full max-w-[350px] h-10 "></nuxt-img>
+        </nuxt-link>
+
+        <div class="flex items-center">
+          <nav class="hidden lg:block" aria-label="Desktop menu">
+            <ul class="lg:flex items-center gap-6">
+              <li>
+                <nuxt-link to="/date-click-and-collect" title="A propos">A propos</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/" title="Contact">Contact</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/panier" title="Panier">
+                  <i class="icon-link icon-shopping-bag text-2xl"></i>
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/se-connecter" title="Mon compte">
+                  <i class="icon-link icon-user text-2xl"></i>
+                </nuxt-link>
+              </li>
+            </ul>
+          </nav>
+
+          <button type="button"
+                  class="menu-hamburger lg:hidden"
+                  aria-controls="menu-mobile"
+                  title="Ouvrir le menu"
+                  :aria-expanded="isActive"
+                  @click="handleClick">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <nuxt-link to="/panier" title="Panier" class="lg:hidden">
           <i class="icon-link icon-shopping-bag text-2xl"></i>
         </nuxt-link>
-        <nuxt-link to="/se-connecter" title="Mon compte">
-          <i class="icon-link icon-user text-2xl"></i>
-        </nuxt-link>
-      </ul>
-
-      <!--   Mobile menu   -->
-      <button aria-controls="menu-mobile" title="Ouvrir le menu" :aria-expanded="isActive"
-              @click="handleClick"
-              class="menu-hamburger lg:hidden">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nuxt-link to="/" title="Les Douces Merveilles"
-                 class="md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-        <nuxt-img src="svg/logo.svg" preload
-                  class="w-full max-w-[350px] h-10 lg:h-12"></nuxt-img>
-      </nuxt-link>
-
-      <nuxt-link to="/panier" title="Panier" class="lg:hidden">
-        <i class="icon-link icon-shopping-bag text-2xl"></i>
-      </nuxt-link>
-    </nav>
-
-    <div @click="isActive = false"
-         class="w-full h-full fixed top-0 left-0 z-30 pointer-events-none bg-opacity-50 transition-all duration-300"
-         :class="{'backdrop-blur-sm pointer-events-auto!' : isActive}">
+      </div>
     </div>
 
-    <!--  Mobile links  -->
+    <!-- Mobile menu -->
     <nav
-        id="menu-mobile"
-        aria-label="Mobile navigation"
-        class="bg-bg-primary transform transition duration-500 absolute top-0 w-full h-screen z-40 sm:max-w-[465px] lg:hidden"
-        :class="{'-translate-y-full': !isActive, 'translate-y-0': isActive}"
-    >
-      <div
-          class="w-full h-full overflow-y-auto menu-mobile__list flex flex-col gap-y-10 px-6 pt-6"
-          :class="isActive ?  'menu-mobile__list--active' : 'menu-mobile__list--closed'">
-        <button aria-controls="menu-mobile" title="Fermer le menu" @click="handleClick"
-                class="menu-hamburger menu-hamburger--active">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul
-            class="space-y-12 text-h3 text-center flex-grow flex flex-col justify-center uppercase">
+        class="transition-all transition-discrete duration-300 opacity-0 invisible fixed left-0 top-0 size-full bg-white overflow-y-auto menu-mobile__list"
+        :class="{'opacity-100 visible': isActive}"
+        aria-label="Mobile Menu">
+      <div :class="isActive ?  'menu-mobile__list--active' : 'menu-mobile__list--closed'">
+        <ul class="text-h3 flex flex-col items-center justify-center gap-12 h-screen">
           <li>
             <nuxt-link @click="handleClick" to="/" title="Accueil">Accueil</nuxt-link>
           </li>
+
           <li>
             <nuxt-link @click="handleClick" :to="{ path: '/nos-collections', query: { page: 1 } }"
                        title="Nos collections">Nos collections
             </nuxt-link>
           </li>
+
           <li>
             <nuxt-link @click="handleClick" to="/" title="A propos">à propos</nuxt-link>
           </li>
+
           <li>
             <nuxt-link @click="handleClick" to="/se-connecter" title="Mon compte">Mon compte</nuxt-link>
           </li>
+
           <li>
             <nuxt-link @click="handleClick" to="/" title="Contact" class="btn">Contact</nuxt-link>
           </li>
         </ul>
       </div>
+      <button type="button"
+              class="menu-hamburger menu-hamburger--active !absolute z-50 top-6 left-6"
+              aria-controls="menu-mobile"
+              title="Ouvrir le menu"
+              :aria-expanded="isActive"
+              @click="handleClick">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   </header>
 </template>
-
-<script setup lang="ts">
-
-const isActive = ref(false);
-
-function handleClick() {
-  isActive.value = !isActive.value;
-
-  if (!isActive.value) {
-    showSublistMobile.value = false;
-  }
-}
-
-const {breakpoints} = useDefaultBreakpoints();
-
-const isDesktop = breakpoints.greaterOrEqual('lg');
-
-watch(isDesktop, (value: boolean) => {
-  if (value)
-    isActive.value = false;
-})
-
-
-watch(isActive, (value: boolean) => {
-  if (value) {
-    document.body.style.overflow = "clip";
-  } else {
-    document.body.style.overflow = "";
-  }
-})
-
-const showSublistMobile = ref(false);
-
-const {y} = useWindowScroll();
-
-const showTopMenu = ref(true);
-const scrolled = ref(false);
-
-let lastScrollY = 0;
-
-watch(y, (value) => {
-  if (value <= 0) {
-    showTopMenu.value = true;
-  } else {
-    showTopMenu.value = value <= lastScrollY;
-  }
-
-  scrolled.value = value > 0;
-
-  lastScrollY = value;
-});
-
-onMounted(() => {
-  scrolled.value = y.value > 0;
-})
-
-</script>
 
 <style scoped>
 @reference "~/assets/css/tailwind.css";
 
 .menu-hamburger {
-  --menu-size: 30px;
-  --bar-height: 2px;
+  --menu-size: 24px;
+  --bar-height: 1px;
 
   width: var(--menu-size);
   height: var(--menu-size);
@@ -171,7 +142,7 @@ onMounted(() => {
 
   span {
     height: var(--bar-height);
-    @apply block w-full bg-brown-700 absolute transition ease-in-out duration-500;
+    @apply block w-full bg-brown-700 absolute transition ease-in-out duration-500 rounded-xs;
   }
 
   span:first-child {
@@ -241,5 +212,4 @@ onMounted(() => {
 .menu-mobile__list--active div:last-child {
   transition-delay: 1s;
 }
-
 </style>
