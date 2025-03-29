@@ -88,48 +88,49 @@ const formatDate = (dateStr: string) => {
 </script>
 
 <template>
-  <main class="responsive-layout">
-
-    <div class="md:grid md:grid-cols-3">
-      <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
-      <BackButton class="py-12 md:pt-8" title="Panier">
-        <h1 class="text-h2 uppercase text-brown-700">Date et heure de retrait</h1>
-      </BackButton>
-    </div>
-
-    <div class="flex flex-col gap-12 sm:flex-row md:justify-center lg:justify-evenly">
-      <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings.max_orders_per_day"
-                  class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
-
-      <div
-          class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6">
-        <button
-            class="btn h-fit"
-            v-for="slot in allSlots"
-            :key="slot.id"
-            :disabled="slot.disabled"
-            @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime }"
-        >
-          {{ slot.startTime }} - {{ slot.endTime }}
-        </button>
+  <main class="px-6 pt-14 pb-24">
+    <section class="responsive-layout">
+      <div class="md:grid md:grid-cols-3">
+        <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
+        <BackButton class="py-12 md:pt-8" title="Panier">
+          <h1 class="text-h2 uppercase text-brown-700">Date et heure de retrait</h1>
+        </BackButton>
       </div>
 
-    </div>
-    <Transition name="fade">
-      <p
-          v-if="selectedDate && selectedSlot"
-          class="py-12 text-sm text-center sm:col-span-2">
-        Votre commande sera prête le
-        <span class="font-semibold text-brown-700">{{ formatDate(selectedDate) }}</span>
-        entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
-          selectedSlot.endTime
-        }}</span>.
-        Afin d’éviter au mieux l’attente, merci de respecter vos créneaux horaires.
-      </p>
-    </Transition>
-    <div class="text-center">
-      <button class="btn">Procéder au paiement</button>
-    </div>
+      <div class="flex flex-col gap-12 sm:flex-row md:justify-center lg:justify-evenly">
+        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings.max_orders_per_day"
+                    class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
+
+        <div
+            class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6">
+          <button
+              class="btn h-fit"
+              v-for="slot in allSlots"
+              :key="slot.id"
+              :disabled="slot.disabled"
+              @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime }"
+          >
+            {{ slot.startTime }} - {{ slot.endTime }}
+          </button>
+        </div>
+
+      </div>
+      <Transition name="fade">
+        <p
+            v-if="selectedDate && selectedSlot"
+            class="py-12 text-sm text-center sm:col-span-2">
+          Votre commande sera prête le
+          <span class="font-semibold text-brown-700">{{ formatDate(selectedDate) }}</span>
+          entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
+            selectedSlot.endTime
+          }}</span>.
+          Afin d’éviter au mieux l’attente, merci de respecter vos créneaux horaires.
+        </p>
+      </Transition>
+      <div class="text-center">
+        <button class="btn">Procéder au paiement</button>
+      </div>
+    </section>
   </main>
 </template>
 

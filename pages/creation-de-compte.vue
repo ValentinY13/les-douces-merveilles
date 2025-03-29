@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="px-6 pt-14 pb-24">
     <section aria-labelledby="Inscription" class="responsive-layout">
       <h1 id="Inscription" class="text-h2 text-brown-700 text-center my-8 uppercase">Création de compte</h1>
       <form @submit="submitForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">

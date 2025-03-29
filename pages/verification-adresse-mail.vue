@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <section class="py-24 px-6 max-layout-xl-c-12-g-13 mx-auto text-center">
+  <main class="pt-14 pb-24 px-6">
+    <section class="max-layout-xl-c-12-g-13 mx-auto text-center">
       <h1 class="text-h2 text-brown-700 my-8 uppercase">Page de vérification</h1>
 
       <transition name="fade">

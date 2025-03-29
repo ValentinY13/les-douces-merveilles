@@ -3,7 +3,7 @@
     <slot name="header"></slot>
 
     <div class="px-6 overflow-hidden">
-      <div class="max-layout-xxl-c-12-g-13 mx-auto">
+      <div class="responsive-layout">
         <swiper-container ref="swiperElement" init="false">
           <slot name="slides"></slot>
         </swiper-container>

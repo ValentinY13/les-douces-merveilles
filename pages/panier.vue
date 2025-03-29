@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="px-6 pt-14 pb-24">
     <section class="responsive-layout">
       <div class="md:grid md:grid-cols-3">
         <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="-1"/>

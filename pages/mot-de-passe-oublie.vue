@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <section aria-labelledby="Mot de passe oublié" class="py-24 px-6 max-layout-lg-c-7-g-3 mx-auto">
+  <main class="pt-14 pb-24 px-6">
+    <section aria-labelledby="Mot de passe oublié" class="max-layout-lg-c-7-g-3 mx-auto">
       <h1 id="Mot de passe oublié" class="text-h2 text-brown-700 my-8 text-center uppercase">Mot de passe oublié</h1>
       <p class="text-center text-sm mb-8">Mot de passe oublié ? Saisissez votre e-mail pour recevoir un lien de
         réinitialisation

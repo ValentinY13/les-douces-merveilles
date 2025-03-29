@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <section aria-labelledby="Nouveau mot de passe" class="py-24 px-6 max-layout-lg-c-7-g-3 mx-auto">
+  <main class="pt-14 pb-24 px-6">
+    <section aria-labelledby="Nouveau mot de passe" class="max-layout-lg-c-7-g-3 mx-auto">
       <h1 id="Nouveau mot de passe" class="text-h2 text-brown-700 my-8 text-center uppercase">Choisissez votre nouveau
         mot de
         passe</h1>

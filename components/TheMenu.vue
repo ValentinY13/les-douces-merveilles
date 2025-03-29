@@ -25,7 +25,7 @@ watch(y, (value, oldValue) => {
   <header class="sticky z-50 top-0 left-0 w-full" :class="{'pointer-events-none':!showTopMenu && !isActive}">
     <div class="transition-transform duration-500" :class="{'-translate-y-full' : !showTopMenu}">
 
-      <div class="bg-bg-primary flex justify-between p-6 shadow">
+      <div class="bg-bg-primary flex justify-between px-6 py-4 md:py-6 shadow">
         <nav class="hidden lg:block">
           <ul class="flex items-center gap-6">
             <li>

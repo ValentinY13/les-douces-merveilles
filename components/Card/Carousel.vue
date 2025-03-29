@@ -9,7 +9,7 @@
       ></nuxt-picture>
     </nuxt-link>
     <div class="p-6 absolute bottom-0 left-0 text-white z-30">
-      <p class="text-sm xl:text-base font-play uppercase">{{ product.name }}</p>
+      <p class="text-sm lg:text-xl font-play uppercase">{{ product.name }}</p>
       <p class="text-sm xl:text-base mt-2"><span v-if="product.number_pieces">{{
           product.number_pieces
         }} pièce{{ product.number_pieces > 1 ? 's' : '' }} - </span>{{ product.price }} €</p>
