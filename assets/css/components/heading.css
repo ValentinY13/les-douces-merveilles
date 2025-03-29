@@ -5,7 +5,7 @@
     @apply font-montserrat;
 }
 
-.text-h1-play, .text-h3-play {
+.text-h1-play, .text-h2-play, .text-h3-play {
     @apply font-play;
 }
 
@@ -15,6 +15,10 @@
 
 .text-h2 {
     @apply text-2xl xl:text-[2rem] tracking-widest;
+}
+
+.text-h2-play {
+    @apply text-2xl xl:text-[2rem]
 }
 
 .text-h3, .text-h3-medium, .text-h3-play {

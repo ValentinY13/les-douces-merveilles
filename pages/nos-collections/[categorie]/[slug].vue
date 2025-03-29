@@ -48,12 +48,10 @@
           <TitleSection :id="'Découvrez également'" :title="`${product?.sub_category.name}`"
                         :subtitle="'Dans la même catégorie'"/>
         </template>
-        <template #slides>
-          <swiper-slide v-for="product in sameCatProducts" :key="product.id"
-                        class="max-w-[450px] w-full h-auto">
-            <CardCarousel :product="product" class="relative "/>
-          </swiper-slide>
-        </template>
+        <swiper-slide v-for="product in sameCatProducts" :key="product.id"
+                      class="max-w-[450px] w-full h-auto">
+          <CardCarousel :product="product" class="relative "/>
+        </swiper-slide>
       </LayoutCarouselSection>
     </section>
   </main>
