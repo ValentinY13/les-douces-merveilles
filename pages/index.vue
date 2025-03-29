@@ -7,12 +7,19 @@
         <TitleSection :title="homeData.blocks.block_slider[0].title"
                       :subtitle="homeData.blocks.block_slider[0].subtitle" class="px-6" :id="'mise en avant'"/>
       </template>
-      <template #slides>
-        <swiper-slide v-for="product in homeData.blocks.block_slider[0].product" :key="product.id"
-                      class="max-w-[450px] w-full h-auto">
-          <CardCarousel :product="product.product_id" class="relative "/>
-        </swiper-slide>
-      </template>
+      <swiper-slide v-for="product in homeData.blocks.block_slider[0].product" :key="product.id"
+                    class="max-w-[450px] w-full h-auto">
+        <CardCarousel :product="product.product_id" class="relative "/>
+      </swiper-slide>
+
+      <swiper-slide class="w-full max-w-[450px] h-full">
+        <CardSeeMore class="h-full">
+          <h2 class="text-h2-play uppercase">Tous les produits</h2>
+          <nuxt-link to="/" title="Tous les produits" class="btn">
+            Voir plus
+          </nuxt-link>
+        </CardSeeMore>
+      </swiper-slide>
     </LayoutCarouselSection>
 
     <section class="relative" aria-labelledby="citation">
@@ -35,12 +42,19 @@
         <TitleSection :title="homeData.blocks.block_slider[1].title"
                       :subtitle="homeData.blocks.block_slider[1].subtitle" class="px-6" :id="'mise en avant'"/>
       </template>
-      <template #slides>
-        <swiper-slide v-for="product in homeData.blocks.block_slider[1].product" :key="product.id"
-                      class="max-w-[450px] w-full h-auto">
-          <CardCarousel :product="product.product_id" class="relative "/>
-        </swiper-slide>
-      </template>
+      <swiper-slide v-for="product in homeData.blocks.block_slider[1].product" :key="product.id"
+                    class="max-w-[450px] w-full h-auto">
+        <CardCarousel :product="product.product_id" class="relative "/>
+      </swiper-slide>
+
+      <swiper-slide class="w-full max-w-[450px] h-full">
+        <CardSeeMore class="h-full">
+          <h2 class="text-h2-play uppercase">Tous les produits</h2>
+          <nuxt-link to="/" title="Tous les produits" class="btn">
+            Voir plus
+          </nuxt-link>
+        </CardSeeMore>
+      </swiper-slide>
     </LayoutCarouselSection>
   </main>
 </template>
