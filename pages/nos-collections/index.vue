@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="pt-14 pb-24 px-6">
     <section aria-labelledby="Nos collections" id="Tous les produits" class="responsive-layout">
       <TitleSection id="Nos collections" title="Tous nos chocolats" subtitle="Découvrez" class="my-8"/>
       <ul class="flex flex-wrap justify-center gap-4 mb-8">
