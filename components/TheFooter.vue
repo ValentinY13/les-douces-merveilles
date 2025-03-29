@@ -15,7 +15,7 @@
           Les dimanches et jours fériés 9h-12h.</p>
       </div>
 
-      <ul class="uppercase space-y-4 xl:space-y-8 xl:pl-16">
+      <ul class="space-y-4 xl:space-y-8 xl:pl-16">
         <li>
           <nuxt-link to="/" title="Accueil">Accueil</nuxt-link>
         </li>
@@ -33,12 +33,12 @@
       <div class="flex gap-8 lg:col-end-4 xl:pl-16">
         <nuxt-link
             to="https://www.facebook.com/namurcadets" title="Facebook"
-            rel="noopener" exertnal aria-label="Visitez notre page Facebook">
+            rel="noopener" target="_blank" exertnal aria-label="Visitez notre page Facebook">
           <i class="icon-link icon-facebook text-2xl"></i>
         </nuxt-link>
         <nuxt-link
             to="https://www.instagram.com/namurcadets/" title="Instagram"
-            rel="noopener" exertnal aria-label="Visitez notre page Instagram">
+            rel="noopener" target="_blank" exertnal aria-label="Visitez notre page Instagram">
           <i class="icon-link icon-instagram text-2xl"></i>
         </nuxt-link>
       </div>
