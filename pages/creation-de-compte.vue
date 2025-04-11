@@ -50,6 +50,15 @@
 
         <button type="submit" class="btn w-fit">Envoyer</button>
       </form>
+
+      <div
+          class="py-6 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-current before:me-6 after:flex-1 after:border-t after:border-current after:ms-6">
+        Ou
+      </div>
+      <div class="btn btn-icon" @click="loginWithGoogle">
+        <i class="icon-link icon-google text-xl"></i>
+        <span>Inscription via google</span>
+      </div>
     </section>
   </main>
 </template>
@@ -85,6 +94,16 @@ const submitForm = handleSubmit(async (values) => {
     $toast.error('Une erreur est survenue')
   }
 })
+
+const loginWithGoogle = async () => {
+  const directusUrl = useRuntimeConfig().public.directus.url
+  const nuxtUrl = useRuntimeConfig().public.nuxtUrl
+  try {
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/mon-compte`;
+  } catch (e) {
+    $toast.error('Une erreur est survenue, veuillez réessayer')
+  }
+};
 </script>
 
 <style scoped>
