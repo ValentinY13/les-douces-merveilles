@@ -3,7 +3,7 @@
 
     cursor: pointer;
 
-    @apply text-balance text-center text-sm inline-block py-4 px-6 uppercase tracking-widest
+    @apply text-balance text-center text-xs inline-block py-4 px-6 uppercase tracking-widest
     transition-colors duration-300 ease-in-out;
 
     color: var(--_color);
@@ -19,5 +19,9 @@
         color: var(--color-white, theme('color.white'));
         background-color: var(--_color);
     }
+}
+
+.btn-icon {
+    @apply flex items-center justify-center gap-2 text-xs;
 }
 

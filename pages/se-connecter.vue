@@ -20,9 +20,18 @@
             Créer un compte
           </nuxt-link>
         </p>
-        <nuxt-link to="/mot-de-passe-oublie" title="Mot de passe oublié" class="underline">Mot de passe oublié
+        <nuxt-link to="/mot-de-passe-oublie" title="Mot de passe oublié" class="underline w-fit">Mot de passe oublié
         </nuxt-link>
+
       </form>
+      <div
+          class="py-6 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-current before:me-6 after:flex-1 after:border-t after:border-current after:ms-6">
+        Ou
+      </div>
+      <div class="btn btn-icon" @click="loginWithGoogle">
+        <i class="icon-link icon-google text-xl"></i>
+        <span>Connexion via google</span>
+      </div>
     </section>
   </main>
 </template>
@@ -31,7 +40,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
 
-const {$directus, $toast} = useNuxtApp()
+const {$directus, $toast, $readUsers} = useNuxtApp()
 
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)
@@ -42,19 +51,43 @@ const {values, handleSubmit} = useForm({
 
 const submitForm = handleSubmit(async (values) => {
   try {
+
+    const data = await $directus.request($readUsers({
+      fields: ['provider'],
+      filter: {
+        email: values.email
+      }
+    }))
+
+    const user = data[0]
+
+    if (user?.provider === 'google') {
+      return $toast.error('Compte déjà associé avec Google, essayez cette méthode de connexion.')
+    }
+
     await $directus.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
     navigateTo("/");
   } catch (e) {
-    if (e.errors[0].extensions.code === 'INVALID_CREDENTIALS') {
+    if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
-    } else if (e.errors[0].extensions.code === 'INVALID_PAYLOAD') {
+    } else if (e.errors[0]?.extensions?.code === 'INVALID_PAYLOAD') {
       $toast.error('Champs invalides')
     } else {
       $toast.error('Une erreur est survenue.')
     }
   }
 })
+
+const loginWithGoogle = async () => {
+  const directusUrl = useRuntimeConfig().public.directus.url
+  const nuxtUrl = useRuntimeConfig().public.nuxtUrl
+  try {
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/mon-compte`;
+  } catch (e) {
+    $toast.error('Une erreur est survenue, veuillez réessayer')
+  }
+};
 </script>
 
 <style scoped>

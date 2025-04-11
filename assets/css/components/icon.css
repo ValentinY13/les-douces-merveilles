@@ -158,3 +158,12 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-google {
+    mask: url("/svg/icons/Google.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
