@@ -18,7 +18,6 @@
       </div>
     </div>
 
-    <!--    w-96 h-96 xl:w-full xl:h-full-->
     <!-- Grande image avec transition -->
     <div class="w-96 h-96 xl:size-full max-w-[500px] max-h-[500px] xl:aspect-square relative">
       <transition name="fade" mode="out-in">
