@@ -131,8 +131,6 @@ const isAvailable = computed(() => {
   return product.value?.is_available && product.value.number_stock > 0
 })
 
-console.log(isAvailable.value)
-
 const {data: sameCatProducts} = await useAsyncData('same-category', async () => {
   return $directus.request($readItems('product', {
     fields: [
