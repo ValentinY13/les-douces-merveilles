@@ -27,8 +27,12 @@
                 product.price
               }}€</p>
             <div class="flex flex-col md:flex-row lg:flex-col gap-6">
-              <AddRemove :product-name="product.name" :max="product.max" v-model:quantity="quantity"/>
-              <button class="btn w-full lg:w-fit" @click="add(product, quantity)">
+              <AddRemove :is-available="isAvailable" :product-name="product.name" :max="product.max"
+                         v-model:quantity="quantity"/>
+              <button
+                  :disabled="!product.is_available || product.number_stock <= 0"
+                  class="btn w-full lg:w-fit"
+                  @click="add(product, quantity)">
                 Ajouter au panier
               </button>
             </div>
@@ -122,6 +126,10 @@ const {data: product, error} = await useAsyncData('product-details', async () =>
       }
     }
 )
+
+const isAvailable = computed(() => {
+  return product.value?.is_available && product.value.number_stock > 0
+})
 
 const {data: sameCatProducts} = await useAsyncData('same-category', async () => {
   return $directus.request($readItems('product', {
