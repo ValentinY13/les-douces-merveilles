@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import TimePicker from "~/components/TimePicker.vue";
+import {useCartStore} from "~/store/cart";
 
-const {$directus, $readItems} = useNuxtApp()
+const {$directus, $readItems, $toast} = useNuxtApp()
 const time_slots = ref([]);
 const allSlots = ref([]) as { startTime: string, endTime: string, disabled: boolean }[];
 const selectedDate = ref();
@@ -85,6 +86,30 @@ const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
   return date.toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit', year: 'numeric'});
 };
+
+
+const handleCheckout = async () => {
+  const cartStore = useCartStore();
+
+  try {
+    const response = await $fetch('/api/stripe/create-checkout-session', {
+      method: 'POST',
+      body: cartStore.cartStorage
+    })
+
+    navigateTo(response.url, {
+      external: true
+    })
+
+    if (response && response.status === 'error') {
+      $toast.error(response.errorMessage)
+    } else {
+      $toast.success("Panier valide")
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
 </script>
 
 <template>
@@ -124,11 +149,11 @@ const formatDate = (dateStr: string) => {
           entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
             selectedSlot.endTime
           }}</span>.
-          Afin d’éviter au mieux l’attente, merci de respecter vos créneaux horaires.
+          Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaireç_.
         </p>
       </Transition>
       <div class="text-center">
-        <button class="btn">Procéder au paiement</button>
+        <button class="btn" @click="handleCheckout">Procéder au paiement</button>
       </div>
     </section>
   </main>

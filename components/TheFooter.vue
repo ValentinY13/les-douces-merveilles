@@ -20,10 +20,10 @@
           <nuxt-link to="/" title="Accueil">Accueil</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/" title="Nos collections">Nos collections</nuxt-link>
+          <nuxt-link to="/nos-collections" title="Nos collections">Nos collections</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/" title="A propos">à propos</nuxt-link>
+          <nuxt-link to="/" title="A propos">A propos</nuxt-link>
         </li>
         <li>
           <nuxt-link to="/" title="Contact">Contact</nuxt-link>
