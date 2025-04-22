@@ -11,6 +11,9 @@ export default defineEventHandler(async (event) => {
 
     const userId = session.metadata.user_id;
 
+    const pickupId = session.metadata.slotId;
+    const pickupDate = new Date(session.metadata.date).toISOString();
+    
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ['data.price.product']
     })
@@ -28,10 +31,12 @@ export default defineEventHandler(async (event) => {
             total: session.amount_total / 100,
             user: userId,
             order_lines: orderLines,
+            pickup_date: pickupDate,
+            pickup_time_slot: pickupId,
         }))
 
     } catch (e) {
-        console.error(e.errors[0]);
+        console.error(e);
     }
 
 })

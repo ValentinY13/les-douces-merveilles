@@ -4,7 +4,7 @@ import {useCartStore} from "~/store/cart";
 
 const {$directus, $readItems, $toast} = useNuxtApp()
 const time_slots = ref([]);
-const allSlots = ref([]) as { startTime: string, endTime: string, disabled: boolean }[];
+const allSlots = ref<{ startTime: string, endTime: string, disabled: boolean, id: string }[]>([]);
 const selectedDate = ref();
 const selectedSlot = ref()
 
@@ -40,6 +40,7 @@ if (slotsData.value) {
       startTime: item.start_time.split(':')[0] + 'h',
       endTime: item.end_time.split(':')[0] + 'h',
       disabled: false,
+      id: item.id,
     })
   })
   time_slots.value = slotsData.value;
@@ -49,6 +50,7 @@ const maxOrdersPerSlot = settings.value?.max_orders_per_slot;
 
 const handleDateSelected = async (date: string) => {
   selectedDate.value = date;
+  selectedSlot.value = null;
 
   const ordersSelect = await $directus.request($readItems('orders', {
     fields: [
@@ -78,7 +80,7 @@ const handleDateSelected = async (date: string) => {
   allSlots.value = time_slots.value.map(slot => {
     const startTime = slot.start_time.split(':')[0] + 'h'
     const endTime = slot.end_time.split(':')[0] + 'h'
-    return {startTime, endTime, disabled: (slotCounts[slot.id] || 0) >= maxOrdersPerSlot}
+    return {startTime, endTime, disabled: (slotCounts[slot.id] || 0) >= maxOrdersPerSlot, id: slot.id}
   })
 }
 
@@ -94,7 +96,11 @@ const handleCheckout = async () => {
   try {
     const response = await $fetch('/api/stripe/create-checkout-session', {
       method: 'POST',
-      body: cartStore.cartStorage
+      body: {
+        products: cartStore.cartStorage,
+        slotId: selectedSlot.value.id,
+        date: selectedDate.value,
+      }
     })
 
     navigateTo(response.url, {
@@ -123,17 +129,18 @@ const handleCheckout = async () => {
       </div>
 
       <div class="flex flex-col gap-12 sm:flex-row md:justify-center lg:justify-evenly">
-        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings.max_orders_per_day"
+        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings?.max_orders_per_day"
                     class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
 
         <div
             class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6">
           <button
               class="btn h-fit"
+              :class="{ 'btn-selected': selectedSlot?.id === slot.id }"
               v-for="slot in allSlots"
               :key="slot.id"
               :disabled="slot.disabled"
-              @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime }"
+              @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime, disabled: slot.disabled,id: slot.id }"
           >
             {{ slot.startTime }} - {{ slot.endTime }}
           </button>
@@ -149,7 +156,7 @@ const handleCheckout = async () => {
           entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
             selectedSlot.endTime
           }}</span>.
-          Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaireç_.
+          Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaire.
         </p>
       </Transition>
       <div class="text-center">
