@@ -22,7 +22,7 @@
         <p class="py-12 text-h3 text-right tracking-wide">Total TVAC: <span
             class="text-brown-700 font-medium">{{ totalPrice.toFixed(2) }}€</span></p>
         <div class="text-center">
-          <nuxt-link title="Valider le panier" to="/date-click-and-collect" class="btn">Valider le panier
+          <nuxt-link title="Valider le panier" to="/panier-identification" class="btn">Valider le panier
           </nuxt-link>
         </div>
       </div>
