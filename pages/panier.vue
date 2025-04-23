@@ -17,12 +17,13 @@
             v-for="(product, index) in cartStore.items"
             :key="product.id"
             :product="product"
+            :disabled="outOfStockIds.includes(product.id)"
             :class="index === cartStore.items.length - 1 ? 'border-b border-grey-100' : ''"
         ></CardCartItem>
         <p class="py-12 text-h3 text-right tracking-wide">Total TVAC: <span
             class="text-brown-700 font-medium">{{ totalPrice.toFixed(2) }}€</span></p>
         <div class="text-center">
-          <nuxt-link title="Valider le panier" to="/panier-identification" class="btn">Valider le panier
+          <nuxt-link title="Valider le panier" @click="handleClick" class="btn">Valider le panier
           </nuxt-link>
         </div>
       </div>
@@ -36,12 +37,38 @@ import {useCartStore} from "~/store/cart";
 
 const cartStore = useCartStore();
 const isLoaded = ref(false);
+const {$toast, $isAuthenticated} = useNuxtApp()
+
+const user = await $isAuthenticated()
+
+const outOfStockIds = ref([]);
 
 onMounted(() => {
   isLoaded.value = true;
 });
 
 const totalPrice = computed(() => cartStore.total);
+
+const handleClick = async () => {
+  const response = await useCheckStock();
+
+  if (response.status === 'error') {
+    outOfStockIds.value = response.unavailableIds || [];
+    $toast.error(response.errorMessage);
+    return;
+  }
+
+  if (response.status === 'partial') {
+    response.partials?.forEach(({id, availableQty}) => {
+      cartStore.updateQuantity(id, availableQty);
+    });
+    $toast.info(response.errorMessage);
+    return;
+  }
+
+  const nextRoute = user ? '/date-click-and-collect' : '/panier-identification';
+  await navigateTo(nextRoute);
+};
 </script>
 
 <style scoped>

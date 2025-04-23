@@ -38,8 +38,7 @@ export default defineNuxtPlugin(() => {
             const me = await directus.request(readMe());
             return me;
         } catch (error) {
-            console.error(error)
-            return 'false';
+            return false;
         }
     };
 

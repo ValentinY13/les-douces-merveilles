@@ -30,6 +30,10 @@ const emit = defineEmits(["update:quantity"]);
 const {$toast} = useNuxtApp()
 const quantity = ref(props.initialQuantity)
 
+watch(() => props.initialQuantity, (newVal) => {
+  quantity.value = newVal;
+});
+
 function increase() {
   if (quantity.value < props.max) {
     quantity.value++
