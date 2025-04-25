@@ -7,6 +7,7 @@ import {
     refresh,
     readItems,
     readUsers,
+    triggerFlow,
     type AuthenticationStorage
 } from "@directus/sdk";
 
@@ -54,6 +55,6 @@ export default defineNuxtPlugin(() => {
     }
 
     return {
-        provide: {directus, registerUser, isAuthenticated, refreshToken, logout, readItems, readUsers},
+        provide: {directus, registerUser, isAuthenticated, refreshToken, logout, readItems, readUsers, triggerFlow},
     };
 })

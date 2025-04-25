@@ -80,6 +80,11 @@ export const useCartStore = defineStore('cart', {
             this.cartStorage = this.cartStorage.filter((item) => item.product_id !== productId);
             this.fetchCart()
         },
+
+        resetCart() {
+            this.cartStorage = [];
+            this.items = [];
+        }
     },
 
 })

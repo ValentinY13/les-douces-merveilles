@@ -92,7 +92,13 @@ const formatDate = (dateStr: string) => {
 
 const handleCheckout = async () => {
   const cartStore = useCartStore();
+  const response = await useCheckStock();
 
+  if (response.status !== 'success') {
+    navigateTo('/panier')
+    $toast.error('Le panier contient des erreurs');
+    return
+  }
   try {
     const response = await $fetch('/api/stripe/create-checkout-session', {
       method: 'POST',

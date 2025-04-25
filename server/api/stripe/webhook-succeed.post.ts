@@ -1,5 +1,4 @@
 import Stripe from 'stripe';
-import {createItem, directusServer} from "~/server/utils/directus-server";
 
 export default defineEventHandler(async (event) => {
     const stripeEvent = await readBody<Stripe.Event>(event);
@@ -13,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
     const pickupId = session.metadata.slotId;
     const pickupDate = new Date(session.metadata.date).toISOString();
-    
+
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ['data.price.product']
     })
@@ -27,13 +26,27 @@ export default defineEventHandler(async (event) => {
         sub_total: lineItem.amount_total / 100,
     }));
     try {
-        const response = await directusServer.request(createItem('orders', {
-            total: session.amount_total / 100,
-            user: userId,
-            order_lines: orderLines,
-            pickup_date: pickupDate,
-            pickup_time_slot: pickupId,
-        }))
+
+        const token = process.env.STATIC_TOKEN_WEBHOOK
+        const url = process.env.DIRECTUS_URL
+
+        const response = await $fetch(`${url}/items/orders`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: {
+                total: session.amount_total / 100,
+                user: userId,
+                order_lines: orderLines,
+                pickup_date: pickupDate,
+                pickup_time_slot: pickupId,
+            }
+        });
+
+        console.log(response);
+
 
     } catch (e) {
         console.error(e);

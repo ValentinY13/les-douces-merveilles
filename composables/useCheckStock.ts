@@ -6,7 +6,7 @@ interface CartProduct {
 }
 
 interface StockCheckResult {
-    status: 'ok' | 'partial' | 'error';
+    status: 'success' | 'partial' | 'error';
     unavailableIds?: number[];
     partials?: {
         id: number;
