@@ -2,7 +2,7 @@
 import TimePicker from "~/components/TimePicker.vue";
 import {useCartStore} from "~/store/cart";
 
-const {$directus, $readItems, $toast} = useNuxtApp()
+const {$directus, $readItems, $toast, $isAuthenticated} = useNuxtApp()
 const time_slots = ref([]);
 const allSlots = ref<{ startTime: string, endTime: string, disabled: boolean, id: string }[]>([]);
 const selectedDate = ref();
@@ -99,6 +99,15 @@ const handleCheckout = async () => {
     $toast.error('Le panier contient des erreurs');
     return
   }
+
+  const user = await $isAuthenticated()
+
+  if (!user) {
+    navigateTo('/panier')
+    $toast.error('Vous devez être connecté');
+    return
+  }
+
   try {
     const response = await $fetch('/api/stripe/create-checkout-session', {
       method: 'POST',
@@ -106,6 +115,7 @@ const handleCheckout = async () => {
         products: cartStore.cartStorage,
         slotId: selectedSlot.value.id,
         date: selectedDate.value,
+        userId: user.id
       }
     })
 

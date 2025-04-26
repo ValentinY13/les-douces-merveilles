@@ -25,31 +25,43 @@ export default defineEventHandler(async (event) => {
         quantity: lineItem.quantity,
         sub_total: lineItem.amount_total / 100,
     }));
-    try {
-
-        const token = process.env.STATIC_TOKEN_WEBHOOK
-        const url = process.env.DIRECTUS_URL
-
-        const response = await $fetch(`${url}/items/orders`, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: {
-                total: session.amount_total / 100,
-                user: userId,
-                order_lines: orderLines,
-                pickup_date: pickupDate,
-                pickup_time_slot: pickupId,
-            }
-        });
-
-        console.log(response);
 
 
-    } catch (e) {
-        console.error(e);
+    let successOrderPost = false;
+    let attemptCount = 0;
+
+    // génère un numéro aléatoire et effectue 3 essais pour poster l'order afin d'éviter le problème d'unicité de numéro
+    while (!successOrderPost && attemptCount < 3) {
+        try {
+            attemptCount++;
+
+            const token = process.env.STATIC_TOKEN_WEBHOOK;
+            const url = process.env.DIRECTUS_URL;
+            const orderNumber = generateOrderNumber();
+
+            const response = await $fetch(`${url}/items/orders`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: {
+                    total: session.amount_total / 100,
+                    user: userId,
+                    order_lines: orderLines,
+                    pickup_date: pickupDate,
+                    pickup_time_slot: pickupId,
+                    order_number: orderNumber
+                }
+            });
+
+            successOrderPost = true;
+
+        } catch (e) {
+            console.dir(e);
+
+        }
     }
+
 
 })

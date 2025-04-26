@@ -13,10 +13,22 @@ onBeforeMount(() => {
 const {data: order} = await useAsyncData('orders', async () => {
       return $directus.request($readItems('orders', {
         fields: [
+          'order_number',
           'pickup_date',
-          'pickup_time_slot',
+          {
+            pickup_time_slot: [
+              'start_time',
+              'end_time',
+            ]
+          },
           'total',
-          'user',
+          'date_created',
+          {
+            user: [
+              'id',
+              'email'
+            ]
+          },
           {
             order_lines: [
               'price',
@@ -42,8 +54,6 @@ const {data: order} = await useAsyncData('orders', async () => {
       }
     }
 )
-
-
 onMounted(async () => {
   if (order) {
     const response = await $directus.request($triggerFlow('POST', '7a8fdda3-69b0-48e4-b26b-c4f986197ddc', order.value))

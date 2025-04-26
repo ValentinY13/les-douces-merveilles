@@ -10,6 +10,7 @@ interface Order {
     products: CartProduct[];
     slotId: number;
     date: string;
+    userId: string;
 }
 
 export default defineEventHandler(async (event) => {
@@ -138,15 +139,17 @@ export default defineEventHandler(async (event) => {
         }
     })
 
+    const url = process.env.NUXT_URL
+
     return await stripe.checkout.sessions.create({
         line_items: lineItems,
         metadata: {
-            user_id: "11548cf8-60e2-4772-ac89-0d5d9c141463",
+            user_id: items.userId,
             slotId: items.slotId,
             date: items.date,
         },
         mode: 'payment',
-        success_url: 'http://localhost:3000/panier-confirmation',
-        cancel_url: 'http://localhost:3000/error',
+        success_url: `${url}/panier-confirmation`,
+        cancel_url: `${url}/error`,
     })
 })
