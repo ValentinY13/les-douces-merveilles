@@ -40,6 +40,9 @@ const swiperOptions: SwiperOptions = {
   slidesPerView: 1,
   grabCursor: true,
   parallax: true,
+  autoplay: {
+    delay: 4000
+  },
   injectStyles: [
     `
     .swiper-pagination-bullet {

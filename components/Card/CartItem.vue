@@ -6,14 +6,18 @@
                       provider="directus"
                       :src="`${product.preview_image.id}/${product.preview_image.filename_download}`"
                       :alt="product.name"
+                      :class="disabled ? 'opacity-50' : ''"
                       :img-attrs="{ class: 'w-52 h-52 object-cover' }"
         ></nuxt-picture>
       </nuxt-link>
       <div class="py-4">
         <h2 class="text-h3-play uppercase text-brown-700">{{ product.name }}</h2>
-        <p class="text-brown-100 w- tracking-wider">{{ product.number_pieces }}
-          pièce{{ product.number_pieces > 1 ? 's' : '' }}</p>
-        <p class="text-brown-100 tracking-wider">{{ product.price }} €</p>
+        <p v-if="disabled" class="text-brown-100 tracking-wider">Produit indisponible</p>
+        <div v-else>
+          <p class="text-brown-100 w- tracking-wider">{{ product.number_pieces }}
+            pièce{{ product.number_pieces > 1 ? 's' : '' }}</p>
+          <p class="text-brown-100 tracking-wider">{{ product.price }} €</p>
+        </div>
       </div>
     </div>
     <div class="md:grid md:grid-cols-2 md:items-center md:gap-6 lg:justify-between">
@@ -43,6 +47,7 @@ import {useCartStore} from "~/store/cart";
 
 defineProps<{
   product: CartItemLocal
+  disabled: boolean
 }>()
 
 const cartStore = useCartStore()

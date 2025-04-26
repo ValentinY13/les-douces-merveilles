@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import TimePicker from "~/components/TimePicker.vue";
+import {useCartStore} from "~/store/cart";
 
-const {$directus, $readItems} = useNuxtApp()
+const {$directus, $readItems, $toast, $isAuthenticated} = useNuxtApp()
 const time_slots = ref([]);
-const allSlots = ref([]) as { startTime: string, endTime: string, disabled: boolean }[];
+const allSlots = ref<{ startTime: string, endTime: string, disabled: boolean, id: string }[]>([]);
 const selectedDate = ref();
 const selectedSlot = ref()
 
@@ -39,6 +40,7 @@ if (slotsData.value) {
       startTime: item.start_time.split(':')[0] + 'h',
       endTime: item.end_time.split(':')[0] + 'h',
       disabled: false,
+      id: item.id,
     })
   })
   time_slots.value = slotsData.value;
@@ -48,6 +50,7 @@ const maxOrdersPerSlot = settings.value?.max_orders_per_slot;
 
 const handleDateSelected = async (date: string) => {
   selectedDate.value = date;
+  selectedSlot.value = null;
 
   const ordersSelect = await $directus.request($readItems('orders', {
     fields: [
@@ -77,7 +80,7 @@ const handleDateSelected = async (date: string) => {
   allSlots.value = time_slots.value.map(slot => {
     const startTime = slot.start_time.split(':')[0] + 'h'
     const endTime = slot.end_time.split(':')[0] + 'h'
-    return {startTime, endTime, disabled: (slotCounts[slot.id] || 0) >= maxOrdersPerSlot}
+    return {startTime, endTime, disabled: (slotCounts[slot.id] || 0) >= maxOrdersPerSlot, id: slot.id}
   })
 }
 
@@ -85,30 +88,75 @@ const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
   return date.toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit', year: 'numeric'});
 };
+
+
+const handleCheckout = async () => {
+  const cartStore = useCartStore();
+  const response = await useCheckStock();
+
+  if (response.status !== 'success') {
+    navigateTo('/panier')
+    $toast.error('Le panier contient des erreurs');
+    return
+  }
+
+  const user = await $isAuthenticated()
+
+  if (!user) {
+    navigateTo('/panier')
+    $toast.error('Vous devez être connecté');
+    return
+  }
+
+  try {
+    const response = await $fetch('/api/stripe/create-checkout-session', {
+      method: 'POST',
+      body: {
+        products: cartStore.cartStorage,
+        slotId: selectedSlot.value.id,
+        date: selectedDate.value,
+        userId: user.id
+      }
+    })
+
+    navigateTo(response.url, {
+      external: true
+    })
+
+    if (response && response.status === 'error') {
+      $toast.error(response.errorMessage)
+    } else {
+      $toast.success("Panier valide")
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
 </script>
 
 <template>
   <main class="px-6 pt-14 pb-24">
     <section class="responsive-layout">
       <div class="md:grid md:grid-cols-3">
-        <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
-        <BackButton class="py-12 md:pt-8" title="Panier">
+        <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="1"/>
+        <BackButton class="py-12 md:pt-8" title="Retour">
           <h1 class="text-h2 uppercase text-brown-700">Date et heure de retrait</h1>
         </BackButton>
       </div>
 
       <div class="flex flex-col gap-12 sm:flex-row md:justify-center lg:justify-evenly">
-        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings.max_orders_per_day"
+        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings?.max_orders_per_day"
                     class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
 
         <div
             class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6">
           <button
               class="btn h-fit"
+              :class="{ 'btn-selected': selectedSlot?.id === slot.id }"
               v-for="slot in allSlots"
               :key="slot.id"
               :disabled="slot.disabled"
-              @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime }"
+              @click="selectedSlot = { startTime: slot.startTime, endTime: slot.endTime, disabled: slot.disabled,id: slot.id }"
           >
             {{ slot.startTime }} - {{ slot.endTime }}
           </button>
@@ -124,11 +172,11 @@ const formatDate = (dateStr: string) => {
           entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
             selectedSlot.endTime
           }}</span>.
-          Afin d’éviter au mieux l’attente, merci de respecter vos créneaux horaires.
+          Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaire.
         </p>
       </Transition>
       <div class="text-center">
-        <button class="btn">Procéder au paiement</button>
+        <button class="btn" @click="handleCheckout">Procéder au paiement</button>
       </div>
     </section>
   </main>

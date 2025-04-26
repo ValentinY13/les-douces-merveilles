@@ -31,6 +31,10 @@ export default defineNuxtConfig({
         plugins: [
             tailwindcss(),
         ],
+        // allowed for stripe webhook
+        server: {
+            allowedHosts: ['centrally-becoming-frog.ngrok-free.app'],
+        }
     },
 
     css: ['~/assets/css/tailwind.css'],
@@ -47,6 +51,7 @@ export default defineNuxtConfig({
         {path: '~/components/Layout', prefix: 'Layout'},
         {path: '~/components/Card', prefix: 'Card'},
         {path: '~/components/Input', prefix: 'Input'},
+        {path: '~/components/Basket', prefix: 'Basket'},
     ],
 
     runtimeConfig: {
@@ -59,6 +64,9 @@ export default defineNuxtConfig({
                 url: process.env.DIRECTUS_URL,
             }
         },
+
+        stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
+        stripe_secret_key: process.env.STRIPE_SECRET_KEY,
     },
 
     piniaPluginPersistedstate: {

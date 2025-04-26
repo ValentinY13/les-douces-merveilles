@@ -15,7 +15,7 @@
       <swiper-slide class="w-full max-w-[450px] h-full">
         <CardSeeMore class="h-full">
           <h2 class="text-h2-play uppercase">Tous les produits</h2>
-          <nuxt-link to="/" title="Tous les produits" class="btn">
+          <nuxt-link to="/nos-collections" title="Tous les produits" class="btn">
             Voir plus
           </nuxt-link>
         </CardSeeMore>
@@ -50,7 +50,7 @@
       <swiper-slide class="w-full max-w-[450px] h-full">
         <CardSeeMore class="h-full">
           <h2 class="text-h2-play uppercase">Tous les produits</h2>
-          <nuxt-link to="/" title="Tous les produits" class="btn">
+          <nuxt-link to="/nos-collections" title="Tous les produits" class="btn">
             Voir plus
           </nuxt-link>
         </CardSeeMore>

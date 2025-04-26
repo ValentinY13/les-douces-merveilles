@@ -1,5 +1,5 @@
 .btn {
-    --_color: var(--color-brown-700, theme('color.brown.700'));
+    --_color: var(--color-brown-700, var(--color-brown-700));
 
     cursor: pointer;
 
@@ -16,9 +16,14 @@
     }
 
     &:hover {
-        color: var(--color-white, theme('color.white'));
+        color: var(--color-white, var(--color-white));
         background-color: var(--_color);
     }
+}
+
+.btn-selected {
+    color: var(--color-white, var(--color-white));
+    background-color: var(--_color);
 }
 
 .btn-icon {
