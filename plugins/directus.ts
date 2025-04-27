@@ -1,14 +1,14 @@
 import {
-    createDirectus,
-    rest,
-    registerUser,
     authentication,
-    readMe,
-    refresh,
+    type AuthenticationStorage,
+    createDirectus,
     readItems,
+    readMe,
     readUsers,
+    refresh,
+    registerUser,
+    rest,
     triggerFlow,
-    type AuthenticationStorage
 } from "@directus/sdk";
 
 export default defineNuxtPlugin(() => {
@@ -36,8 +36,7 @@ export default defineNuxtPlugin(() => {
 
     const isAuthenticated = async () => {
         try {
-            const me = await directus.request(readMe());
-            return me;
+            return await directus.request(readMe());
         } catch (error) {
             return false;
         }
@@ -55,6 +54,16 @@ export default defineNuxtPlugin(() => {
     }
 
     return {
-        provide: {directus, registerUser, isAuthenticated, refreshToken, logout, readItems, readUsers, triggerFlow},
+        provide: {
+            directus,
+            registerUser,
+            isAuthenticated,
+            refreshToken,
+            logout,
+            readItems,
+            readUsers,
+            triggerFlow,
+            storage
+        },
     };
 })

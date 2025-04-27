@@ -1,15 +1,17 @@
 <script setup lang="ts">
 const {$directus, $isAuthenticated, $logout} = useNuxtApp()
 
-onMounted(async () => {
-  await $directus.refresh()
-})
-
 let user = ref()
 
 const readMe = async () => {
   user = await $isAuthenticated()
+  console.log(user)
+
 }
+
+definePageMeta({
+  middleware: 'auth',
+})
 </script>
 
 <template>
