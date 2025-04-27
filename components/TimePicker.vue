@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VueDatePicker from '@vuepic/vue-datepicker';
+import VueDatePicker, {type DatePickerMarker} from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
 const props = defineProps<{
@@ -38,37 +38,49 @@ const {data: unavailable_dates} = await useAsyncData('unavailable_dates', async 
   return $directus.request($readItems('unavailable_dates', {
     fields: [
       'date',
-      'end_date'
+      'end_date',
+      'reason',
     ]
   }))
 })
 
-const disabledDates = computed(() => {
-  let dates = [] as Date[];
+const markersDate = computed(() => {
+  const datesMarker = [] as DatePickerMarker[];
 
-  // bloquer les dates non disponible
   unavailable_dates.value?.forEach(range => {
-    let currentDate = new Date(range.date);
+    const dates = generateDateRange(range);
 
-    if (!range.end_date) {
-      dates.push(new Date(currentDate))
-    } else {
-      let endDate = new Date(range.end_date);
-
-      while (currentDate <= endDate) {
-        dates.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 1);
+    dates.forEach(d => {
+      const marker: { date: Date, type?: string, color?: 'red', tooltip?: [{ text: string }] } = {date: d.date};
+      if (d.reason) {
+        marker.tooltip = [{text: d.reason}];
       }
-    }
+      datesMarker.push(marker);
+    });
+  });
+
+  return datesMarker;
+});
+
+
+const disabledDates = computed(() => {
+  const dates = [] as Date[];
+
+  unavailable_dates.value?.forEach(range => {
+    const generated = generateDateRange(range);
+    generated.forEach(d => dates.push(d.date));
   });
 
   // bloquer dates si le max est atteint
   orders.value?.forEach(order => {
-    order.count >= props.maxOrdersPerDay ? dates.push(order.pickup_date) : '';
-  })
+    if (order.count >= props.maxOrdersPerDay) {
+      dates.push(order.pickup_date);
+    }
+  });
 
   return dates;
 });
+
 
 // const selectedDate = ref(null);
 const emit = defineEmits(["date-selected"]);
@@ -95,6 +107,7 @@ const updateDate = (newDate: string) => {
       :disabled-dates="disabledDates"
       locale="fr"
       :day-names="['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']"
+      :markers="markersDate"
   />
 </template>
 
