@@ -30,6 +30,10 @@
 const route = useRoute();
 const token = route.query.token;
 
+if (!token) {
+  navigateTo('/')
+}
+
 const isVerified = ref(false);
 const showRedirectMessage = ref(false);
 const hasError = ref(false);

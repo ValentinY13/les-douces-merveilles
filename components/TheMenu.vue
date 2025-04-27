@@ -49,10 +49,10 @@ watch(y, (value, oldValue) => {
           <nav class="hidden lg:block" aria-label="Desktop menu">
             <ul class="lg:flex items-center gap-6">
               <li>
-                <nuxt-link to="/date-click-and-collect" title="A propos">A propos</nuxt-link>
+                <nuxt-link to="/" title="A propos">A propos</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/" title="Contact">Contact</nuxt-link>
+                <nuxt-link to="/mon-compte" title="Contact">Contact</nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/panier" title="Panier">

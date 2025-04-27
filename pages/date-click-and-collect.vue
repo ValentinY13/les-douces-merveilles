@@ -132,6 +132,10 @@ const handleCheckout = async () => {
     console.log(e)
   }
 }
+
+definePageMeta({
+  middleware: 'auth',
+})
 </script>
 
 <template>

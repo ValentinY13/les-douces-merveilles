@@ -41,6 +41,10 @@ const {$toast} = useNuxtApp()
 const route = useRoute();
 const token = route.query.token;
 
+if (!token) {
+  navigateTo('/')
+}
+
 const validationSchema = toTypedSchema(ResetPassword)
 
 const {values, handleSubmit} = useForm({
