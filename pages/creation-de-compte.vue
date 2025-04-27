@@ -67,7 +67,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import RegisterSchema from "~/utils/register.schema";
 
-const {$toast} = useNuxtApp()
+const {$toast, $isAuthenticated} = useNuxtApp()
 
 const showInput = ref(false)
 const showInputConf = ref(false)
@@ -99,11 +99,22 @@ const loginWithGoogle = async () => {
   const directusUrl = useRuntimeConfig().public.directus.url
   const nuxtUrl = useRuntimeConfig().public.nuxtUrl
   try {
-    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/mon-compte`;
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/creation-de-compte`;
   } catch (e) {
     $toast.error('Une erreur est survenue, veuillez réessayer')
   }
 };
+
+onMounted(async () => {
+  try {
+    const user = await $isAuthenticated()
+    if (user) {
+      navigateTo('/mon-compte')
+      $toast.success('Vous êtes connecté')
+    }
+  } catch (e) {
+  }
+})
 </script>
 
 <style scoped>

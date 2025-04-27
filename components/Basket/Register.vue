@@ -34,7 +34,7 @@ const loginWithGoogle = async () => {
   const directusUrl = useRuntimeConfig().public.directus.url
   const nuxtUrl = useRuntimeConfig().public.nuxtUrl
   try {
-    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/mon-compte`;
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/panier-identification`;
   } catch (e) {
     $toast.error('Une erreur est survenue, veuillez réessayer')
   }
