@@ -1,5 +1,15 @@
 <script setup lang="ts">
+const {$isAuthenticated} = useNuxtApp()
 
+onMounted(async () => {
+  try {
+    const user = await $isAuthenticated()
+    if (user) {
+      navigateTo('/date-click-and-collect')
+    }
+  } catch (e) {
+  }
+})
 </script>
 
 <template>

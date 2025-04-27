@@ -11,9 +11,12 @@
 import {useCartStore} from "~/store/cart";
 
 const cartStore = useCartStore()
+const {$directus} = useNuxtApp()
 
-onMounted(() => {
-  cartStore.fetchCart();
+onMounted(async () => {
+  await $directus.refresh().catch(() => {
+  })
+  await cartStore.fetchCart();
 });
 </script>
 
