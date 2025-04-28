@@ -30,3 +30,7 @@
     @apply flex items-center justify-center gap-2 text-xs;
 }
 
+.btn-small {
+    @apply normal-case py-2 px-4 tracking-wider
+}
+
