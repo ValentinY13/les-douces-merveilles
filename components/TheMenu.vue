@@ -60,7 +60,7 @@ watch(y, (value, oldValue) => {
                 </nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/se-connecter" title="Mon compte">
+                <nuxt-link to="/mon-compte" title="Mon compte">
                   <i class="icon-link icon-user text-2xl"></i>
                 </nuxt-link>
               </li>
