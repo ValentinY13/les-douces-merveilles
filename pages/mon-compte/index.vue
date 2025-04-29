@@ -2,6 +2,8 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import RegisterSchema from "~/utils/register.schema";
 
+const {$logout} = useNuxtApp();
+
 const showInput = ref(false)
 const showInputConf = ref(false)
 const validationSchema = toTypedSchema(RegisterSchema)
@@ -84,6 +86,14 @@ const submitForm = handleSubmit(async (values) => {
 
         <button type="submit" class="btn w-fit lg:col-start-1">Changer le mot de passe</button>
       </form>
+    </section>
+
+    <section aria-labelledby="compte" class="responsive-layout">
+      <h2 id="compte" class="text-h2 pt-24 pb-12 uppercase text-brown-700">Gestion du compte</h2>
+      <div class="flex flex-col sm:flex-row gap-6">
+        <button class="btn btn-red w-fit">Supprimer mon compte</button>
+        <button class="btn w-fit" @click="$logout()">Déconnexion</button>
+      </div>
     </section>
   </main>
 </template>

@@ -34,3 +34,11 @@
     @apply normal-case py-2 px-4 tracking-wider
 }
 
+.btn-red {
+    --_color: var(--color-red-700, var(--color-red-700));
+
+    &:hover {
+        background-color: var(--_color);
+    }
+}
+
