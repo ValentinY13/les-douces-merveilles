@@ -52,6 +52,7 @@ export default defineNuxtConfig({
         {path: '~/components/Card', prefix: 'Card'},
         {path: '~/components/Input', prefix: 'Input'},
         {path: '~/components/Basket', prefix: 'Basket'},
+        {path: '~/components/Form', prefix: 'Form'},
     ],
 
     runtimeConfig: {

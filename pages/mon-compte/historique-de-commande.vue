@@ -22,6 +22,18 @@ const {data} = await useAsyncData('orders_history', async () => {
       }
     }
   }))
+}, {
+  transform: (orders) => {
+    return orders.map(order => ({
+      ...order,
+      pickup_date: new Intl.DateTimeFormat('fr-BE', {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(new Date(order.pickup_date))
+    }))
+  }
 })
 
 </script>

@@ -9,6 +9,8 @@ import {
     registerUser,
     rest,
     triggerFlow,
+    updateUser,
+    createItem
 } from "@directus/sdk";
 
 export default defineNuxtPlugin(() => {
@@ -50,7 +52,6 @@ export default defineNuxtPlugin(() => {
 
     const logout = async () => {
         await directus.logout()
-        navigateTo('/')
     }
 
     return {
@@ -63,7 +64,9 @@ export default defineNuxtPlugin(() => {
             readItems,
             readUsers,
             triggerFlow,
-            storage
+            storage,
+            updateUser,
+            createItem
         },
     };
 })
