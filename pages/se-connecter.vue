@@ -67,7 +67,7 @@ const submitForm = handleSubmit(async (values) => {
 
     await $directus.login(values.email, values.password)
     $toast.success('Vous êtes connecté')
-    navigateTo("/");
+    navigateTo("/mon-compte");
   } catch (e) {
     if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
@@ -93,7 +93,7 @@ onMounted(async () => {
   try {
     const user = await $isAuthenticated()
     if (user) {
-      navigateTo('/mon-compte')
+      await navigateTo('/mon-compte')
       $toast.success('Vous êtes connecté')
     }
   } catch (e) {
