@@ -7,19 +7,6 @@ const logout = async () => {
   return navigateTo('/')
 }
 
-// const handleDelete = async (id: string) => {
-//
-//   try {
-//     const response = await $directus.request($createItems('account_deletion_requests', {
-//       status: 'pending'
-//     }))
-//
-//     console.log(response)
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
-
 async function handleDelete() {
   const id = "ac7e3995-df66-4838-b743-4ae386cd5fe1"
 

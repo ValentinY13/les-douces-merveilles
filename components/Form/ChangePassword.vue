@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {toTypedSchema} from '@vee-validate/yup'
-import ChangePassword from "~/utils/reset-password.schema"
+import ChangePassword from "~/utils/change-password"
 
+const {$directus, $updateUser, $toast, $isAuthenticated} = useNuxtApp();
 const showInput = ref(false)
-const showInputConf = ref(false)
+const showInputNew = ref(false)
 const validationChangePasswordSchema = toTypedSchema(ChangePassword)
 
 const {
@@ -15,10 +16,18 @@ const {
 
 const submitPasswordForm = handleSubmitPassword(async (values) => {
 
+  console.log(values)
   try {
-    console.log(values)
-  } catch (e) {
+    await $directus.request(
+        $updateUser('11548cf8-60e2-4772-ac89-0d5d9c141463', {
+          password: values.newPassword,
+        })
+    );
 
+    $toast.success("Votre compte a bien été modifié !");
+
+  } catch (e) {
+    $toast.error("Erreur lors du changement de mot de passe");
   }
 })
 </script>
@@ -28,19 +37,19 @@ const submitPasswordForm = handleSubmitPassword(async (values) => {
     <InputText :type="showInput ? 'text' : 'password'" input-id="password" name="password"
                placeholder="Votre mot de passe"
                class="relative">
-      <label for="password">Mot de passe*</label>
+      <label for="password">Mot de passe actuel*</label>
       <span @click="showInput = !showInput"
             class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
             :class="showInput ? 'icon-eye-slash' : 'icon-eye'"></span>
     </InputText>
 
-    <InputText :type="showInputConf ? 'text' : 'password'" input-id="confPassword" name="confPassword"
+    <InputText :type="showInputNew ? 'text' : 'password'" input-id="newPassword" name="newPassword"
                placeholder="Votre mot de passe"
                class="relative lg:col-start-1">
-      <label for="confPassword">Confirmation mot de passe*</label>
-      <span @click="showInputConf = !showInputConf"
+      <label for="newPassword">Nouveau mot de passe*</label>
+      <span @click="showInputNew = !showInputNew"
             class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
-            :class="showInputConf ? 'icon-eye-slash' : 'icon-eye'"></span>
+            :class="showInputNew ? 'icon-eye-slash' : 'icon-eye'"></span>
     </InputText>
 
     <button type="submit" class="btn w-fit lg:col-start-1">Changer le mot de passe</button>
