@@ -197,9 +197,6 @@ definePageMeta({
           </form>
         </div>
       </Transition>
-      <!--      <div class="text-center">-->
-      <!--        <button class="btn" @click="handleCheckout">Procéder au paiement</button>-->
-      <!--      </div>-->
     </section>
   </main>
 </template>
