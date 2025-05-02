@@ -1,5 +1,5 @@
 <template>
-  <ul class="w-full text-xl px-6 text-brown-700 text-center flex items-center pb-6">
+  <ul class="w-full text-xl text-brown-700 text-center flex items-center pb-6">
     <li
         class="relative flex items-center justify-center border rounded-full w-[33px] h-[33px] after:content-['Identification'] after:text-xs after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-6"
         :class="{'border-brown-700 bg-brown-700 text-white opacity-100 after:text-brown-700': step >= 0, 'border-brown-700 opacity-50': step < 0}"></li>
