@@ -2,6 +2,8 @@
 import TimePicker from "~/components/TimePicker.vue";
 import {useCartStore} from "~/store/cart";
 import {useUserStore} from "~/store/user";
+import {toTypedSchema} from '@vee-validate/yup'
+import * as yup from 'yup'
 
 const {$directus, $readItems, $toast, $isAuthenticated} = useNuxtApp()
 const time_slots = ref([]);
@@ -90,8 +92,13 @@ const formatDate = (dateStr: string) => {
   return date.toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit', year: 'numeric'});
 };
 
+const {values, handleSubmit} = useForm({
+  validationSchema: yup.object({
+    cgv: yup.boolean().oneOf([true], '').required('Le champ condition générale de vente est obligatoire')
+  })
+})
 
-const handleCheckout = async () => {
+const handleCheckout = handleSubmit(async () => {
   const cartStore = useCartStore();
   const response = await useCheckStock();
 
@@ -100,7 +107,7 @@ const handleCheckout = async () => {
     $toast.error('Le panier contient des erreurs');
     return
   }
-  
+
   const userStore = useUserStore()
   const user = await userStore.fetchUser()
 
@@ -133,7 +140,7 @@ const handleCheckout = async () => {
   } catch (e) {
     console.log(e)
   }
-}
+})
 
 definePageMeta({
   middleware: 'auth',
@@ -170,20 +177,26 @@ definePageMeta({
 
       </div>
       <Transition name="fade">
-        <p
-            v-if="selectedDate && selectedSlot"
-            class="py-12 text-sm text-center sm:col-span-2">
-          Votre commande sera prête le
-          <span class="font-semibold text-brown-700">{{ formatDate(selectedDate) }}</span>
-          entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
-            selectedSlot.endTime
-          }}</span>.
-          Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaire.
-        </p>
+        <div v-if="selectedDate && selectedSlot">
+          <p
+
+              class="pt-12 text-sm text-center sm:col-span-2">
+            Votre commande sera prête le
+            <span class="font-semibold text-brown-700">{{ formatDate(selectedDate) }}</span>
+            entre <span class="font-semibold text-brown-700">{{ selectedSlot.startTime }} - {{
+              selectedSlot.endTime
+            }}</span>.
+            Afin d’éviter au mieux l’attente, merci de respecter votre créneau horaire.
+          </p>
+          <form @submit="handleCheckout" class="flex flex-col items-center ">
+            <InputCheckbox class="py-6" :checked-value="true" name="cgv">
+              J'ai lu et j'accepte les
+              <nuxt-link to="/" class="text-brown-700 font-medium">conditions générales de ventes*</nuxt-link>
+            </InputCheckbox>
+            <button type="submit" class="btn w-fit" @click="handleCheckout">Procéder au paiement</button>
+          </form>
+        </div>
       </Transition>
-      <div class="text-center">
-        <button class="btn" @click="handleCheckout">Procéder au paiement</button>
-      </div>
     </section>
   </main>
 </template>

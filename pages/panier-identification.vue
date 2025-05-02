@@ -1,11 +1,18 @@
 <script setup lang="ts">
-const {$isAuthenticated} = useNuxtApp()
+const {$isAuthenticated, $toast} = useNuxtApp()
 
 onMounted(async () => {
+  const {query} = useRoute();
+
   try {
+    if (query.auth === 'google') {
+      $toast.success('Vous êtes connecté')
+      return navigateTo('/date-click-and-collect', {replace: true})
+    }
     const user = await $isAuthenticated()
+
     if (user) {
-      navigateTo('/date-click-and-collect')
+      return navigateTo('/date-click-and-collect')
     }
   } catch (e) {
   }
