@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
+import {useUserStore} from "~/store/user";
 
 const {$directus, $toast, $readUsers} = useNuxtApp()
-
+const userStore = useUserStore()
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)
 
@@ -28,8 +29,12 @@ const submitForm = handleSubmit(async (values) => {
     }
 
     await $directus.login(values.email, values.password)
+
+    const loggedUser = await userStore.fetchUser()
+    userStore.setUser(loggedUser)
+
     $toast.success('Vous êtes connecté')
-    navigateTo("/date-click-and-collect");
+    return navigateTo("/date-click-and-collect");
   } catch (e) {
     if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
@@ -45,7 +50,7 @@ const loginWithGoogle = async () => {
   const directusUrl = useRuntimeConfig().public.directus.url
   const nuxtUrl = useRuntimeConfig().public.nuxtUrl
   try {
-    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/panier-identification`;
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/panier-identification?auth=google`;
   } catch (e) {
     $toast.error('Une erreur est survenue, veuillez réessayer')
   }
