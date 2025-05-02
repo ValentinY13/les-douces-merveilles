@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {useUserStore} from "~/store/user";
-import type {DirectusUsers} from "~/types";
 
 const {$directus, $readItems} = useNuxtApp()
 
@@ -59,7 +58,7 @@ definePageMeta({
       </div>
     </section>
     <section>
-      <table class="w-full text-xs" ref="container">
+      <table class="w-full text-xs" v-if="data.length" ref="container">
         <thead class="hidden lg:table-header-group text-left text-brown-700">
         <tr>
           <th class="py-4 w-1/5 lg:pl-12 group">Numéro de commande</th>
@@ -101,6 +100,7 @@ definePageMeta({
         </tr>
         </tbody>
       </table>
+      <div v-else>Aucune commande pour le moment</div>
     </section>
   </main>
 </template>
