@@ -100,8 +100,6 @@ const handleCheckout = async () => {
     $toast.error('Le panier contient des erreurs');
     return
   }
-
-  // const user = await $isAuthenticated()
   
   const userStore = useUserStore()
   const user = await userStore.fetchUser()
