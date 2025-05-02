@@ -1,11 +1,16 @@
 <script setup lang="ts">
-const {$logout, $toast, $directus, $createItem, $triggerFlow} = useNuxtApp();
+import {useUserStore} from "~/store/user";
+
+const {$toast, $directus, $createItem, $triggerFlow} = useNuxtApp();
+const userStore = useUserStore()
 
 const logout = async () => {
-  await $logout();
+  await userStore.logout();
   $toast.success('Vous êtes déconnecté')
   return navigateTo('/')
 }
+
+const user = await userStore.fetchUser()
 
 async function handleDelete() {
   const id = "ac7e3995-df66-4838-b743-4ae386cd5fe1"
@@ -23,12 +28,14 @@ async function handleDelete() {
       }
     }))
 
-
-    console.log(response)
   } catch (e) {
     console.log(e)
   }
 }
+
+definePageMeta({
+  middleware: ["auth"]
+})
 </script>
 
 <template>
@@ -42,11 +49,11 @@ async function handleDelete() {
       </div>
     </section>
     <section class="responsive-layout">
-      <FormUpdateUser/>
+      <FormUpdateUser :user="user"/>
     </section>
     <section aria-labelledby="modification" class="responsive-layout">
       <h2 id="modification" class="text-h2 pt-24 pb-12 uppercase text-brown-700">Accès au compte</h2>
-      <FormChangePassword/>
+      <FormChangePassword :user="user"/>
     </section>
 
     <section aria-labelledby="compte" class="responsive-layout">

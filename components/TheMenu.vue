@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import {useUserStore} from "~/store/user";
+
+const userStore = useUserStore();
+
 const isActive = ref(false)
 
 function handleClick(): void {
@@ -59,11 +63,13 @@ watch(y, (value, oldValue) => {
                   <i class="icon-link icon-shopping-bag text-2xl"></i>
                 </nuxt-link>
               </li>
-              <li>
-                <nuxt-link to="/mon-compte" title="Mon compte">
-                  <i class="icon-link icon-user text-2xl"></i>
-                </nuxt-link>
-              </li>
+              <client-only>
+                <li>
+                  <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter' " title="Mon compte">
+                    <i class="icon-link icon-user text-2xl"></i>
+                  </nuxt-link>
+                </li>
+              </client-only>
             </ul>
           </nav>
 

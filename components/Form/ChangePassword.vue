@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import {toTypedSchema} from '@vee-validate/yup'
 import ChangePassword from "~/utils/change-password"
+import type {DirectusUsers} from "~/types";
 
 const {$directus, $updateUser, $toast, $isAuthenticated} = useNuxtApp();
+
+const props = defineProps<{
+  user: DirectusUsers
+}>()
+
+const user = props.user
+
 const showInput = ref(false)
 const showInputNew = ref(false)
 const validationChangePasswordSchema = toTypedSchema(ChangePassword)
@@ -16,10 +24,9 @@ const {
 
 const submitPasswordForm = handleSubmitPassword(async (values) => {
 
-  console.log(values)
   try {
     await $directus.request(
-        $updateUser('11548cf8-60e2-4772-ac89-0d5d9c141463', {
+        $updateUser(user.id, {
           password: values.newPassword,
         })
     );

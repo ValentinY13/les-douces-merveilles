@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TimePicker from "~/components/TimePicker.vue";
 import {useCartStore} from "~/store/cart";
+import {useUserStore} from "~/store/user";
 
 const {$directus, $readItems, $toast, $isAuthenticated} = useNuxtApp()
 const time_slots = ref([]);
@@ -100,7 +101,10 @@ const handleCheckout = async () => {
     return
   }
 
-  const user = await $isAuthenticated()
+  // const user = await $isAuthenticated()
+  
+  const userStore = useUserStore()
+  const user = await userStore.fetchUser()
 
   if (!user) {
     navigateTo('/panier')

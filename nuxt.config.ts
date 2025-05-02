@@ -100,5 +100,5 @@ export default defineNuxtConfig({
         directus: {
             baseURL: `${directus_url}/assets/`,
         }
-    }
+    },
 })
