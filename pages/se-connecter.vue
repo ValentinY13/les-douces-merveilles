@@ -39,9 +39,11 @@
 <script setup lang="ts">
 import {toTypedSchema} from '@vee-validate/yup'
 import LoginSchema from "~/utils/login.schema";
+import {useUserStore} from "~/store/user";
 
-const {$directus, $toast, $readUsers, $isAuthenticated} = useNuxtApp()
+const {$directus, $toast, $readUsers} = useNuxtApp()
 
+const userStore = useUserStore()
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)
 
@@ -66,8 +68,12 @@ const submitForm = handleSubmit(async (values) => {
     }
 
     await $directus.login(values.email, values.password)
+
+    const loggedUser = await userStore.fetchUser()
+    userStore.setUser(loggedUser)
+
     $toast.success('Vous êtes connecté')
-    navigateTo("/mon-compte");
+    return navigateTo("/mon-compte");
   } catch (e) {
     if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
@@ -83,20 +89,22 @@ const loginWithGoogle = async () => {
   const directusUrl = useRuntimeConfig().public.directus.url
   const nuxtUrl = useRuntimeConfig().public.nuxtUrl
   try {
-    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/se-connecter`;
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/se-connecter?auth=google`;
   } catch (e) {
     $toast.error('Une erreur est survenue, veuillez réessayer')
   }
 };
 
 onMounted(async () => {
-  try {
-    const user = await $isAuthenticated()
-    if (user) {
-      await navigateTo('/mon-compte')
+  const {query} = useRoute();
+
+  if (query.auth === 'google') {
+    try {
+      await navigateTo('/mon-compte', {replace: true})
       $toast.success('Vous êtes connecté')
+    } catch (e) {
+      $toast.error('Échec de l\'authentification Google')
     }
-  } catch (e) {
   }
 })
 </script>

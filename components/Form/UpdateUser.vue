@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import {toTypedSchema} from "@vee-validate/yup";
 import UpdateUserSchema from "~/utils/update-user.schema";
+import {useUserStore} from "~/store/user";
+import type {DirectusUsers} from "~/types";
+
+const props = defineProps<{
+  user: DirectusUsers
+}>()
+
+const userStore = useUserStore()
+
+const user = props.user
 
 const {$directus, $updateUser, $toast, $logout} = useNuxtApp();
 const validationUpdateUserSchema = toTypedSchema(UpdateUserSchema)
@@ -9,23 +19,20 @@ const {
   handleSubmit: handleSubmitUpdateUser,
   values: profileValues,
 } = useForm({
-  validationSchema: validationUpdateUserSchema
+  validationSchema: validationUpdateUserSchema,
+  initialValues: {
+    email: user?.email ?? undefined,
+    lastname: user?.last_name ?? undefined,
+    firstname: user?.first_name ?? undefined,
+    newsletter: false
+  }
 });
 
-const user = {
-  email: "test4@mail.com",
-  lastname: "Doe",
-  firstname: "John",
-  newsletter: false
-}
 
 const isModified = () => {
-  return (
-      user.email !== profileValues.email ||
-      user.lastname !== profileValues.lastname ||
-      user.firstname !== profileValues.firstname ||
-      user.newsletter === !profileValues.newsletter
-  )
+  return (user?.email !== profileValues.email ||
+      user?.last_name !== profileValues.lastname ||
+      user?.first_name !== profileValues.firstname || profileValues.newsletter)
 }
 
 const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
@@ -34,16 +41,18 @@ const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
     return;
   }
 
-  const emailChanged = values.email !== user.email;
+  const emailChanged = values.email !== user?.email;
 
   try {
-    await $directus.request(
-        $updateUser('11548cf8-60e2-4772-ac89-0d5d9c141463', {
+    const response = await $directus.request(
+        $updateUser(user.id, {
           last_name: values.lastname,
           first_name: values.firstname,
           email: values.email,
         })
     );
+
+    userStore.setUser(response)
 
     if (emailChanged) {
       $logout()
@@ -54,6 +63,7 @@ const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
   } catch (e) {
     $toast.error("Erreur lors de la modification de votre compte");
   }
+
 });
 </script>
 

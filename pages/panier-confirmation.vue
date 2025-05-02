@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import {useCartStore} from "~/store/cart";
+import {useUserStore} from "~/store/user";
 
 const {$isAuthenticated, $directus, $readItems, $triggerFlow} = useNuxtApp();
 
 const cartStore = useCartStore();
-const user = await $isAuthenticated();
+
+const userStore = useUserStore()
+const user = await userStore.fetchUser()
 
 onBeforeMount(() => {
   cartStore.resetCart()

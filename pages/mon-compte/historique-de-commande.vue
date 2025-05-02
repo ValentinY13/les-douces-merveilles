@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import {useUserStore} from "~/store/user";
+import type {DirectusUsers} from "~/types";
+
 const {$directus, $readItems} = useNuxtApp()
+
+const userStore = useUserStore()
+const user = await userStore.fetchUser()
 
 const {data} = await useAsyncData('orders_history', async () => {
   return $directus.request($readItems('orders', {
@@ -18,7 +24,7 @@ const {data} = await useAsyncData('orders_history', async () => {
     ],
     filter: {
       user: {
-        _eq: '11548cf8-60e2-4772-ac89-0d5d9c141463'
+        _eq: user.id
       }
     }
   }))
@@ -34,6 +40,10 @@ const {data} = await useAsyncData('orders_history', async () => {
       }).format(new Date(order.pickup_date))
     }))
   }
+})
+
+definePageMeta({
+  middleware: "auth"
 })
 
 </script>

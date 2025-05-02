@@ -99,22 +99,11 @@ const loginWithGoogle = async () => {
   const directusUrl = useRuntimeConfig().public.directus.url
   const nuxtUrl = useRuntimeConfig().public.nuxtUrl
   try {
-    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/creation-de-compte`;
+    window.location.href = `${directusUrl}/auth/login/google?redirect=${nuxtUrl}/se-connecter?auth=google`;
   } catch (e) {
     $toast.error('Une erreur est survenue, veuillez réessayer')
   }
 };
-
-onMounted(async () => {
-  try {
-    const user = await $isAuthenticated()
-    if (user) {
-      navigateTo('/mon-compte')
-      $toast.success('Vous êtes connecté')
-    }
-  } catch (e) {
-  }
-})
 </script>
 
 <style scoped>

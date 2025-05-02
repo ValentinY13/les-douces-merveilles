@@ -9,15 +9,18 @@
 
 <script setup lang="ts">
 import {useCartStore} from "~/store/cart";
+import {useUserStore} from "~/store/user";
 
 const cartStore = useCartStore()
-const {$directus} = useNuxtApp()
+const userStore = useUserStore()
 
 onMounted(async () => {
-  await $directus.refresh().catch(() => {
-  })
   await cartStore.fetchCart();
+  await userStore.initSession()
+
 });
+
+
 </script>
 
 <style>

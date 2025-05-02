@@ -58,8 +58,6 @@ export default defineEventHandler(async (event) => {
             successOrderPost = true;
 
         } catch (e) {
-            console.dir(e);
-
         }
     }
 
