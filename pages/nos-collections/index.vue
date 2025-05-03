@@ -199,6 +199,12 @@ useHead({
         : null
   ].filter(Boolean)
 });
+
+definePageMeta({
+  title: "Les Douces Merveilles | Tous nos Chocolats Artisanaux",
+  description: "Parcourez l’ensemble de nos chocolats faits main, aux saveurs raffinées venues d’Orient. Disponibles en click and collect dans notre chocolaterie Les Douces Merveilles."
+})
+
 </script>
 
 <style>

@@ -139,7 +139,7 @@ const {data: home} = await useAsyncData('home', async () => {
             }
           }
         ]
-      }
+      },
     ]
   }));
 }, {
@@ -165,4 +165,8 @@ const {data: home} = await useAsyncData('home', async () => {
 
 const homeData = computed(() => home.value as HomeData | null);
 
+definePageMeta({
+  title: "Les Douces Merveilles | Chocolats artisanaux aux Parfums d’Orient",
+  description: "Découvrez Les Douces Merveilles, votre chocolaterie artisanale en click and collect. Savourez des créations haut de gamme inspirées des parfums d’Orient"
+})
 </script>
