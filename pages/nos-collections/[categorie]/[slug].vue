@@ -90,6 +90,7 @@ const {data: product, error} = await useAsyncData('product-details', async () =>
           'description',
           'is_available',
           'max',
+          'meta_description',
           {
             sub_category: [
               'name'
@@ -151,7 +152,6 @@ const {data: sameCatProducts} = await useAsyncData('same-category', async () => 
           'filename_download',
         ]
       }
-
     ],
     filter: {
       id: {
@@ -208,6 +208,15 @@ const add = (product: Product, quantity: number) => {
     $toast.success(cartStore.errors.message);
   }
 }
+
+/*
+  SEO
+*/
+
+useSeoMeta({
+  title: `${product.value.name} - Chocolat aux Saveurs d'Orient | Les Douces Merveilles`,
+  description: product.value.meta_description || `Découvrez notre chocolat ${product.value.name}, une création artisanale aux parfums d’Orient`
+})
 </script>
 
 <style scoped>
