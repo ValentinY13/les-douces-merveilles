@@ -53,6 +53,7 @@ export default defineNuxtConfig({
         {path: '~/components/Input', prefix: 'Input'},
         {path: '~/components/Basket', prefix: 'Basket'},
         {path: '~/components/Form', prefix: 'Form'},
+        {path: '~/components/Popup', prefix: 'Popup'},
     ],
 
     runtimeConfig: {

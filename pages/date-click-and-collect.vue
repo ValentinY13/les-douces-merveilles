@@ -2,10 +2,9 @@
 import TimePicker from "~/components/TimePicker.vue";
 import {useCartStore} from "~/store/cart";
 import {useUserStore} from "~/store/user";
-import {toTypedSchema} from '@vee-validate/yup'
 import * as yup from 'yup'
 
-const {$directus, $readItems, $toast, $isAuthenticated} = useNuxtApp()
+const {$directus, $readItems, $toast} = useNuxtApp()
 const time_slots = ref([]);
 const allSlots = ref<{ startTime: string, endTime: string, disabled: boolean, id: string }[]>([]);
 const selectedDate = ref();
@@ -158,7 +157,8 @@ definePageMeta({
       </div>
 
       <div class="flex flex-col gap-12 sm:flex-row md:justify-center lg:justify-evenly">
-        <TimePicker @date-selected="handleDateSelected" :max-orders-per-day="settings?.max_orders_per_day"
+        <TimePicker @date-selected="handleDateSelected" :inline="true"
+                    :max-orders-per-day="settings?.max_orders_per_day"
                     class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
 
         <div

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+@import "./animation.css";
 @import "assets/css/base/default.css";
 
 @import "assets/css/components/heading.css";
