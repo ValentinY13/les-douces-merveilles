@@ -51,7 +51,8 @@ export default defineEventHandler(async (event) => {
                     order_lines: orderLines,
                     pickup_date: pickupDate,
                     pickup_time_slot: pickupId,
-                    order_number: orderNumber
+                    order_number: orderNumber,
+                    payment_intent: session.payment_intent
                 }
             });
 

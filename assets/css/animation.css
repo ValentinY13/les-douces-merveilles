@@ -1,0 +1,214 @@
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .3s;
+}
+
+.fade-loader-enter-active,
+.fade-loader-leave-active {
+    transition: opacity .8s;
+}
+
+.transition-fix-safari {
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0)
+}
+
+/* fade */
+.fade-enter-active, .fade-leave-active {
+    @apply ease-in-out duration-500 transition-opacity;
+}
+
+.fade-enter-from, .fade-leave-to {
+    @apply opacity-0;
+}
+
+/* fade-img */
+.fade-img-enter-active, .fade-img-leave-active {
+    @apply ease-in-out duration-500 transition-opacity absolute;
+}
+
+.fade-img-enter-from, .fade-img-leave-to {
+    @apply opacity-0 absolute;
+}
+
+/* fade-top */
+
+.fade-top-enter-active,
+.fade-top-leave-active {
+    @apply ease-in-out duration-300 transition;
+}
+
+.fade-top-enter-from,
+.fade-top-leave-to {
+    transform: translateY(-0.25rem) !important;
+    opacity: 0 !important;
+}
+
+/* Reveal intersection Observer */
+
+/*
+    Fade
+ */
+.reveal [class*="reveal-fade-"], .reveal[class*="reveal-fade-"] {
+    opacity: 0 !important;
+    transition: opacity 0s !important;
+}
+
+[class*="reveal-fade-"] {
+    transition: opacity 1.5s cubic-bezier(.5, 0, 0, 1);
+}
+
+/*
+    Title underline
+ */
+.reveal .title-underline, .reveal.title-underline {
+    opacity: 0 !important;
+    background-size: 0 100%;
+    transition: opacity 0s, background-size 0s !important;
+}
+
+.title-underline {
+    transition: opacity 1s ease, background-size 1.2s .2s ease;
+}
+
+/*
+    Scale
+ */
+
+.reveal [class*="reveal-scale-"], .reveal[class*="reveal-scale-"] {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    transition: transform 0s, opacity 0s !important;
+}
+
+[class*="reveal-scale-"] {
+    transition: transform .8s ease-in-out, opacity .5s cubic-bezier(0.4, 0, 1, 1);
+}
+
+/*
+    Left ; Right ; Bottom
+ */
+.reveal [class*="reveal-left-"], .reveal[class*="reveal-left-"] {
+    opacity: 0 !important;
+    transform: translateX(-40px) !important;
+    transition: transform 0s, opacity 0s !important;
+}
+
+[class*="reveal-left-"], [class*="reveal-right-"] {
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal [class*="reveal-right-"], .reveal[class*="reveal-right-"] {
+    opacity: 0 !important;
+    transform: translateX(40px) !important;
+    transition: transform 0s, opacity 0s !important;
+}
+
+.reveal [class*="reveal-bottom-"], .reveal[class*="reveal-bottom-"] {
+    opacity: 0 !important;
+    transform: translateY(60px) !important;
+    transition: transform 0s, opacity 0s !important;
+}
+
+[class*="reveal-bottom-"] {
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+    Image overlay
+ */
+
+.reveal.reveal-image-overlay .with-overlay:after {
+    opacity: 0 !important;
+    transform: translate(0, 0) !important;
+    transition: transform 0s, opacity 0s !important;
+}
+
+.reveal.reveal-image-overlay .with-overlay {
+    opacity: 0 !important;
+    transition: opacity 0s !important;
+}
+
+.reveal.reveal-image img {
+    @apply opacity-0 transition-none scale-110;
+}
+
+.reveal-image img {
+    @apply duration-1000 transition origin-top;
+}
+
+.reveal.reveal-swiper {
+    @apply opacity-0 transition-none;
+
+    & swiper-slide > * {
+        @apply opacity-0 transition-none -translate-x-60;
+    }
+}
+
+.reveal-swiper {
+    @apply transition-opacity duration-1000;
+
+    & swiper-slide > * {
+        @apply transition duration-1000;
+        transition-delay: calc(var(--index) * 100ms);
+    }
+}
+
+/*
+    Transition delay
+ */
+
+.reveal-100, .reveal-fade-100, .reveal-left-100, .reveal-right-100, .reveal-bottom-100, .reveal-scale-100, .reveal-skew-100 {
+    transition-delay: 100ms;
+}
+
+.reveal-200, .reveal-fade-200, .reveal-left-200, .reveal-right-200, .reveal-bottom-200, .reveal-scale-200 {
+    transition-delay: 200ms;
+}
+
+.reveal-300, .reveal-fade-300, .reveal-left-300, .reveal-right-300, .reveal-bottom-300, .reveal-scale-300 {
+    transition-delay: 300ms;
+}
+
+.reveal-400, .reveal-fade-400, .reveal-left-400, .reveal-right-400, .reveal-bottom-400, .reveal-scale-400 {
+    transition-delay: 400ms;
+}
+
+.reveal-500, .reveal-fade-500, .reveal-left-500, .reveal-right-500, .reveal-bottom-500, .reveal-scale-500 {
+    transition-delay: 500ms;
+}
+
+.reveal-600, .reveal-fade-600, .reveal-left-600, .reveal-right-600, .reveal-bottom-600, .reveal-scale-600 {
+    transition-delay: 600ms;
+}
+
+.reveal-700, .reveal-fade-700, .reveal-left-700, .reveal-right-700, .reveal-bottom-700, .reveal-scale-700 {
+    transition-delay: 700ms;
+}
+
+.reveal-800, .reveal-fade-800, .reveal-left-800, .reveal-right-800, .reveal-bottom-800, .reveal-scale-800 {
+    transition-delay: 800ms;
+}
+
+.reveal-900, .reveal-fade-900, .reveal-left-900, .reveal-right-900, .reveal-bottom-900, .reveal-scale-900 {
+    transition-delay: 900ms;
+}
+
+.reveal-1000, .reveal-fade-1000, .reveal-left-1000, .reveal-right-1000, .reveal-bottom-1000, .reveal-scale-1000 {
+    transition-delay: 1s;
+}
+
+.reveal-1100, .reveal-fade-1100, .reveal-left-1100, .reveal-right-1100, .reveal-bottom-1100, .reveal-scale-1100 {
+    transition-delay: 1.1s;
+}
+
+.reveal-1200, .reveal-fade-1200, .reveal-left-1200, .reveal-right-1200, .reveal-bottom-1200, .reveal-scale-1200 {
+    transition-delay: 1.2s;
+}
+
+.reveal-1300, .reveal-fade-1300, .reveal-left-1300, .reveal-right-1300, .reveal-bottom-1300, .reveal-scale-1300 {
+    transition-delay: 1.3s;
+}

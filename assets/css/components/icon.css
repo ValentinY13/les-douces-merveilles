@@ -167,3 +167,12 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-close {
+    mask: url("/svg/icons/Close.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}

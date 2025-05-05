@@ -7,39 +7,28 @@ const userStore = useUserStore()
 const user = await userStore.fetchUser()
 
 const {data} = await useAsyncData('orders_history', async () => {
-  return $directus.request($readItems('orders', {
-    fields: [
-      'id',
-      'order_number',
-      'pickup_date',
-      {
-        pickup_time_slot: [
-          '*'
-        ]
-      },
-      'status',
-      'total',
-      'user'
-    ],
-    filter: {
-      user: {
-        _eq: user.id
-      }
+      return $directus.request($readItems('orders', {
+        fields: [
+          'id',
+          'order_number',
+          'pickup_date',
+          {
+            pickup_time_slot: [
+              '*'
+            ]
+          },
+          'status',
+          'total',
+          'user'
+        ],
+        filter: {
+          user: {
+            _eq: user.id
+          }
+        }
+      }))
     }
-  }))
-}, {
-  transform: (orders) => {
-    return orders.map(order => ({
-      ...order,
-      pickup_date: new Intl.DateTimeFormat('fr-BE', {
-        weekday: 'short',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      }).format(new Date(order.pickup_date))
-    }))
-  }
-})
+)
 
 definePageMeta({
   middleware: "auth"
@@ -82,7 +71,7 @@ definePageMeta({
           </td>
           <td class="block lg:table-cell">
             <span class="block opacity-50 pb-2 lg:hidden">Date de retrait :</span>
-            {{ order.pickup_date }}
+            {{ formatPickupDate(order.pickup_date) }}
           </td>
           <td class="block lg:table-cell">
             <span class="block opacity-50 pb-2 lg:hidden">Heure de retrait :</span>
@@ -94,8 +83,23 @@ definePageMeta({
             {{ order.total }}€
           </td>
           <td class="col-span-2 flex flex-col gap-4 items-center md:flex-row md:justify-center lg:justify-start lg:py-4 lg:pr-12">
-            <nuxt-link class="btn btn-small w-full" to="/">Modifier</nuxt-link>
-            <nuxt-link class="btn btn-small w-full" to="/">Voir détails</nuxt-link>
+            <PopupLayout>
+              <template #activator="{togglePopup}">
+                <button @click="togglePopup" title="Modifier commande" class="btn btn-small">
+                  Modifier
+                </button>
+              </template>
+
+              <template #default="{togglePopup}">
+                <PopupCard>
+                  <FormUpdateOrder :order_id="order.id" :pickup_date="order.pickup_date"
+                                   :pickup_time="order.pickup_time_slot">
+                    <button @click="togglePopup" class="btn btn-small btn-red absolute bottom-6 left-6">Annuler</button>
+                  </FormUpdateOrder>
+                </PopupCard>
+              </template>
+            </PopupLayout>
+            <nuxt-link class="btn btn-small w-full lg:w-fit" to="/">Voir détails</nuxt-link>
           </td>
         </tr>
         </tbody>

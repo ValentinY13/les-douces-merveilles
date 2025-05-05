@@ -4,6 +4,7 @@ import '@vuepic/vue-datepicker/dist/main.css';
 
 const props = defineProps<{
   maxOrdersPerDay: number;
+  inline?: boolean;
 }>()
 
 const {$directus, $readItems} = useNuxtApp()
@@ -97,10 +98,11 @@ const updateDate = (newDate: string) => {
       @update:modelValue="updateDate"
       hide-offset-dates
       :enable-time-picker="false"
-      inline
+      :inline="inline"
       auto-apply
       disable-year-select
       utc
+      :format="'dd/MM/yyyy'"
       :min-date="tomorrow"
       :max-date="oneMonthLater"
       prevent-min-max-navigation
