@@ -45,6 +45,12 @@ definePageMeta({
           <h1 id="header" class="text-h2 uppercase text-brown-700">Mes commandes</h1>
         </BackButton>
       </div>
+      <p class="pb-6 text-sm max-layout-lg-c-5-g-4">**Les commandes peuvent être modifiées ou annulées jusqu'à 48 heures
+        avant la date de
+        retrait. Passé
+        ce délai,
+        aucune modification ou remboursement ne pourra être effectué.<span class="font-medium text-brown-700"> Plus d'information ici.</span>
+      </p>
     </section>
     <section>
       <table class="w-full text-xs" v-if="data.length" ref="container">
