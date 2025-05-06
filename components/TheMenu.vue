@@ -32,10 +32,10 @@ watch(y, (value, oldValue) => {
       <div class="bg-bg-primary flex justify-between px-6 py-4 md:py-6 shadow">
         <nav class="hidden lg:block">
           <ul class="flex items-center gap-6">
-            <li>
+            <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
               <nuxt-link to="/" title="Accueil">Accueil</nuxt-link>
             </li>
-            <li>
+            <li class="transform transition-all duration-500 hover:-translate-y-1 hover:text-brown-700">
               <nuxt-link :to="{ path: '/nos-collections', query: { page: 1 } }" title="Nos collections">Nos
                 Collections
               </nuxt-link>
@@ -52,19 +52,19 @@ watch(y, (value, oldValue) => {
         <div class="flex items-center">
           <nav class="hidden lg:block" aria-label="Desktop menu">
             <ul class="lg:flex items-center gap-6">
-              <li>
+              <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                 <nuxt-link to="/" title="A propos">A propos</nuxt-link>
               </li>
-              <li>
+              <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                 <nuxt-link to="/mon-compte" title="Contact">Contact</nuxt-link>
               </li>
-              <li>
+              <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                 <nuxt-link to="/panier" title="Panier">
                   <i class="icon-link icon-shopping-bag text-2xl"></i>
                 </nuxt-link>
               </li>
               <client-only>
-                <li>
+                <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                   <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter' " title="Mon compte">
                     <i class="icon-link icon-user text-2xl"></i>
                   </nuxt-link>

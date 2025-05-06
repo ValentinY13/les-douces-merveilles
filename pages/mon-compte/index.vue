@@ -43,7 +43,7 @@ definePageMeta({
     <section aria-labelledby="header" class="responsive-layout">
       <div class="md:grid md:grid-cols-3">
         <AccountMenu class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4"/>
-        <BackButton class="py-12 md:pt-0" title="Retour">
+        <BackButton class="py-12 md:pt-0">
           <h1 id="header" class="text-h2 uppercase text-brown-700">Information du compte</h1>
         </BackButton>
       </div>

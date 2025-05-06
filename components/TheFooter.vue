@@ -9,34 +9,39 @@
           Pl. de l'Ecole des Cadets, 6 <br>
           5000 Namur
         </address>
-        <nuxt-link to="tel:081222903" class="block py-4 xl:py-8">081 22 29 03</nuxt-link>
+        <nuxt-link to="tel:081222903"
+                   class="block py-4 xl:py-8 transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
+          081 22 29 03
+        </nuxt-link>
         <p>
           Ouvert tous les jours 8h-18h.<br>
           Les dimanches et jours fériés 9h-12h.</p>
       </div>
 
       <ul class="space-y-4 xl:space-y-8 xl:pl-16">
-        <li>
+        <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
           <nuxt-link to="/" title="Accueil">Accueil</nuxt-link>
         </li>
-        <li>
+        <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
           <nuxt-link to="/nos-collections" title="Nos collections">Nos collections</nuxt-link>
         </li>
-        <li>
+        <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
           <nuxt-link to="/" title="A propos">A propos</nuxt-link>
         </li>
-        <li>
+        <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
           <nuxt-link to="/" title="Contact">Contact</nuxt-link>
         </li>
       </ul>
 
       <div class="flex gap-8 lg:col-end-4 xl:pl-16">
         <nuxt-link
+            class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700"
             to="https://www.facebook.com/namurcadets" title="Facebook"
             rel="noopener" target="_blank" exertnal aria-label="Visitez notre page Facebook">
           <i class="icon-link icon-facebook text-2xl"></i>
         </nuxt-link>
         <nuxt-link
+            class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700"
             to="https://www.instagram.com/namurcadets/" title="Instagram"
             rel="noopener" target="_blank" exertnal aria-label="Visitez notre page Instagram">
           <i class="icon-link icon-instagram text-2xl"></i>
