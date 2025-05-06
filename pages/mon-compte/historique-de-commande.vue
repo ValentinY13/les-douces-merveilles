@@ -10,6 +10,12 @@ const limit = ref(8)
 const isActive = ref(false)
 const ordersSection = ref<HTMLElement | null>(null)
 
+const statusTranslations = {
+  pending: 'En cours',
+  completed: 'Récupérée',
+  refund: 'Remboursée'
+}
+
 const {data, refresh} = await useAsyncData('orders_history', async () => {
       return $directus.request($readItems('orders', {
         fields: [
@@ -33,6 +39,14 @@ const {data, refresh} = await useAsyncData('orders_history', async () => {
         limit: limit.value,
         sort: '-pickup_date'
       }))
+    },
+    {
+      transform: (orders) => {
+        return orders.map(order => {
+          order.status = statusTranslations[order.status] || order.status
+          return order
+        })
+      }
     }
 )
 
