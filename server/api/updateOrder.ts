@@ -17,7 +17,27 @@ export default defineEventHandler(async (event) => {
         fields: [
             'id',
             'pickup_date',
-            'payment_intent'
+            'payment_intent',
+            {
+                user: [
+                    'email'
+                ]
+            },
+            'order_number',
+            {
+                order_lines: [
+                    {
+                        product: [
+                            'id',
+                            'name',
+                        ]
+                    },
+                    'quantity',
+                    'price'
+                ]
+            },
+            'total',
+            'date_created',
         ],
         filter: {
             id: {
@@ -48,14 +68,10 @@ export default defineEventHandler(async (event) => {
     }
 
     if (body.cancel_order) {
-        const refundResponse = await $fetch('/api/stripe/refund', {
+        return await $fetch('/api/stripe/refund', {
             method: "POST",
-            body: {
-                order_id: order_id,
-                payment_intent: order[0].payment_intent
-            }
+            body: order[0]
         })
-        return refundResponse
     }
 
     // récupération des settings

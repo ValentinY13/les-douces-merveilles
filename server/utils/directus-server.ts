@@ -9,6 +9,7 @@ import {
     authentication,
     readItems,
     updateItem,
+    triggerFlow,
 } from '@directus/sdk';
 
 const directusUrl = useRuntimeConfig().public.directus.url;
@@ -25,5 +26,6 @@ export {
     passwordRequest,
     passwordReset,
     readItems,
-    updateItem
+    updateItem,
+    triggerFlow,
 };
