@@ -69,6 +69,7 @@ export default defineNuxtConfig({
 
         stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
         stripe_secret_key: process.env.STRIPE_SECRET_KEY,
+        refund_mail_id: process.env.REFUND_MAIL
     },
 
     piniaPluginPersistedstate: {
