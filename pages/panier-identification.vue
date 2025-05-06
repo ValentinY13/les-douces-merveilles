@@ -24,7 +24,7 @@ onMounted(async () => {
     <section class="responsive-layout">
       <div class="md:grid md:grid-cols-3">
         <Stepper class="md:order-2 md:col-span-2 lg:col-span-1 lg:col-end-4" :step="0"/>
-        <BackButton class="py-12 md:pt-8" title="Retour">
+        <BackButton class="py-12 md:pt-8">
           <h1 class="text-h2 uppercase text-brown-700">Identification</h1>
         </BackButton>
       </div>
