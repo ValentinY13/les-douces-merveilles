@@ -26,24 +26,6 @@ const {data: order} = await useAsyncData('orders', async () => {
           },
           'total',
           'date_created',
-          // {
-          //   user: [
-          //     'id',
-          //     'email'
-          //   ]
-          // },
-          // {
-          //   order_lines: [
-          //     'price',
-          //     'quantity',
-          //     'sub_total',
-          //     {
-          //       product: [
-          //         'name',
-          //       ]
-          //     }
-          //   ]
-          // }
         ],
         filter: {
           user: user.id
