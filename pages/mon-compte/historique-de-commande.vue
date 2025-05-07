@@ -153,7 +153,7 @@ definePageMeta({
           </button>
         </div>
       </div>
-      <div v-else>Aucune commande pour le moment</div>
+      <div v-else class="responsive-layout">Aucune commande pour le moment...</div>
     </section>
   </main>
 </template>
