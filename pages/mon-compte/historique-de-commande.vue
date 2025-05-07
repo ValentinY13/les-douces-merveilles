@@ -147,7 +147,7 @@ definePageMeta({
           </tr>
           </tbody>
         </table>
-        <div class="text-center">
+        <div class="text-center" v-if="data.length > 7">
           <button class="btn mt-6" @click="seeMore">
             {{ isActive ? 'Afficher moins' : 'Afficher plus' }}
           </button>

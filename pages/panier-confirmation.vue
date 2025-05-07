@@ -24,6 +24,18 @@ const {data: order} = await useAsyncData('orders', async () => {
               'end_time',
             ]
           },
+          {
+            user: ['email']
+          },
+          {
+            order_lines: [
+              {
+                product: ['name']
+              },
+              'quantity',
+              'sub_total',
+            ]
+          },
           'total',
           'date_created',
         ],

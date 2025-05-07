@@ -9,9 +9,10 @@
             custom
             v-slot="{href, route, navigate, isActive, isExactActive}"
             to="/mon-compte"
-            class="after:rounded-4xl after:absolute after:-bottom-3 after:h-[3px] after:w-full after:z-10 after:left-0"
+            class="after:rounded-4xl after:absolute after:-bottom-3 after:h-[3px] after:w-full after:z-10 after:left-0 hover:opacity-100"
             title="Information du compte">
-          <a :href="href" :class="isExactActive ? ['after:bg-brown-700', 'text-brown-700'] : ['opacity-50']"
+          <a :href="href"
+             :class="isExactActive ? ['after:bg-brown-700', 'text-brown-700'] : ['opacity-50']"
              @click="navigate">Information
             du compte</a>
         </nuxt-link>
@@ -21,7 +22,7 @@
             custom
             v-slot="{href, route, navigate, isActive, isExactActive}"
             to="/mon-compte/historique-de-commande"
-            class="after:rounded-4xl after:absolute after:-bottom-3 after:h-[3px] after:w-full after:z-10 after:left-0"
+            class="after:rounded-4xl after:absolute after:-bottom-3 after:h-[3px] after:w-full after:z-10 after:left-0 hover:opacity-100"
             title="Historique de commande">
           <a :href="href" :class="isExactActive ? ['after:bg-brown-700', 'text-brown-700'] : ['opacity-50']"
              @click="navigate">Historique
