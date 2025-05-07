@@ -11,6 +11,17 @@ export default defineEventHandler(async (event) => {
     }
 
     const order_id = body.order_id
+    const today = new Date().setHours(0, 0, 0, 0)
+
+    const newDateDiffInMinutes = new Date(body.date).setHours(0, 0, 0, 0) - today
+    const newDateDiffInDays = newDateDiffInMinutes / (1000 * 60 * 60 * 24)
+
+    if (newDateDiffInDays < 2) {
+        return {
+            status: 'error',
+            errorMessage: 'Impossible de modifier la date pour le lendemain'
+        }
+    }
 
     // récupération de la commande en DB
     const order = await directusServer.request(readItems('orders', {
@@ -54,7 +65,6 @@ export default defineEventHandler(async (event) => {
     }
 
     // check si la commande est bien dans au moins 48h
-    const today = new Date().setHours(0, 0, 0, 0)
     const pickup_date = new Date(order[0].pickup_date).setHours(0, 0, 0, 0)
 
     const diffInMinutes = pickup_date - today
