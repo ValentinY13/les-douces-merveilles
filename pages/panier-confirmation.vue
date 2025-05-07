@@ -2,7 +2,7 @@
 import {useCartStore} from "~/store/cart";
 import {useUserStore} from "~/store/user";
 
-const {$isAuthenticated, $directus, $readItems, $triggerFlow} = useNuxtApp();
+const {$directus, $readItems, $triggerFlow} = useNuxtApp();
 
 const cartStore = useCartStore();
 
@@ -26,24 +26,6 @@ const {data: order} = await useAsyncData('orders', async () => {
           },
           'total',
           'date_created',
-          {
-            user: [
-              'id',
-              'email'
-            ]
-          },
-          {
-            order_lines: [
-              'price',
-              'quantity',
-              'sub_total',
-              {
-                product: [
-                  'name',
-                ]
-              }
-            ]
-          }
         ],
         filter: {
           user: user.id
@@ -57,6 +39,8 @@ const {data: order} = await useAsyncData('orders', async () => {
       }
     }
 )
+
+
 onMounted(async () => {
   if (order) {
     const response = await $directus.request($triggerFlow('POST', '7a8fdda3-69b0-48e4-b26b-c4f986197ddc', order.value))
@@ -77,8 +61,50 @@ definePageMeta({
           <h1 class="text-h2 uppercase text-brown-700">Confirmation</h1>
         </BackButton>
       </div>
-      <pre>{{ order }}</pre>
+      <h2 class="text-h3 text-center mt-6">Merci pour votre commande !</h2>
+      <p class="text-center py-4">Un e-mail de confirmation vous a été envoyé.</p>
 
+      <div class="bg-white shadow-card mt-6 p-6 max-w-[430px] md:max-w-[600px] mx-auto">
+        <ul class="space-y-6">
+          <li>
+            Numéro de commande :
+            <span class="block sm:float-right text-brown-700 font-medium">
+            {{ order.order_number.split('-').slice(0, 2).join('-') }}
+          </span>
+          </li>
+          <li>
+            Date de commande :
+            <span class="block sm:float-right text-brown-700 font-medium">{{
+                formatPickupDate(order.date_created)
+              }}</span>
+          </li>
+          <li>
+            Date de retrait :
+            <span class="block sm:float-right text-brown-700 font-medium">{{
+                formatPickupDate(order.pickup_date)
+              }}</span>
+          </li>
+          <li>
+            Heure de retrait :
+            <span class="block sm:float-right text-brown-700 font-medium">
+              entre
+              {{ order.pickup_time_slot.start_time.split(':')[0] + 'h' }}
+              et
+              {{ order.pickup_time_slot.end_time.split(':')[0] + 'h' }}
+            </span>
+          </li>
+          <li>
+            Total : <span class="block sm:float-right text-brown-700 font-medium">{{ order.total }}€</span>
+          </li>
+        </ul>
+        <div class="flex flex-col gap-4 sm:flex-row justify-between mt-4">
+          <nuxt-link to="/" role="button" title="Accueil" class="btn">Accueil</nuxt-link>
+          <nuxt-link to="/mon-compte/historique-de-commande" role="button" title="Voir ma commande" class="btn">Voir
+            ma
+            commande
+          </nuxt-link>
+        </div>
+      </div>
     </section>
   </main>
 </template>
