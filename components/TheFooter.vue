@@ -26,7 +26,7 @@
           <nuxt-link to="/nos-collections" title="Nos collections">Nos collections</nuxt-link>
         </li>
         <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-          <nuxt-link to="/" title="A propos">A propos</nuxt-link>
+          <nuxt-link to="/a-propos" title="A propos">A propos</nuxt-link>
         </li>
         <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
           <nuxt-link to="/" title="Contact">Contact</nuxt-link>

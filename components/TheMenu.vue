@@ -53,7 +53,7 @@ watch(y, (value, oldValue) => {
           <nav class="hidden lg:block" aria-label="Desktop menu">
             <ul class="lg:flex items-center gap-6">
               <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-                <nuxt-link to="/" title="A propos">A propos</nuxt-link>
+                <nuxt-link to="/a-propos" title="A propos">A propos</nuxt-link>
               </li>
               <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                 <nuxt-link to="/mon-compte" title="Contact">Contact</nuxt-link>
@@ -108,7 +108,7 @@ watch(y, (value, oldValue) => {
           </li>
 
           <li>
-            <nuxt-link @click="handleClick" to="/" title="A propos">à propos</nuxt-link>
+            <nuxt-link @click="handleClick" to="/a-propos" title="A propos">à propos</nuxt-link>
           </li>
 
           <li>
