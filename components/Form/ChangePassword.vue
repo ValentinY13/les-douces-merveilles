@@ -40,7 +40,7 @@ const submitPasswordForm = handleSubmitPassword(async (values) => {
 </script>
 
 <template>
-  <form @submit="submitPasswordForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+  <form @submit="submitPasswordForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
     <InputText :type="showInput ? 'text' : 'password'" input-id="password" name="password"
                placeholder="Votre mot de passe"
                class="relative">

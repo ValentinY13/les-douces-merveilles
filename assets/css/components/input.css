@@ -87,11 +87,10 @@ input[type="checkbox"].default-checkbox {
 }
 
 
-input.default-input {
+input.default-input, textarea.default-input {
     @apply border-b;
 }
 
 textarea.default-input {
-    @apply h-32 border rounded-2xl;
+    @apply h-32 border mt-3;
 }
-
