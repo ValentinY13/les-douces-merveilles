@@ -68,7 +68,7 @@ const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
 </script>
 
 <template>
-  <form @submit="submitUpdateForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <form @submit="submitUpdateForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
     <InputText type="text" input-id="lastname" name="lastname" placeholder="Votre nom">
       <label for="lastname">Nom*</label>
     </InputText>

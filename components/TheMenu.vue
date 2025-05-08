@@ -56,7 +56,7 @@ watch(y, (value, oldValue) => {
                 <nuxt-link to="/a-propos" title="A propos">À propos</nuxt-link>
               </li>
               <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-                <nuxt-link to="/mon-compte" title="Contact">Contact</nuxt-link>
+                <nuxt-link to="/contact" title="Contact">Contact</nuxt-link>
               </li>
               <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
                 <nuxt-link to="/panier" title="Panier">
@@ -116,7 +116,7 @@ watch(y, (value, oldValue) => {
           </li>
 
           <li>
-            <nuxt-link @click="handleClick" to="/" title="Contact" class="btn">Contact</nuxt-link>
+            <nuxt-link @click="handleClick" to="/contact" title="Contact" class="btn">Contact</nuxt-link>
           </li>
         </ul>
       </div>

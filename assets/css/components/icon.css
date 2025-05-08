@@ -176,3 +176,30 @@
     width: 1em;
     height: 1em;
 }
+
+.icon-building {
+    mask: url("/svg/icons/Building.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-phone {
+    mask: url("/svg/icons/Phone.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.icon-calendar {
+    mask: url("/svg/icons/Calendar.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
