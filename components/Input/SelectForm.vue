@@ -24,7 +24,7 @@
           :class="[isOpen ? 'ring-1 ring-brown-700' : undefined, errorMessage ? '!ring-red-700 ring-1': undefined]"
           aria-haspopup="listbox"
           :aria-expanded="isOpen" tabindex="0">
-        <span class="overflow-hidden whitespace-nowrap text-ellipsis flex-1 text-sm text-brown-100 opacity-50">{{
+        <span class="overflow-hidden whitespace-nowrap text-ellipsis flex-1 text-sm ">{{
             selectedOption || placeholder
           }}</span>
         <span class="relative">

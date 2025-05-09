@@ -1,5 +1,39 @@
 <script setup lang="ts">
+const {$toast} = useNuxtApp()
+import {toTypedSchema} from '@vee-validate/yup'
+import ContactSchema from "~/utils/contact.schema";
 
+const selectOptions = [
+  {value: 'Problème avec une commande', label: 'Problème avec une commande'},
+  {value: 'Informations sur un produit', label: 'Informations sur un produit'},
+  {value: 'Évènements et commandes spéciales', label: 'Évènements et commandes spéciales'},
+  {value: 'Partenariats et professionnels', label: 'Partenariats et professionnels'},
+  {value: 'Autre', label: 'Autre'},
+]
+
+const validationSchema = toTypedSchema(ContactSchema)
+
+const {values, handleSubmit} = useForm({
+  validationSchema
+})
+
+const submitForm = handleSubmit(async (values) => {
+  console.log(values)
+  try {
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: values
+    })
+
+    if (response && response.status === 'error') {
+      $toast.error(response.errorMessage)
+    } else {
+      $toast.success("Message envoyé avec succès ! Nous vous recontacterons le plus rapidement possible")
+    }
+  } catch (e) {
+    console.log(e)
+  }
+})
 </script>
 
 <template>
@@ -27,9 +61,9 @@
             </p>
           </li>
         </ul>
-        <form @submit="handleSubmit" class="text-sm space-y-6 md:col-span-2 lg:grid lg:grid-cols-2 lg:gap-4">
-          <InputSelectForm ref="inputSelect" placeholder="Sujet de la demande" label="test"
-                           :options="[{value: 'test', label: 'Test'}]"
+        <form @submit="submitForm" class="text-sm space-y-6 md:col-span-2 lg:grid lg:grid-cols-2 lg:gap-4">
+          <InputSelectForm ref="inputSelect" placeholder="Choisissez un sujet" label="test"
+                           :options="selectOptions"
                            name="subject_select">
             <template #default>Sujet de la demande*</template>
           </InputSelectForm>
