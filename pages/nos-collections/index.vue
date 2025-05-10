@@ -1,46 +1,58 @@
 <template>
-  <main class="pt-14 pb-24 px-6">
-    <section aria-labelledby="Nos collections" id="Tous les produits" class="responsive-layout">
-      <TitleSection id="Nos collections" title="Tous nos chocolats" subtitle="Découvrez" class="my-8"/>
-      <ul class="flex flex-wrap justify-center gap-4 mb-8">
-        <InputCheckboxChip v-for="category in categories" :key="category.id" tag="li" name="category"
-                           :checked-value="category.name">{{ category.name }}
-        </InputCheckboxChip>
-      </ul>
+  <main class="pt-14">
+    <div class="px-6">
+      <section aria-labelledby="Nos collections" id="Tous les produits" class="responsive-layout">
+        <TitleSection id="Nos collections" title="Tous nos chocolats" subtitle="Découvrez" class="my-8"/>
+        <ul class="flex flex-wrap justify-center gap-4 mb-8">
+          <InputCheckboxChip
+              v-for="(category, i) in categories"
+              :key="category.id"
+              tag="li" name="category"
+              :checked-value="category.name"
+              :class="`reveal reveal-bottom-${i}00`"
+          >{{ category.name }}
+          </InputCheckboxChip>
+        </ul>
 
-      <div class="flex flex-col md:flex-row justify-end gap-2 w-fit md:w-full md:gap-4 mb-4">
-        <div>
-          <label>Tri par :</label>
-          <select v-model="sortBy" class="cursor-pointer">
-            <option value="name">Nom</option>
-            <option value="price">Prix</option>
-          </select>
+        <div class="flex flex-col md:flex-row justify-end gap-2 w-fit md:w-full md:gap-4 mb-4">
+          <div class="reveal reveal-right-300">
+            <label>Tri par :</label>
+            <select v-model="sortBy" class="cursor-pointer">
+              <option value="name">Nom</option>
+              <option value="price">Prix</option>
+            </select>
+          </div>
+          <div class="reveal reveal-right-400">
+            <label>Ordre :</label>
+            <select v-model="sortOrder" class="cursor-pointer">
+              <option value="asc">Croissant</option>
+              <option value="desc">Décroissant</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <label>Ordre :</label>
-          <select v-model="sortOrder" class="cursor-pointer">
-            <option value="asc">Croissant</option>
-            <option value="desc">Décroissant</option>
-          </select>
-        </div>
-      </div>
 
-      <div class="grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <CardProduct v-for="product in paginatedProducts" :key="product.id" :item="product"/>
-      </div>
-      <div class="w-full text-center">
-        <Pagination :total-items="filteredProducts?.length || 0"
-                    :items-per-page="itemsPerPage"
-                    v-model:currentPage="currentPage"
-                    @update:currentPage="updatePage"/>
-      </div>
-    </section>
+        <div class="grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-3 gap-12 reveal reveal-bottom-400">
+          <CardProduct v-for="product in paginatedProducts" :key="product.id" :item="product"/>
+        </div>
+        <div class="w-full text-center pb-8">
+          <Pagination :total-items="filteredProducts?.length || 0"
+                      :items-per-page="itemsPerPage"
+                      v-model:currentPage="currentPage"
+                      @update:currentPage="updatePage"/>
+        </div>
+      </section>
+    </div>
+    <LayoutNewsletter/>
+
+    <LayoutQualities/>
   </main>
 </template>
 
 <script setup lang="ts">
 import {toTypedSchema} from "@vee-validate/yup";
 import * as yup from "yup";
+
+useRevealTransitionItems()
 
 const {$directus, $readItems} = useNuxtApp();
 const route = useRoute()

@@ -3,6 +3,7 @@
     <swiper-container ref="swiperElement" init="false">
       <swiper-slide v-for="item in items.slides" :key="item.id" class="relative h-[80dvh] lg:h-[70dvh] xl:h-[60dvh]">
         <nuxt-picture
+            class="reveal reveal-image"
             preload
             provider="directus"
             :alt="item.product.name"
@@ -11,14 +12,17 @@
         >
         </nuxt-picture>
         <div
-            data-swiper-parallax="-200"
             class="absolute bottom-0 left-0 w-full lg:w-fit lg:max-w-1/3 text-center lg:text-left space-y-4 px-6 lg:px-12 xl:px-16 pt-4 md:pt-6 lg:py-8 xl:py-12 pb-12 text-brown-700 bg-bg-opacity">
-          <h2 data-swiper-parallax="-100" class="text-h3">{{ item.title }}</h2>
-          <h1 data-swiper-parallax="-200" class="text-h1-play">{{ item.product.name }}</h1>
-          <nuxt-link data-swiper-parallax="-200" title="Commander"
-                     :to="`/nos-collections/${item.product.sub_category.slug}/${item.product.slug}`" class="btn w-fit">
-            Commander
-          </nuxt-link>
+          <h2 class="text-h3 reveal reveal-left-500">{{ item.title }}</h2>
+          <h1 class="text-h1-play reveal reveal-left-600">{{ item.product.name }}</h1>
+          <div class="reveal reveal-left-700">
+            <nuxt-link title="Commander" role="button"
+                       :to="`/nos-collections/${item.product.sub_category.slug}/${item.product.slug}`"
+                       class="btn w-fit ">
+              Commander
+            </nuxt-link>
+          </div>
+
         </div>
       </swiper-slide>
     </swiper-container>

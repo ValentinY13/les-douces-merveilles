@@ -30,11 +30,9 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div class="overflow-hidden !overflow-clip">
     <TheMenu/>
     <slot/>
-    <LayoutNewsletter/>
-    <LayoutQualities/>
     <TheFooter/>
   </div>
 </template>

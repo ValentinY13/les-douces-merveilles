@@ -7,8 +7,8 @@
         <TitleSection :title="homeData.blocks.block_slider[0].title"
                       :subtitle="homeData.blocks.block_slider[0].subtitle" class="px-6" :id="'mise en avant'"/>
       </template>
-      <swiper-slide v-for="product in homeData.blocks.block_slider[0].product" :key="product.id"
-                    class="max-w-[450px] w-full h-auto">
+      <swiper-slide v-for="(product, i) in homeData.blocks.block_slider[0].product" :key="product.id"
+                    class="max-w-[450px] w-full h-auto reveal" :class="`reveal-bottom-${i}00`">
         <CardCarousel :product="product.product_id" class="relative "/>
       </swiper-slide>
 
@@ -24,11 +24,13 @@
 
     <section class="relative" aria-labelledby="citation">
       <nuxt-picture provider="directus"
+                    class="reveal reveal-image"
                     :src="`${homeData.blocks.block_citation.background.id}/${homeData.blocks.block_citation.background.filename_download}`"
                     :alt="homeData.blocks.block_citation.background.title"
                     :img-attrs="{class: 'w-full h-[450px] object-cover' }">
       </nuxt-picture>
-      <blockquote class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6">
+      <blockquote
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6 reveal reveal-bottom-400">
         <p id="citation"
            class="font-play text-2xl tracking-widest md:text-3xl font-bold italic uppercase text-center text-white responsive-layout">
           ‘’{{
@@ -42,9 +44,9 @@
         <TitleSection :title="homeData.blocks.block_slider[1].title"
                       :subtitle="homeData.blocks.block_slider[1].subtitle" class="px-6" :id="'mise en avant'"/>
       </template>
-      <swiper-slide v-for="product in homeData.blocks.block_slider[1].product" :key="product.id"
-                    class="max-w-[450px] w-full h-auto">
-        <CardCarousel :product="product.product_id" class="relative "/>
+      <swiper-slide v-for="(product, i) in homeData.blocks.block_slider[1].product" :key="product.id"
+                    class="max-w-[450px] w-full h-auto reveal" :class="`reveal-bottom-${i}00`">
+        <CardCarousel :product="product.product_id" class="relative"/>
       </swiper-slide>
 
       <swiper-slide class="w-full max-w-[450px] h-full">
@@ -56,6 +58,10 @@
         </CardSeeMore>
       </swiper-slide>
     </LayoutCarouselSection>
+
+    <LayoutNewsletter/>
+
+    <LayoutQualities/>
   </main>
 </template>
 
@@ -63,6 +69,8 @@
 import type {HomeData} from "~/types/home";
 
 const {$directus, $readItems} = useNuxtApp()
+
+useRevealTransitionItems()
 
 const {data: home} = await useAsyncData('home', async () => {
   return $directus.request($readItems('home', {

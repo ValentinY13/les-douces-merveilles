@@ -1,7 +1,8 @@
 <template>
   <footer class="bg-bg-secondary px-6 xl:px-16 pt-16 pb-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <nuxt-link to="/" title="Les Douces Merveilles" class="mb-4 md:col-span-3 lg:col-span-1 xl:pl-16">
+      <nuxt-link to="/" title="Les Douces Merveilles"
+                 class="mb-4 md:col-span-3 lg:col-span-1 xl:pl-16 ">
         <nuxt-img src="svg/logo.svg" class="w-full max-w-[350px]"></nuxt-img>
       </nuxt-link>
       <div class="xl:pl-16">

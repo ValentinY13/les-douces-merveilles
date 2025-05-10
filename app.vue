@@ -13,7 +13,6 @@ import {useUserStore} from "~/store/user";
 
 const cartStore = useCartStore()
 const userStore = useUserStore()
-
 onMounted(async () => {
   await cartStore.fetchCart();
   await userStore.initSession()
