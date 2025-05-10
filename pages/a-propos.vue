@@ -29,8 +29,8 @@ const teams = [
 </script>
 
 <template>
-  <main class="px-6 pt-14 pb-24 lg:pb-0">
-    <section aria-labelledby="à propos" class="responsive-layout grid md:grid-cols-2 gap-4 md:gap-16">
+  <main class="pt-14 pb-24 lg:pb-0">
+    <section aria-labelledby="à propos" class="px-6 responsive-layout grid md:grid-cols-2 gap-4 md:gap-16">
       <div class="space-y-4 mt-8">
         <h1 id="à propos" class="text-h2 font-medium uppercase reveal reveal-left-300">A propos de nous</h1>
         <h2 class="text-h2-play text-brown-700 reveal reveal-left-400">Lorem ipsum dolor solis</h2>
@@ -44,7 +44,7 @@ const teams = [
       <nuxt-picture src="/img/about-us.jpg" class="max-w-[450px] reveal reveal-right-300"
                     :img-attrs="{class: 'object-cover size-full shadow-card border border-brown-700'}"></nuxt-picture>
     </section>
-    <section class="py-24 responsive-layout" aria-labelledby="Valeurs">
+    <section class="py-24 px-6 responsive-layout" aria-labelledby="Valeurs">
       <TitleSection :title="'Nos valeurs'" :id="'Valeurs'"/>
       <div class="flex flex-wrap justify-between gap-4 lg:gap-0 pt-16">
         <CardAbout
@@ -57,7 +57,7 @@ const teams = [
         />
       </div>
     </section>
-    <section class="responsive-layout" aria-labelledby="Equipe">
+    <section class="responsive-layout px-6" aria-labelledby="Equipe">
       <TitleSection :title="'Notre équipe'" :id="'Equipe'"/>
       <div class="grid grid-cols-1 md:grid-cols-2 items-center pt-16">
         <CardTeam
@@ -95,6 +95,10 @@ const teams = [
         </div>
       </div>
     </section>
+
+    <LayoutNewsletter/>
+
+    <LayoutQualities/>
   </main>
 </template>
 
