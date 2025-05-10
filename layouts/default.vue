@@ -31,10 +31,10 @@ useSeoMeta({
 
 <template>
   <div>
-    <TheMenu/>
-    <slot/>
-    <LayoutNewsletter/>
-    <LayoutQualities/>
-    <TheFooter/>
+    <div class="overflow-hidden !overflow-clip">
+      <TheMenu/>
+      <slot/>
+      <TheFooter/>
+    </div>
   </div>
 </template>

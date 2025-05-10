@@ -3,10 +3,11 @@
     <!-- Miniatures -->
     <div class="flex flex-col gap-4">
       <div
-          v-for="(image, index) in images"
-          :key="index"
+          v-for="(image, i) in images"
+          :key="i"
           class="w-16 xl:w-24 h-16 xl:h-24 border border-brown-700 p-0.5 cursor-pointer"
           @click="selectedImage = image"
+          :class="`reveal reveal-left-${i}00`"
       >
         <nuxt-picture
             provider="directus"
@@ -19,11 +20,12 @@
     </div>
 
     <!-- Grande image avec transition -->
-    <div class="w-96 h-96 xl:size-full max-w-[500px] max-h-[500px] xl:aspect-square relative">
+    <div class="w-96 h-96 xl:size-full max-w-[500px] max-h-[500px] xl:aspect-square relative overflow-hidden">
       <transition name="fade" mode="out-in">
         <nuxt-picture
             :key="selectedImage.directus_files_id.id"
             preload
+            class="reveal reveal-image"
             :alt="selectedImage.directus_files_id.filename"
             provider="directus"
             :src="getImageSrc(selectedImage)"
