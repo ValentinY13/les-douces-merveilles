@@ -47,6 +47,7 @@ export default defineEventHandler(async (event) => {
                     'price'
                 ]
             },
+            'status',
             'total',
             'date_created',
         ],
@@ -61,6 +62,15 @@ export default defineEventHandler(async (event) => {
         return {
             status: 'error',
             errorMessage: 'Erreur lors de la récupération de la commande'
+        }
+    }
+
+
+    // check status
+    if (order[0].status !== 'pending') {
+        return {
+            status: 'error',
+            errorMessage: 'Commande non modifiable'
         }
     }
 

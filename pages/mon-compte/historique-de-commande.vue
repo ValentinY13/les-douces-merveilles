@@ -127,7 +127,8 @@ definePageMeta({
             <td class="col-span-2 flex flex-col gap-4 items-center md:flex-row md:justify-center lg:justify-start lg:py-4 lg:pr-12">
               <PopupLayout>
                 <template #activator="{togglePopup}">
-                  <button @click="togglePopup" title="Modifier commande" class="btn btn-small w-full lg:w-fit">
+                  <button :disabled="order.status !== 'En cours'" @click="togglePopup" title="Modifier commande"
+                          class="btn btn-small w-full lg:w-fit">
                     Modifier
                   </button>
                 </template>
@@ -142,7 +143,7 @@ definePageMeta({
                   </PopupCard>
                 </template>
               </PopupLayout>
-              <nuxt-link class="btn btn-small w-full lg:w-fit" to="/">Voir détails</nuxt-link>
+              <nuxt-link class="btn btn-small w-full lg:w-fit" title="Voir détails" to="/">Voir détails</nuxt-link>
             </td>
           </tr>
           </tbody>
