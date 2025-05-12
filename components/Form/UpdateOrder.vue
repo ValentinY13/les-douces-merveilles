@@ -128,7 +128,6 @@ const submitForm = handleSubmit(async (values) => {
       cancel_order: values.cancel,
     }
   })
-
   if (response && response.status === 'error') {
     $toast.error(response.errorMessage)
   } else {
