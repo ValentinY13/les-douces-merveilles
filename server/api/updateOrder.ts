@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const order_id = body.order_id
+
     const today = new Date().setHours(0, 0, 0, 0)
 
     const newDateDiffInMinutes = new Date(body.date).setHours(0, 0, 0, 0) - today
@@ -43,6 +44,7 @@ export default defineEventHandler(async (event) => {
                             'name',
                         ]
                     },
+                    'sub_total',
                     'quantity',
                     'price'
                 ]
@@ -50,6 +52,9 @@ export default defineEventHandler(async (event) => {
             'status',
             'total',
             'date_created',
+            {
+                pickup_time_slot: ['*']
+            }
         ],
         filter: {
             id: {
@@ -64,7 +69,6 @@ export default defineEventHandler(async (event) => {
             errorMessage: 'Erreur lors de la récupération de la commande'
         }
     }
-
 
     // check status
     if (order[0].status !== 'pending') {
@@ -157,15 +161,40 @@ export default defineEventHandler(async (event) => {
         }
     }
 
+    let time_slot = order[0].pickup_time_slot
+    if (time_slot.id !== parseInt(body.time_slot_id)) {
+        const response = await directusServer.request(readItems('time_slots', {
+            fields: ['*'],
+            filter: {
+                id: {
+                    _eq: body.time_slot_id
+                }
+            }
+        }))
+
+        time_slot = response[0]
+    }
+
     try {
         await directusServer.request(updateItem('orders', order_id, {
             pickup_date: body.date,
             pickup_time_slot: body.time_slot_id
         }))
 
+        await directusServer.request(triggerFlow('POST', '7a8fdda3-69b0-48e4-b26b-c4f986197ddc', {
+            user: {email: 'test@test.com'},
+            date_created: order[0].date_created,
+            order_lines: order[0].order_lines,
+            total: order[0].total,
+            pickup_date: body.date,
+            order_number: order[0].order_number,
+            pickup_time_slot: time_slot,
+            is_modified: true
+        }))
+
         return {
             status: 'success',
-            errorMessage: 'Modification effectuée',
+            errorMessage: 'Modification effectuée, un e-mail récapitulatif vous a été envoyé',
         }
     } catch (e) {
 
