@@ -47,7 +47,7 @@ const {data: order} = await useAsyncData('orders', async () => {
       }))
     }, {
       transform: (response: any) => {
-        return response[0]
+        return {...response[0], is_modified: false};
       }
     }
 )
