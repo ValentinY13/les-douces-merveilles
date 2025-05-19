@@ -203,12 +203,24 @@ watch(() => route.query.page, (newPage) => {
   currentPage.value = Number(newPage) || 1;
 });
 
+const config = useRuntimeConfig()
+
+
 useHead({
   link: [
-    currentPage.value > 1 ? {rel: "prev", href: `/nos-collections?page=${currentPage.value - 1}`} : null,
+    currentPage.value > 1
+        ? {rel: "prev", href: `/nos-collections?page=${currentPage.value - 1}`}
+        : null,
     currentPage.value < Math.ceil((products.value?.length || 1) / itemsPerPage.value)
         ? {rel: "next", href: `/nos-collections?page=${currentPage.value + 1}`}
-        : null
+        : null,
+
+    {
+      rel: "canonical",
+      href: currentPage.value === 1
+          ? `${config.public.nuxtUrl}/nos-collections`
+          : `${config.public.nuxtUrl}/nos-collections?page=${currentPage.value}`
+    }
   ].filter(Boolean)
 });
 
