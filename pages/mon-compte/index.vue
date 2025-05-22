@@ -13,20 +13,25 @@ const logout = async () => {
 const user = await userStore.fetchUser()
 
 async function handleDelete() {
-  const id = "ac7e3995-df66-4838-b743-4ae386cd5fe1"
-
+  const FLOW_ID = useRuntimeConfig().public.delete_request_id
   try {
-    const response = await $directus.request($createItem('account_deletion_requests', {
-      user: id,
+    await $directus.request($createItem('account_deletion_requests', {
+      user: user.id,
       status: 'pending'
     }))
-    const responseTrigger = await $directus.request($triggerFlow('POST', 'ec2192ff-c652-40b1-8790-99190b5e48da', {
-      user: {
-        last_name: "doe",
-        first_name: "john",
-        email: "doe@doe.com",
-      }
+
+
+    await $directus.request($triggerFlow('POST', FLOW_ID, {
+      user
     }))
+
+    $toast.success('Demande de suppression confirmée ! Un mail de confirmation vous a été envoyé')
+
+    setTimeout(async () => {
+      await userStore.logout()
+      navigateTo('/')
+      $toast.success('Vous êtes déconnecté')
+    }, 1000)
 
   } catch (e) {
     console.log(e)

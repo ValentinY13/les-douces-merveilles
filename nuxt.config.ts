@@ -62,6 +62,7 @@ export default defineNuxtConfig({
             resetUrl: process.env.PASSWORD_RESET_URL,
             assetsUrl: process.env.ASSETS_URL,
             nuxtUrl: process.env.NUXT_URL,
+            delete_request_id: process.env.DELETE_REQUEST,
             directus: {
                 url: process.env.DIRECTUS_URL,
             }
@@ -70,7 +71,7 @@ export default defineNuxtConfig({
         stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
         stripe_secret_key: process.env.STRIPE_SECRET_KEY,
         refund_mail_id: process.env.REFUND_MAIL,
-        contact_mail_id: process.env.CONTACT_MAIL
+        contact_mail_id: process.env.CONTACT_MAIL,
     },
 
     piniaPluginPersistedstate: {
