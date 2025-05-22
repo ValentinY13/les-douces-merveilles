@@ -2,7 +2,7 @@
   <main class="pt-14 pb-24 px-6">
     <section aria-labelledby="Connexion" class="max-layout-lg-c-7-g-3 mx-auto">
       <h1 id="Connexion" class="text-h2 text-brown-700 my-8 text-center uppercase">Connexion</h1>
-      <form @submit="submitForm" class="grid grid-cols-1 gap-6 text-sm">
+      <form @submit.prevent="submitForm" method="post" class="grid grid-cols-1 gap-6 text-sm">
         <InputText type="email" input-id="email" name="email" placeholder="Votre adresse e-mail">
           <label for="email">Adresse e-mail*</label>
         </InputText>
