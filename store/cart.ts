@@ -41,7 +41,6 @@ export const useCartStore = defineStore('cart', {
                 })
 
             } catch (e) {
-                console.log(e)
             }
         },
 

@@ -45,8 +45,9 @@ watch(y, (value, oldValue) => {
 
         <nuxt-link to="/" title="Les Douces Merveilles"
                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <nuxt-img src="svg/logo.svg" preload
-                    class="w-full max-w-[350px] h-10 "></nuxt-img>
+          <nuxt-img src="/svg/logo.svg"
+                    alt="Les Douces Merveilles - Logo"
+                    class="w-full max-w-[350px] h-10"></nuxt-img>
         </nuxt-link>
 
         <div class="flex items-center">
@@ -64,8 +65,12 @@ watch(y, (value, oldValue) => {
                 </nuxt-link>
               </li>
               <client-only>
+                <!-- avoid layout shifts due to client only -->
+                <template #fallback>
+                  <li aria-hidden="true" class="block w-[1em] h-[1em] opacity-0"></li>
+                </template>
                 <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-                  <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter' " title="Mon compte">
+                  <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter'" title="Mon compte">
                     <i class="icon-link icon-user text-2xl"></i>
                   </nuxt-link>
                 </li>

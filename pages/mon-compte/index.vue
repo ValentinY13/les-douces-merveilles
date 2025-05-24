@@ -34,7 +34,6 @@ async function handleDelete() {
     }, 1000)
 
   } catch (e) {
-    console.log(e)
   }
 }
 

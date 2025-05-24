@@ -3,7 +3,8 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <nuxt-link to="/" title="Les Douces Merveilles"
                  class="mb-4 md:col-span-3 lg:col-span-1 xl:pl-16 ">
-        <nuxt-img src="svg/logo.svg" class="w-full max-w-[350px]"></nuxt-img>
+        <nuxt-img src="svg/logo.svg" alt="Les Douces Merveilles - Logo"
+                  class="w-full max-w-[350px] h-12"></nuxt-img>
       </nuxt-link>
       <div class="xl:pl-16">
         <address>

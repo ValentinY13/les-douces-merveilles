@@ -70,7 +70,7 @@
 }
 
 .icon-shopping-bag {
-    mask: url("/svg/icons/ShoppingbagOpen.svg");
+    mask: url("/svg/icons/ShoppingBagOpen.svg");
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: contain;

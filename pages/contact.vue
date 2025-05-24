@@ -18,7 +18,6 @@ const {values, handleSubmit} = useForm({
 })
 
 const submitForm = handleSubmit(async (values) => {
-  console.log(values)
   try {
     const response = await $fetch('/api/contact', {
       method: 'POST',
@@ -31,7 +30,6 @@ const submitForm = handleSubmit(async (values) => {
       $toast.success("Message envoyé avec succès ! Nous vous recontacterons le plus rapidement possible")
     }
   } catch (e) {
-    console.log(e)
   }
 })
 </script>
