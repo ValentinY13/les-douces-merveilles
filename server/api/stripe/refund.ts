@@ -58,6 +58,5 @@ export default defineEventHandler(async (event) => {
             errorMessage: "Remboursement effectué, un mail de confirmation a été envoyé"
         }
     } catch (e) {
-        console.log(e)
     }
 })

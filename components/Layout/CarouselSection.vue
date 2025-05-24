@@ -41,7 +41,7 @@ const swiperOptions: SwiperOptions = {
       `
   ],
   pagination: {
-    clickable: true
+    clickable: false
   },
   breakpoints: {
     768: {

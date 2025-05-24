@@ -16,7 +16,6 @@ const userStore = useUserStore()
 onMounted(async () => {
   await cartStore.fetchCart();
   await userStore.initSession()
-
 });
 
 useHead({

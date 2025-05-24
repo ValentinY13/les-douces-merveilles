@@ -60,7 +60,7 @@ const swiperOptions: SwiperOptions = {
       `
   ],
   pagination: {
-    clickable: true
+    clickable: false
   }
 }
 

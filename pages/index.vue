@@ -22,12 +22,13 @@
       </swiper-slide>
     </LayoutCarouselSection>
 
-    <section class="relative" aria-labelledby="citation">
+    <section class="relative h-[450px]" aria-labelledby="citation">
       <nuxt-picture provider="directus"
+                    loading="lazy"
                     class="reveal reveal-image"
                     :src="`${homeData.blocks.block_citation.background.id}/${homeData.blocks.block_citation.background.filename_download}`"
                     :alt="homeData.blocks.block_citation.background.title"
-                    :img-attrs="{class: 'w-full h-[450px] object-cover' }">
+                    :img-attrs="{class: 'w-full h-full object-cover' }">
       </nuxt-picture>
       <blockquote
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6 reveal reveal-bottom-400">

@@ -137,7 +137,6 @@ const handleCheckout = handleSubmit(async () => {
       $toast.success("Panier valide")
     }
   } catch (e) {
-    console.log(e)
   }
 })
 

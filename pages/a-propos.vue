@@ -41,8 +41,12 @@ const teams = [
           ullamcorper sit. Mattis cursus et
           commodo donec a nisl interdum. Sagittis non non netus morbi. Nisl eu varius eu arcu ultrices.</p>
       </div>
-      <nuxt-picture src="/img/about-us.jpg" class="max-w-[450px] reveal reveal-right-300"
-                    :img-attrs="{class: 'object-cover size-full shadow-card border border-brown-700'}"></nuxt-picture>
+      <nuxt-picture
+          src="/img/about-us.jpg"
+          alt="A propos de nous"
+          class="max-w-[450px] reveal reveal-right-300"
+          :img-attrs="{class: 'object-cover size-full shadow-card border border-brown-700'}">
+      </nuxt-picture>
     </section>
     <section class="py-24 px-6 responsive-layout" aria-labelledby="Valeurs">
       <TitleSection :title="'Nos valeurs'" :id="'Valeurs'"/>
@@ -87,9 +91,11 @@ const teams = [
         </div>
         <div class="grid">
           <nuxt-picture src="/img/john-top.jpg"
+                        alt="John Doe"
                         class="reveal reveal-right-300"
                         :img-attrs="{class: 'object-cover size-full float-right shadow-card max-w-[200px] md:max-w-[250px] lg:max-w-[300px]'}"></nuxt-picture>
           <nuxt-picture src="/img/john-bottom.jpg"
+                        alt="John Doe"
                         class="reveal reveal-right-400"
                         :img-attrs="{class: 'object-cover size-full float-right -translate-y-1/4 sm:-translate-y-1/2 -translate-x-1/4 shadow-card max-w-[200px] md:max-w-[250px] lg:max-w-[300px]'}"></nuxt-picture>
         </div>
