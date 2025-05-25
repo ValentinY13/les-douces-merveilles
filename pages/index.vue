@@ -35,7 +35,7 @@
       <blockquote
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6 reveal reveal-bottom-400">
         <p id="citation"
-           class="font-play text-2xl tracking-widest md:text-3xl font-bold italic uppercase text-center text-white responsive-layout">
+           class="font-play text-xl tracking-widest md:text-3xl font-bold italic uppercase text-center text-white responsive-layout">
           ‘’{{
             homeData.blocks.block_citation.text
           }}‘’</p>
