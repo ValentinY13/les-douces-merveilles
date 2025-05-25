@@ -161,7 +161,6 @@ definePageMeta({
                   </PopupCard>
                 </template>
               </PopupLayout>
-              <!--              <nuxt-link class="btn btn-small w-full lg:w-fit" title="Voir détails" to="/">Voir détails</nuxt-link>-->
             </td>
           </tr>
           </tbody>
