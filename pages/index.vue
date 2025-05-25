@@ -9,7 +9,7 @@
       </template>
       <swiper-slide v-for="(product, i) in homeData.blocks.block_slider[0].product" :key="product.id"
                     class="max-w-[450px] w-full h-auto reveal" :class="`reveal-bottom-${i}00`">
-        <CardCarousel :product="product.product_id" class="relative "/>
+        <CardCarousel :product="product.product_id" class="relative h-[300px] md:h-[400px]"/>
       </swiper-slide>
 
       <swiper-slide class="w-full max-w-[450px] h-full">
@@ -22,13 +22,15 @@
       </swiper-slide>
     </LayoutCarouselSection>
 
-    <section class="relative h-[450px]" aria-labelledby="citation">
+    <section class="relative h-[450px] overflow-hidden" aria-labelledby="citation">
       <nuxt-picture provider="directus"
-                    loading="lazy"
+                    width="1920"
+                    height="450"
+                    loading="eager"
                     class="reveal reveal-image"
                     :src="`${homeData.blocks.block_citation.background.id}/${homeData.blocks.block_citation.background.filename_download}`"
                     :alt="homeData.blocks.block_citation.background.title"
-                    :img-attrs="{class: 'w-full h-full object-cover' }">
+                    :img-attrs="{class: 'w-full h-full object-cover', decoding: 'async' }">
       </nuxt-picture>
       <blockquote
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-6 reveal reveal-bottom-400">
@@ -47,7 +49,7 @@
       </template>
       <swiper-slide v-for="(product, i) in homeData.blocks.block_slider[1].product" :key="product.id"
                     class="max-w-[450px] w-full h-auto reveal" :class="`reveal-bottom-${i}00`">
-        <CardCarousel :product="product.product_id" class="relative"/>
+        <CardCarousel :product="product.product_id" class="relative h-[300px] md:h-[400px]"/>
       </swiper-slide>
 
       <swiper-slide class="w-full max-w-[450px] h-full">
