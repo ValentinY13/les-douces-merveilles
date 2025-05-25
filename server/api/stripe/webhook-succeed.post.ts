@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import {directusServer, triggerFlow, readUser, readItems} from '~/server/utils/directus-server'
 
 export default defineEventHandler(async (event) => {
     const stripeEvent = await readBody<Stripe.Event>(event);
@@ -25,7 +26,6 @@ export default defineEventHandler(async (event) => {
         quantity: lineItem.quantity,
         sub_total: lineItem.amount_total / 100,
     }));
-
 
     let successOrderPost = false;
     let attemptCount = 0;
@@ -55,6 +55,38 @@ export default defineEventHandler(async (event) => {
                     payment_intent: session.payment_intent,
                 }
             });
+            
+            const order = await directusServer.request(readItems('orders', {
+                fields: [
+                    'order_number',
+                    'pickup_date',
+                    {
+                        pickup_time_slot: [
+                            'start_time',
+                            'end_time',
+                        ]
+                    },
+                    {
+                        user: ['email']
+                    },
+                    {
+                        order_lines: [
+                            {
+                                product: ['name']
+                            },
+                            'quantity',
+                            'sub_total',
+                        ]
+                    },
+                    'total',
+                    'date_created',
+                ],
+                filter: {
+                    order_number: orderNumber
+                },
+            }))
+
+            await directusServer.request(triggerFlow('POST', '7a8fdda3-69b0-48e4-b26b-c4f986197ddc', order[0]))
 
             successOrderPost = true;
 
