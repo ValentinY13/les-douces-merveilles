@@ -52,13 +52,6 @@ const {data: order} = await useAsyncData('orders', async () => {
     }
 )
 
-
-onMounted(async () => {
-  if (order) {
-    const response = await $directus.request($triggerFlow('POST', '7a8fdda3-69b0-48e4-b26b-c4f986197ddc', order.value))
-  }
-})
-
 definePageMeta({
   middleware: 'auth',
 })
