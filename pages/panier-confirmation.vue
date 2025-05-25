@@ -2,7 +2,7 @@
 import {useCartStore} from "~/store/cart";
 import {useUserStore} from "~/store/user";
 
-const {$directus, $readItems, $triggerFlow} = useNuxtApp();
+const {$directus, $readItems} = useNuxtApp();
 
 const cartStore = useCartStore();
 
