@@ -7,7 +7,8 @@ const {$directus, $readItems, $toast} = useNuxtApp()
 const props = defineProps<{
   pickup_date: string,
   pickup_time: Object,
-  order_id: number
+  order_id: number,
+  order_number: string
 }>()
 
 const date = ref(new Date(props.pickup_date));
@@ -141,7 +142,7 @@ const submitForm = handleSubmit(async (values) => {
 <template>
   <div class="p-6 relative">
     <h2 class="text-h3 text-brown-700">Modifier commande</h2>
-    <p class="py-6">N° CM-123456</p>
+    <p class="py-6">N° {{ order_number.split('-').slice(0, 2).join('-') }}</p>
     <form @submit="submitForm" class="grid grid-cols-1 gap-6">
 
       <div>

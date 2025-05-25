@@ -136,6 +136,7 @@ definePageMeta({
                 <template #default="{togglePopup}">
                   <PopupCard>
                     <FormUpdateOrder :order_id="order.id" :pickup_date="order.pickup_date"
+                                     :order_number="order.order_number"
                                      :pickup_time="order.pickup_time_slot">
                       <button @click="togglePopup" class="btn btn-small btn-red absolute bottom-6 left-6">Annuler
                       </button>
@@ -143,7 +144,23 @@ definePageMeta({
                   </PopupCard>
                 </template>
               </PopupLayout>
-              <nuxt-link class="btn btn-small w-full lg:w-fit" title="Voir détails" to="/">Voir détails</nuxt-link>
+
+              <PopupLayout>
+                <template #activator="{togglePopup}">
+                  <button @click="togglePopup" title="Voir détails" class="btn btn-small w-full lg:w-fit">
+                    Voir détails
+                  </button>
+                </template>
+
+                <template #default="{togglePopup}">
+                  <PopupCard>
+                    <CardInfoOrder :order_number="order.order_number"/>
+                    <button @click="togglePopup" class="btn btn-small btn-red ml-6 mb-6">
+                      Fermer
+                    </button>
+                  </PopupCard>
+                </template>
+              </PopupLayout>
             </td>
           </tr>
           </tbody>
