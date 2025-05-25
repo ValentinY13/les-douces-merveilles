@@ -1,7 +1,7 @@
 <template>
   <div>
     <swiper-container ref="swiperElement" init="false">
-      <swiper-slide v-for="item in items.slides" :key="item.id" class="relative h-[80dvh] lg:h-[70dvh] xl:h-[60dvh]">
+      <swiper-slide v-for="item in items.slides" :key="item.id" class="relative max-h-[450px] h-svh">
         <nuxt-picture
             class="reveal reveal-image"
             preload
