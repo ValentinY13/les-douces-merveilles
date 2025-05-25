@@ -91,7 +91,6 @@ export default defineEventHandler(async (event) => {
             successOrderPost = true;
 
         } catch (e) {
-            console.log('error', e);
         }
     }
 
