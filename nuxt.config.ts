@@ -85,6 +85,7 @@ export default defineNuxtConfig({
     },
 
     googleFonts: {
+        preload: true,
         families: {
             Montserrat: {
                 wght: [400, 500]
