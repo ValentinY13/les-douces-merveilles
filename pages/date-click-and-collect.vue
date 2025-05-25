@@ -160,8 +160,8 @@ definePageMeta({
                     :max-orders-per-day="settings?.max_orders_per_day"
                     class="sm:block! md:max-w-[350px] lg:justify-self-end"/>
 
-        <div
-            class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6">
+        <div :class="selectedDate ? 'opacity-100' : 'opacity-0'"
+             class="flex flex-wrap md:grid md:grid-cols-2 justify-center content-center gap-6 transition-opacity duration-300">
           <button
               class="btn h-fit"
               :class="{ 'btn-selected': selectedSlot?.id === slot.id }"
