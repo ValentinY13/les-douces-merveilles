@@ -20,7 +20,7 @@
                    class="lg:row-start-3 relative">
           <label for="password">Mot de passe*</label>
           <span @click="showInput = !showInput"
-                class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+                class="icon text-2xl absolute top-10.5 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
                 :class="showInput ? 'icon-eye-slash' : 'icon-eye'"></span>
         </InputText>
 
@@ -29,7 +29,7 @@
                    class="lg:row-start-3 relative">
           <label for="confPassword">Confirmation mot de passe*</label>
           <span @click="showInputConf = !showInputConf"
-                class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+                class="icon text-2xl absolute top-10.5 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
                 :class="showInputConf ? 'icon-eye-slash' : 'icon-eye'"></span>
         </InputText>
 
