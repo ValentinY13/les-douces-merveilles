@@ -93,7 +93,6 @@ const updateDate = (newDate: string) => {
 </script>
 
 <template>
-
   <VueDatePicker
       @update:modelValue="updateDate"
       hide-offset-dates
