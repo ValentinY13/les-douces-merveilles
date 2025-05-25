@@ -46,7 +46,7 @@ const submitPasswordForm = handleSubmitPassword(async (values) => {
                class="relative">
       <label for="password">Mot de passe actuel*</label>
       <span @click="showInput = !showInput"
-            class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+            class="icon text-2xl absolute top-10.5 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
             :class="showInput ? 'icon-eye-slash' : 'icon-eye'"></span>
     </InputText>
 
@@ -55,7 +55,7 @@ const submitPasswordForm = handleSubmitPassword(async (values) => {
                class="relative lg:col-start-1">
       <label for="newPassword">Nouveau mot de passe*</label>
       <span @click="showInputNew = !showInputNew"
-            class="icon text-2xl absolute bottom-0 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
+            class="icon text-2xl absolute top-10.5 right-4 transform -translate-y-1/2 bg-brown-700 cursor pointer z-10"
             :class="showInputNew ? 'icon-eye-slash' : 'icon-eye'"></span>
     </InputText>
 
