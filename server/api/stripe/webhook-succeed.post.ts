@@ -32,8 +32,6 @@ export default defineEventHandler(async (event) => {
     // génère un numéro aléatoire et retourne dans le while si j'ai RECORD_NOT_UNIQUE
     while (!successOrderPost) {
         try {
-            attemptCount++;
-
             const token = process.env.STATIC_TOKEN_WEBHOOK;
             const url = process.env.DIRECTUS_URL;
             const orderNumber = generateOrderNumber();
