@@ -28,10 +28,9 @@ export default defineEventHandler(async (event) => {
     }));
 
     let successOrderPost = false;
-    let attemptCount = 0;
 
-    // génère un numéro aléatoire et effectue 3 essais pour poster l'order afin d'éviter le problème d'unicité de numéro
-    while (!successOrderPost && attemptCount < 3) {
+    // génère un numéro aléatoire et retourne dans le while si j'ai RECORD_NOT_UNIQUE
+    while (!successOrderPost) {
         try {
             attemptCount++;
 
@@ -55,7 +54,7 @@ export default defineEventHandler(async (event) => {
                     payment_intent: session.payment_intent,
                 }
             });
-            
+
             const order = await directusServer.request(readItems('orders', {
                 fields: [
                     'order_number',
@@ -91,6 +90,15 @@ export default defineEventHandler(async (event) => {
             successOrderPost = true;
 
         } catch (e) {
+            const errorCode = e?.response?._data?.errors?.[0]?.extensions?.code;
+
+            if (errorCode === 'RECORD_NOT_UNIQUE') {
+                // Nouvelle tentative avec un autre numéro
+                continue;
+            }
+
+            // Stoppe la boucle pour ne pas tenter inutilement
+            break;
         }
     }
 
