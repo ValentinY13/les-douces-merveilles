@@ -78,6 +78,15 @@
     height: 1em;
 }
 
+.icon-shopping-bag-close {
+    mask: url("/svg/icons/ShoppingBag.svg");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
 .icon-user {
     mask: url("/svg/icons/User.svg");
     mask-position: center;

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {useUserStore} from "~/store/user";
+import {useCartStore} from "~/store/cart";
 
+const cartStore = useCartStore();
 const userStore = useUserStore();
 
 const isActive = ref(false)
@@ -60,17 +62,33 @@ watch(y, (value, oldValue) => {
                 <nuxt-link to="/contact" title="Contact">Contact</nuxt-link>
               </li>
               <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-                <nuxt-link to="/panier" title="Panier">
-                  <i class="icon-link icon-shopping-bag text-2xl"></i>
+                <nuxt-link to="/panier" title="Panier" class="relative">
+                  <client-only>
+                    <template #fallback>
+                      <i aria-hidden="true" class="icon-link text-2xl icon-shopping-bag-close"></i>
+                    </template>
+                    <i class="icon-link text-2xl"
+                       :class="cartStore.isCartEmpty ? 'icon-shopping-bag-close' : 'icon-shopping-bag'">
+                    </i>
+                  </client-only>
+                  <transition
+                      name="fade-scale"
+                      appear
+                  >
+                    <div v-if="!cartStore.isCartEmpty"
+                         class="absolute -top-0.5 -right-1 rounded-full shadow-card bg-brown-100 w-2.5 h-2.5">
+                    </div>
+                  </transition>
                 </nuxt-link>
               </li>
               <client-only>
                 <!-- avoid layout shifts due to client only -->
                 <template #fallback>
-                  <li aria-hidden="true" class="block w-[1em] h-[1em] opacity-0"></li>
+                  <i aria-hidden="true" class="icon-link icon-user text-2xl"></i>
                 </template>
                 <li class="transform transition-all duration-400 hover:-translate-y-1 hover:text-brown-700">
-                  <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter'" title="Mon compte">
+                  <nuxt-link :to="userStore.loggedIn ? '/mon-compte' : '/se-connecter'"
+                             :title="userStore.loggedIn ? 'Mon compte' : 'Se connecter'">
                     <i class="icon-link icon-user text-2xl"></i>
                   </nuxt-link>
                 </li>
@@ -222,5 +240,30 @@ watch(y, (value, oldValue) => {
 
 .menu-mobile__list--active div:last-child {
   transition-delay: 1s;
+}
+
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-scale-enter-from {
+  transform: scale(0.2);
+  opacity: 0;
+}
+
+.fade-scale-enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fade-scale-leave-from {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fade-scale-leave-to {
+  transform: scale(0);
+  opacity: 0;
 }
 </style>
