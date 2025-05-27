@@ -20,7 +20,7 @@
     </div>
 
     <!-- Grande image avec transition -->
-    <div class="w-96 h-96 xl:size-full max-w-[500px] max-h-[500px] xl:aspect-square relative overflow-hidden">
+    <div class="w-96 h-96 xl:size-full max-w-[450px] max-h-[450px] xl:aspect-square relative overflow-hidden">
       <transition name="fade" mode="out-in">
         <nuxt-picture
             :key="selectedImage.directus_files_id.id"
