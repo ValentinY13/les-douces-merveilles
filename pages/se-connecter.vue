@@ -57,7 +57,7 @@ const submitForm = handleSubmit(async (values) => {
   try {
 
     const data = await $directus.request($readUsers({
-      fields: ['provider', 'status'],
+      fields: ['provider'],
       filter: {
         email: values.email
       }
@@ -65,16 +65,8 @@ const submitForm = handleSubmit(async (values) => {
 
     const user = data[0]
 
-    if (user.status === 'suspended') {
-      return $toast.error('Compte suspendu, veuillez nous contacter pour le débloquer.')
-    }
-
     if (user?.provider === 'google') {
       return $toast.error('Compte déjà associé avec Google, essayez cette méthode de connexion.')
-    }
-
-    if (loginAttempt >= 3) {
-      return $toast.error('Trop de tentatives de connexion, le compte associé a été suspendu. Veuillez nous contacter pour le débloquer.')
     }
 
     await $directus.login(values.email, values.password)
@@ -85,14 +77,34 @@ const submitForm = handleSubmit(async (values) => {
     $toast.success('Vous êtes connecté')
     return navigateTo("/mon-compte");
   } catch (e) {
-    loginAttempt++
+    loginAttempt++;
+
+    if (loginAttempt === 3) {
+      loginAttempt = 0
+      return $toast.error('Trop de tentatives de connexion, le compte associé a été suspendu. Veuillez nous contacter pour le débloquer.')
+    }
+
+    // Vérifie si le compte est désormais suspendu
+    const data = await $directus.request($readUsers({
+      fields: ['status'],
+      filter: {
+        email: values.email
+      }
+    }));
+
+    const user = data[0];
+    if (user?.status === 'suspended') {
+      return $toast.error('Compte suspendu, veuillez nous contacter pour le débloquer.');
+    }
+
+    // Gestion des erreurs
     if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
-      $toast.error('Adresse e-mail ou mot de passe incorrect')
+      $toast.error('Adresse e-mail ou mot de passe incorrect');
     } else if (e.errors[0]?.extensions?.code === 'INVALID_PAYLOAD') {
-      $toast.error('Champs invalides')
+      $toast.error('Champs invalides');
     } else {
-      console.log(e)
-      $toast.error('Une erreur est survenue.')
+      console.log(e);
+      $toast.error('Une erreur est survenue.');
     }
   }
 })
