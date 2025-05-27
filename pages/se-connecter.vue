@@ -47,6 +47,8 @@ const userStore = useUserStore()
 const showInput = ref(false)
 const validationSchema = toTypedSchema(LoginSchema)
 
+let loginAttempt = 0
+
 const {values, handleSubmit} = useForm({
   validationSchema
 })
@@ -55,7 +57,7 @@ const submitForm = handleSubmit(async (values) => {
   try {
 
     const data = await $directus.request($readUsers({
-      fields: ['provider'],
+      fields: ['provider', 'status'],
       filter: {
         email: values.email
       }
@@ -63,8 +65,16 @@ const submitForm = handleSubmit(async (values) => {
 
     const user = data[0]
 
+    if (user.status === 'suspended') {
+      return $toast.error('Compte suspendu, veuillez nous contacter pour le débloquer.')
+    }
+
     if (user?.provider === 'google') {
       return $toast.error('Compte déjà associé avec Google, essayez cette méthode de connexion.')
+    }
+
+    if (loginAttempt >= 3) {
+      return $toast.error('Trop de tentatives de connexion, le compte associé a été suspendu. Veuillez nous contacter pour le débloquer.')
     }
 
     await $directus.login(values.email, values.password)
@@ -75,11 +85,13 @@ const submitForm = handleSubmit(async (values) => {
     $toast.success('Vous êtes connecté')
     return navigateTo("/mon-compte");
   } catch (e) {
+    loginAttempt++
     if (e.errors[0]?.extensions?.code === 'INVALID_CREDENTIALS') {
       $toast.error('Adresse e-mail ou mot de passe incorrect')
     } else if (e.errors[0]?.extensions?.code === 'INVALID_PAYLOAD') {
       $toast.error('Champs invalides')
     } else {
+      console.log(e)
       $toast.error('Une erreur est survenue.')
     }
   }
