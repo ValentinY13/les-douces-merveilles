@@ -1,7 +1,5 @@
 import {test, expect} from '@playwright/test';
 
-const url = 'http://localhost:3000'
-
 test('Connexion refusée si compte lié à Google', async ({page}) => {
     await page.route('**/users/*', route => {
         route.fulfill({
@@ -11,7 +9,7 @@ test('Connexion refusée si compte lié à Google', async ({page}) => {
         })
     })
 
-    await page.goto(`${url}/se-connecter`)
+    await page.goto(`/se-connecter`)
 
     await page.waitForSelector('button[type="submit"]', {state: 'visible'});
 
@@ -26,14 +24,14 @@ test('Connexion refusée si compte lié à Google', async ({page}) => {
 })
 
 test('Connexion réussie', async ({page}) => {
-    await page.goto(`${url}/se-connecter`);
+    await page.goto(`/se-connecter`);
+
+    await page.context().clearCookies();
 
     await page.fill('input[name="email"]', 'test4@mail.com');
     await page.fill('input[name="password"]', 'Pyrexv016^^');
 
-    await page.click('button[type="submit"]');
-
-    await page.waitForURL('**/mon-compte');
+    await page.getByRole('button', {name: 'Connexion'}).click();
 
     await expect(page.getByRole('heading', {name: 'Information du compte'})).toBeVisible()
     await expect(page.getByText('Vous êtes connecté')).toBeVisible()
@@ -55,7 +53,7 @@ test('Erreur identifiants invalides', async ({page}) => {
         })
     })
 
-    await page.goto(`${url}/se-connecter`)
+    await page.goto(`/se-connecter`)
 
     await page.waitForSelector('button[type="submit"]', {state: 'visible'});
     await page.waitForSelector('form');
