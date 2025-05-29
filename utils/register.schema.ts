@@ -22,4 +22,6 @@ export default yup.object({
     confidentiality: yup.boolean()
         .oneOf([true], '')
         .required('Le champ politique de confidentialité est obligatoire').default(true),
+    newsletter: yup.boolean()
+        .oneOf([true], '').default(true),
 })
