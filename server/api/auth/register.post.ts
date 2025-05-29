@@ -54,7 +54,6 @@ export default defineEventHandler(async (event) => {
         if (e instanceof yup.ValidationError) {
             return {status: 'error', errorMessage: 'Validation des données échouées'}
         }
-        console.log(e)
         sendError(event, createError({statusMessage: 'Une erreur est survenue', statusCode: 500}))
     }
 })
