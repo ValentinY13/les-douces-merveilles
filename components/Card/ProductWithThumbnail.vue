@@ -24,8 +24,7 @@
       <transition name="fade" mode="out-in">
         <nuxt-picture
             :key="selectedImage.directus_files_id.id"
-            preload
-            class="reveal reveal-image"
+            :class="[{ reveal: !firstLoadDone, 'reveal-image': !firstLoadDone }]"
             :alt="selectedImage.directus_files_id.filename"
             provider="directus"
             :src="getImageSrc(selectedImage)"
@@ -43,10 +42,15 @@ const props = defineProps({
 });
 
 const selectedImage = ref(props.images[0]);
+const firstLoadDone = ref(false);
 
 const getImageSrc = (image) => {
   return `${image.directus_files_id.id}/${image.directus_files_id?.filename_download}`;
 };
+
+watch(selectedImage, () => {
+  firstLoadDone.value = true;
+});
 </script>
 
 <style scoped>
