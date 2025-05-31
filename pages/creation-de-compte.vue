@@ -35,11 +35,11 @@
 
         <InputCheckbox class="md:col-span-2 w-fit" :checked-value="true" name="confidentiality">
           J’accepte les
-          <nuxt-link to="/" title="Conditions générales de vente"
+          <nuxt-link to="/conditions-generales-de-ventes" title="Conditions générales de vente"
                      class="text-brown-700 font-medium">conditions générales de vente
           </nuxt-link>
           et la
-          <nuxt-link to="/" title="Politique de confidentialité"
+          <nuxt-link to="/politique-de-confidentialite" title="Politique de confidentialité"
                      class="text-brown-700 font-medium">politique de confidentialité*
           </nuxt-link>
         </InputCheckbox>
