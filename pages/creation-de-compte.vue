@@ -67,7 +67,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import RegisterSchema from "~/utils/register.schema";
 
-const {$toast, $isAuthenticated} = useNuxtApp()
+const {$toast} = useNuxtApp()
 
 const showInput = ref(false)
 const showInputConf = ref(false)

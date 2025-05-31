@@ -10,6 +10,7 @@ import {
     readItems,
     updateItem,
     triggerFlow,
+    updateUser
 } from '@directus/sdk';
 
 const directusUrl = useRuntimeConfig().public.directus.url;
@@ -28,4 +29,5 @@ export {
     readItems,
     updateItem,
     triggerFlow,
+    updateUser
 };

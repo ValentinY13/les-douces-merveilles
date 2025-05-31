@@ -4,6 +4,7 @@ import {
     directusServer,
     registerUser,
     readUsers,
+    updateUser
 } from '~/server/utils/directus-server'
 
 export default defineEventHandler(async (event) => {
@@ -35,6 +36,20 @@ export default defineEventHandler(async (event) => {
         }
 
         await directusServer.request(registerUser(validatedData.email, validatedData.password, options))
+
+        if (validatedData.newsletter) {
+            const newUser = await directusServer.request(readUsers({
+                fields: ['id'],
+                filter: {
+                    email: {
+                        _eq: validatedData.email
+                    }
+                }
+            }))
+
+            await directusServer.request(updateUser(newUser[0].id, {newsletter: true}))
+        }
+
     } catch (e) {
         if (e instanceof yup.ValidationError) {
             return {status: 'error', errorMessage: 'Validation des données échouées'}
