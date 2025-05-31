@@ -20,6 +20,7 @@
 import {toTypedSchema} from '@vee-validate/yup'
 import * as yup from 'yup'
 
+const {$toast} = useNuxtApp()
 const title = "Inscription à notre newsletter"
 
 const {values, resetForm, handleSubmit} = useForm({
@@ -28,8 +29,26 @@ const {values, resetForm, handleSubmit} = useForm({
   }))
 })
 
-const submitForm = handleSubmit((values) => {
-  console.log(values)
+const submitForm = handleSubmit(async (values) => {
+
+  try {
+    const response = await $fetch('/api/register-newsletter', {
+      method: 'POST',
+      body: {
+        email: values.emailNews,
+      },
+    })
+
+    if (response && response.status === 'error') {
+      $toast.error(response.errorMessage)
+    } else {
+      $toast.success('Inscription à notre newsletter réussie !')
+    }
+  } catch (e) {
+    $toast.error('Une erreur est survenue')
+  }
+
+
 })
 
 </script>

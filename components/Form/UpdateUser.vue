@@ -24,7 +24,7 @@ const {
     email: user?.email ?? undefined,
     lastname: user?.last_name ?? undefined,
     firstname: user?.first_name ?? undefined,
-    newsletter: false
+    newsletter: user?.newsletter ?? false,
   }
 });
 
@@ -32,7 +32,8 @@ const {
 const isModified = () => {
   return (user?.email !== profileValues.email ||
       user?.last_name !== profileValues.lastname ||
-      user?.first_name !== profileValues.firstname || profileValues.newsletter)
+      user?.first_name !== profileValues.firstname ||
+      user?.newsletter !== profileValues.newsletter)
 }
 
 const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
@@ -49,6 +50,7 @@ const submitUpdateForm = handleSubmitUpdateUser(async (values) => {
           last_name: values.lastname,
           first_name: values.firstname,
           email: values.email,
+          newsletter: values.newsletter,
         })
     );
 
