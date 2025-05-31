@@ -70,15 +70,15 @@ watch(y, (value, oldValue) => {
                     <i class="icon-link text-2xl"
                        :class="cartStore.isCartEmpty ? 'icon-shopping-bag-close' : 'icon-shopping-bag'">
                     </i>
+                    <transition
+                        name="fade-scale"
+                        appear
+                    >
+                      <div v-if="!cartStore.isCartEmpty"
+                           class="absolute -top-0.5 -right-1 rounded-full shadow-card bg-brown-100 w-2.5 h-2.5">
+                      </div>
+                    </transition>
                   </client-only>
-                  <transition
-                      name="fade-scale"
-                      appear
-                  >
-                    <div v-if="!cartStore.isCartEmpty"
-                         class="absolute -top-0.5 -right-1 rounded-full shadow-card bg-brown-100 w-2.5 h-2.5">
-                    </div>
-                  </transition>
                 </nuxt-link>
               </li>
               <client-only>
@@ -107,8 +107,23 @@ watch(y, (value, oldValue) => {
             <span></span>
           </button>
         </div>
-        <nuxt-link to="/panier" title="Panier" class="lg:hidden">
-          <i class="icon-link icon-shopping-bag text-2xl"></i>
+        <nuxt-link to="/panier" title="Panier" class="lg:hidden relative">
+          <client-only>
+            <template #fallback>
+              <i aria-hidden="true" class="icon-link text-2xl icon-shopping-bag-close"></i>
+            </template>
+            <i class="icon-link text-2xl"
+               :class="cartStore.isCartEmpty ? 'icon-shopping-bag-close' : 'icon-shopping-bag'">
+            </i>
+            <transition
+                name="fade-scale"
+                appear
+            >
+              <div v-if="!cartStore.isCartEmpty"
+                   class="absolute -top-0.5 -right-1 rounded-full shadow-card bg-brown-100 w-2.5 h-2.5">
+              </div>
+            </transition>
+          </client-only>
         </nuxt-link>
       </div>
     </div>
