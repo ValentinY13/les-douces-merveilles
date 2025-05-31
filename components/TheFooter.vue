@@ -52,11 +52,13 @@
     </div>
     <div class="text-xs text-center mt-8 md:mt-12">
       <p class="inline-block">© Les Douces Merveilles {{ new Date().getFullYear() }} - Tous droits réservés -
-        <nuxt-link to="/" title="Politique de confidentialité et gestion des cookies">
-          Politique de confidentialité - Gestion des cookies
+        <nuxt-link to="/politique-de-confidentialite" title="Politique de confidentialité et gestion des cookies">
+          Politique de confidentialité
         </nuxt-link>
         -
-        <nuxt-link to="/" title="Conditions générales de vente">Conditions générales de vente</nuxt-link>
+        <nuxt-link to="/conditions-generales-de-ventes" title="Conditions générales de vente">Conditions générales de
+          vente
+        </nuxt-link>
       </p>
     </div>
   </footer>

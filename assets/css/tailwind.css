@@ -36,3 +36,38 @@
     --font-play: 'Playfair Display', serif;
 }
 
+@utility prose {
+    h1 {
+        font-size: 2rem;
+        @apply xl:text-4xl;
+        margin-bottom: 1.5rem;
+    }
+
+    h2 {
+        @apply text-2xl
+    }
+
+    h3 {
+        @apply text-[1.125rem];
+        margin-bottom: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    hr {
+        margin: 3rem 0;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    ul, ol {
+        margin: 1rem 0 1rem 3rem;
+    }
+
+    li {
+        list-style: disc;
+        padding-left: 1rem;
+    }
+}
+

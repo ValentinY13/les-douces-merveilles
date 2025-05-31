@@ -190,7 +190,9 @@ definePageMeta({
           <form @submit="handleCheckout" class="flex flex-col items-center ">
             <InputCheckbox class="py-6" :checked-value="true" name="cgv">
               J'ai lu et j'accepte les
-              <nuxt-link to="/" class="text-brown-700 font-medium">conditions générales de ventes*</nuxt-link>
+              <nuxt-link to="/conditions-generales-de-ventes" class="text-brown-700 font-medium">conditions générales de
+                ventes*
+              </nuxt-link>
             </InputCheckbox>
             <button type="submit" class="btn w-fit" @click="handleCheckout">Procéder au paiement</button>
           </form>
