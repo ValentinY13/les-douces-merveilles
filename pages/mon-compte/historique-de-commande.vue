@@ -13,7 +13,8 @@ const ordersSection = ref<HTMLElement | null>(null)
 const statusTranslations = {
   pending: 'En cours',
   completed: 'Récupérée',
-  refund: 'Remboursée'
+  refund: 'Remboursée',
+  expired: 'Expirée'
 }
 
 const {data, refresh} = await useAsyncData('orders_history', async () => {
