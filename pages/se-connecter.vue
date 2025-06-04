@@ -75,7 +75,7 @@ const submitForm = handleSubmit(async (values) => {
     userStore.setUser(loggedUser)
 
     $toast.success('Vous êtes connecté')
-    return navigateTo("/mon-compte");
+    return navigateTo("/mon-compte", {replace: true});
   } catch (e) {
     loginAttempt++;
 
@@ -103,7 +103,6 @@ const submitForm = handleSubmit(async (values) => {
     } else if (e.errors[0]?.extensions?.code === 'INVALID_PAYLOAD') {
       $toast.error('Champs invalides');
     } else {
-      console.log(e);
       $toast.error('Une erreur est survenue.');
     }
   }
@@ -130,6 +129,10 @@ onMounted(async () => {
       $toast.error('Échec de l\'authentification Google')
     }
   }
+})
+
+definePageMeta({
+  layout: 'default',
 })
 </script>
 

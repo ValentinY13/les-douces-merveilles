@@ -50,8 +50,8 @@ const verifyToken = async () => {
     setTimeout(() => {
       showRedirectMessage.value = true;
 
-      setTimeout(() => {
-        navigateTo('/se-connecter');
+      setTimeout(async () => {
+        return navigateTo('/se-connecter', {replace: true, external: true});
       }, 3000);
     }, 1000);
   } catch (e) {

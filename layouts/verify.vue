@@ -1,10 +1,3 @@
-<template>
-  <div>
-    <TheMenu/>
-    <slot/>
-  </div>
-</template>
-
 <script setup lang="ts">
 const route = useRoute()
 
@@ -34,6 +27,13 @@ useSeoMeta({
   twitterDescription: description,
 });
 </script>
+
+<template>
+  <div>
+    <TheMenu/>
+    <slot/>
+  </div>
+</template>
 
 <style scoped>
 

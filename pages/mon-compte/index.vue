@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import {useUserStore} from "~/store/user";
 
+definePageMeta({
+  middleware: ["auth"],
+  layout: "default",
+})
+
 const {$toast, $directus, $createItem, $triggerFlow} = useNuxtApp();
 const userStore = useUserStore()
 
@@ -36,10 +41,6 @@ async function handleDelete() {
   } catch (e) {
   }
 }
-
-definePageMeta({
-  middleware: ["auth"]
-})
 </script>
 
 <template>
