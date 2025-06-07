@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
 
     const dateCount = checkNumberPerDay?.[0]?.count?.pickup_date ?? 0;
 
-    if (dateCount >= settings[0].max_orders_per_day) {
+    if (dateCount >= settings.max_orders_per_day) {
         return {
             status: 'error',
             errorMessage: 'Le jour choisi est indisponible'
@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
 
     const slotCount = checkNumberPerSlot?.[0]?.count?.pickup_time_slot ?? 0;
 
-    if (slotCount >= settings[0].max_orders_per_slot) {
+    if (slotCount >= settings.max_orders_per_slot) {
         return {
             status: 'error',
             errorMessage: 'L\'heure de retrait est indisponible'

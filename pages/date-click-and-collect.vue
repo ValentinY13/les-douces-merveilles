@@ -18,13 +18,6 @@ const {data: settings} = await useAsyncData('settings', async () => {
         ],
       }))
     },
-    {
-      transform: (data) => {
-        if (!Array.isArray(data) || !data[0]) return null;
-
-        return data[0];
-      }
-    }
 )
 
 const {data: slotsData} = await useAsyncData('time_slots', async () => {

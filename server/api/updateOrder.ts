@@ -123,7 +123,7 @@ export default defineEventHandler(async (event) => {
     const orderCount = numberOrderThisDay[0]?.count?.pickup_date || 0
 
     // stop si limite déjà atteinte pour ce jour
-    if (orderCount >= settings[0].max_orders_per_day) {
+    if (orderCount >= settings.max_orders_per_day) {
         return {
             status: 'error',
             errorMessage: 'Cette date n\'est plus disponible',
@@ -153,7 +153,7 @@ export default defineEventHandler(async (event) => {
 
     // error si le créneau ajouté dépassera le nombre max
     for (const [key, value] of Object.entries(slotCounts)) {
-        if (key === body.time_slot_id && value + 1 > settings[0].max_orders_per_slot) {
+        if (key === body.time_slot_id && value + 1 > settings.max_orders_per_slot) {
             return {
                 status: 'error',
                 errorMessage: 'Ce créneau horaire n\'est plus disponible',
